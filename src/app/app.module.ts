@@ -10,6 +10,7 @@ import { ContenedorComponent } from './components/contenedor/contenedor.componen
 import { SelectorImagenesComponent } from './components/selector-imagenes/selector-imagenes.component';
 import { NotImplementedComponent } from './components/not-implemented/not-implemented.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
