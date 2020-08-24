@@ -1,3 +1,11 @@
-<div class='pizarra' >
+<div class='pizarra' cdkDropList
+    [cdkDropListData]="listaPict"
+    (cdkDropListDropped)="drop($event)">
+    
+    <div class="example-box" cdkDrag> 
+        <div *ngIf="pictoRecibed !== undefined">
+            {{pictoRecibed.name}}
+        </div>
+    </div>
     
 </div>
