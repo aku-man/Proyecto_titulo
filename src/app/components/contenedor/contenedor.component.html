@@ -2,10 +2,10 @@
     [cdkDropListData]="listaPict"
     (cdkDropListDropped)="drop($event)">
     
-    <div class="example-box" cdkDrag> 
-        <div *ngIf="pictoRecibed !== undefined">
-            {{pictoRecibed.name}}
-        </div>
+
+    <div *ngFor="let item of listaPict" class="example-box" cdkDrag >
+        {{item.nombre}}
     </div>
+
     
 </div>
