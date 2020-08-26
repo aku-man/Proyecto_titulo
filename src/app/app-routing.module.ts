@@ -4,6 +4,10 @@ import { TableroComponent } from './components/tablero/tablero.component';
 import { NotImplementedComponent } from './components/not-implemented/not-implemented.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
+import {MenuCategoriaComponent} from './components/menu-categoria/menu-categoria.component';
+import {SelectorImagenesComponent} from './components/selector-imagenes/selector-imagenes.component';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -33,7 +37,9 @@ const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent
-  }
+  },
+  {path:'', component:MenuCategoriaComponent},
+  {path: 'selector-imagenes/categoriaId', component: SelectorImagenesComponent}
 ];
 
 @NgModule({
