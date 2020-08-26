@@ -1,5 +1,5 @@
 export interface Pictograma {
-    id: number;
+    idPicto: number;
     nombre: string;
     imagen: string;
 }

@@ -37,9 +37,7 @@ const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent
-  },
-  {path:'', component:MenuCategoriaComponent},
-  {path: 'selector-imagenes/categoriaId', component: SelectorImagenesComponent}
+  }
 ];
 
 @NgModule({

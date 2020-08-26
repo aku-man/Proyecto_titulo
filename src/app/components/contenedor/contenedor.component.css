@@ -9,6 +9,11 @@
     overflow: hidden;
 }
 
+.selector-grid{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
 .example-box{
     width: 200px;
     height: 200px;

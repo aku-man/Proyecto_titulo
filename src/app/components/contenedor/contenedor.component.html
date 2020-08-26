@@ -4,8 +4,23 @@
     
 
     <div *ngFor="let item of listaPict" class="example-box" cdkDrag >
-        <img class="imagen" src="../../../assets/pictogramas/{{catSelected}}/{{item.imagen}}" style="height: 150px; width: 150px;">
+        <p>{{item.idPicto}}</p>
+        <!-- <img src="../../../assets/pictogramas/{{catSelected}}/{{item}}" style="height: 150px; width: 150px;"> -->
     </div>
 
+
+    <!-- <div *ngFor="let pict of listaPict">
+        <div *ngIf="pict.id == [catSelected]" class="selector-grid">
+            <div *ngFor="let item of pict.pictogramas" cdkDrag class="example-box">
+                
+                    <img class="imagen" src="../../../assets/pictogramas/{{pict.id}}/{{item.imagen}} " style="  width: 70%;
+                    height: 70%;   border: 1px groove black;">
+                    <br>
+                    <p>{{item.nombre}}</p>
+                
+                
+            </div>
+        </div>
+    </div> -->
     
 </div>

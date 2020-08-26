@@ -27,8 +27,6 @@ export class SelectorImagenesComponent implements OnInit {
       console.log(this.categoriaid);
       console.log(this.lista);
       });
-
-
   }
 
   drop(event: CdkDragDrop<string[]>): void{
