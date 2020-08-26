@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { Aux } from '../../models/aux.model';
+import { Aux } from '../../models/auxiliar.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Pictograma } from 'src/app/models/pictograma.model';
 

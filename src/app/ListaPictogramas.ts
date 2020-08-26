@@ -1,4 +1,4 @@
-import { Aux } from './models/aux.model';
+import { Aux } from './models/auxiliar.model';
 import { Pictograma } from './models/pictograma.model';
 
 export const ListaPictogramas: Aux[] = [{
