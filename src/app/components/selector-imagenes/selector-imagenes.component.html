@@ -3,7 +3,9 @@
     [cdkDropListData]="listaPicto"
     (cdkDropListDropped)="drop($event)">
     
-    <div *ngFor="let pict of listaPicto" class="example-box" cdkDrag>
-        {{pict.nombre}}
+    <div *ngFor="let pict of listaPicto">
+        <div *ngFor="let item of pict.pictogramas">
+            {{item.nombre}}
+        </div>
     </div>
 </div>

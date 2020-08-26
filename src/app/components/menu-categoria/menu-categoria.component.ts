@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Categoria } from '../../models/categoria.model';
+//import { Categoria } from '../../models/categoria.model';
+import {ListaCategorias} from '../../ListaCategorias';
 
 @Component({
   selector: 'app-menu-categoria',
@@ -8,36 +9,7 @@ import { Categoria } from '../../models/categoria.model';
 })
 export class MenuCategoriaComponent implements OnInit{
 
-  categorias: Categoria[] =[
-    {
-      id: 1,
-      nombre: 'Categoria 1'
-    },
-    {
-      id: 2,
-      nombre: 'Categoria 2'
-    },
-    {
-      id: 3,
-      nombre: 'Categoria 3'
-    },
-    {
-      id: 4,
-      nombre: 'Categoria 4'
-    },
-    {
-      id: 5,
-      nombre: 'Categoria 5'
-    },
-    {
-      id: 6,
-      nombre: 'Categoria 6'
-    },
-    {
-      id: 7,
-      nombre: 'Categoria 7'
-    }
-  ];
+  categorias=ListaCategorias;
 
   constructor() { }
 

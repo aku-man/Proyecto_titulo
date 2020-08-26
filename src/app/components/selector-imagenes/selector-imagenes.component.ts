@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Pictograma } from '../../models/pictograma.model';
+//import { Pictograma } from '../../models/pictograma.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {ActivatedRoute} from '@angular/router';
+import {ListaPictogramas} from '../../ListaPictogramas';
 
 @Component({
   selector: 'app-selector-imagenes',
@@ -9,47 +11,25 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class SelectorImagenesComponent implements OnInit {
 
-  constructor() { }
+  listaPicto=ListaPictogramas;
+  lista:any;
+  categoriaid:number;
+  constructor(private route:ActivatedRoute) { }
 
-  listaPicto: Pictograma[] = [
-    {
-      id: 1,
-      nombre: 'picto 1',
-      imagen: 'None'
-    },
-    {
-      id: 2,
-      nombre: 'picto 2',
-      imagen: 'None'
-    },
-    {
-      id: 3,
-      nombre: 'picto 3',
-      imagen: 'None'
-    },
-    {
-      id: 4,
-      nombre: 'picto 4',
-      imagen: 'None'
-    },
-    {
-      id: 5,
-      nombre: 'picto 5',
-      imagen: 'None'
-    },
-    {
-      id: 6,
-      nombre: 'picto 6',
-      imagen: 'None'
-    },
-    {
-      id: 7,
-      nombre: 'picto 7',
-      imagen: 'None'
-    }
-  ];
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params=>{
+     let categoria=Number(params.get("categoriaId"));
+      console.log(categoria);
+      this.lista=this.listaPicto.find(id =>id.id==categoria);
+      this.categoriaid=categoria;
+      console.log(this.categoriaid);
+      console.log(this.lista);
+             
+  
+      });
+
+
   }
 
   drop(event: CdkDragDrop<string[]>): void{
