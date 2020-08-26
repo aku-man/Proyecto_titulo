@@ -21,11 +21,8 @@ export class SelectorImagenesComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params =>{
       const categoria = Number(params.get('categoriaId'));
-      console.log(categoria);
       this.lista = this.listaPicto.find(id => id.id === categoria);
       this.categoriaid = categoria;
-      console.log(this.categoriaid);
-      console.log(this.lista);
       });
   }
 
