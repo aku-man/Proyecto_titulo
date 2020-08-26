@@ -4,14 +4,8 @@
 }
 
 .boton{
-    height: 50px;
-    width: 200px;
-    text-align: center;
+    display: inline-flex;
     margin: 5px 0px 5px 0px;
     
 }
 
-.imagen{
-    margin: 5px 10px 5px 0px;
-    border: 1px solid black;
-}

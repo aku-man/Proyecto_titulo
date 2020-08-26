@@ -1,6 +1,7 @@
 div.bienvenida{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    background: #7C7D6E;
 }
 
 div > img{
@@ -11,7 +12,7 @@ div > img{
 .center_space{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    
+    background: #7C7D6E;
 }
 
 .menu{

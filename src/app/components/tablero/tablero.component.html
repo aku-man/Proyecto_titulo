@@ -1,11 +1,13 @@
 <app-navegacion></app-navegacion>
-<div class="bienvenida">
+<div class="p-3 mb-2 bg-light text-dark" style="display: flex;" >
     <h1> Bienvenido 'Nombre_Usuario'!!</h1>
     <img src="../../../assets/images/552721.png" alt="">
 </div>
 
 
-<div class="center_space">
+<div class="p-3 mb-2 bg-light text-dark" 
+style="display: grid; grid-template-columns: 20% 80%;"
+>
     <app-menu-categoria class="menu" (messageEvent)="receiveMessage($event)"></app-menu-categoria>
     <div cdkDropListGroup>
         <app-contenedor class="pizarra" [catSelected] = "catSelectedAux" ></app-contenedor>
