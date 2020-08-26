@@ -6,10 +6,10 @@
 
 
 <div class="center_space">
-    <app-menu-categoria class="menu"></app-menu-categoria>
+    <app-menu-categoria class="menu" (messageEvent)="receiveMessage($event)"></app-menu-categoria>
     <div cdkDropListGroup>
-        <app-contenedor class="pizarra"  ></app-contenedor>
-        <app-selector-imagenes class="picto"  ></app-selector-imagenes>
+        <app-contenedor class="pizarra" [catSelected] = "catSelectedAux" ></app-contenedor>
+        <app-selector-imagenes class="picto" [catSelected] = "catSelectedAux" ></app-selector-imagenes>
     </div>
 </div>
 

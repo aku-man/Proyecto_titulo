@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { ContenedorComponent} from '../contenedor/contenedor.component';
 import { MenuCategoriaComponent} from '../menu-categoria/menu-categoria.component';
 import {NavegacionComponent} from '../navegacion/navegacion.component';
@@ -13,11 +13,14 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class TableroComponent implements OnInit {
 
-  pictToSend: EventEmitter<CdkDragDrop<string[]>>;
-
+  catSelectedAux: number;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  receiveMessage($event): void{
+    this.catSelectedAux = $event;
   }
 
 }

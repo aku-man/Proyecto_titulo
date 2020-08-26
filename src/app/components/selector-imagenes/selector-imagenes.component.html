@@ -4,8 +4,10 @@
     (cdkDropListDropped)="drop($event)">
     
     <div *ngFor="let pict of listaPicto">
-        <div *ngFor="let item of pict.pictogramas">
-            {{item.nombre}}
+        <div *ngIf="pict.id == [catSelected]" class="selector-grid">
+            <div *ngFor="let item of pict.pictogramas" cdkDrag class="example-box">
+                <img class="imagen" src="../../../assets/pictogramas/{{pict.id}}/{{item.imagen}}" style="height: 150px; width: 150px;">
+            </div>
         </div>
     </div>
 </div>

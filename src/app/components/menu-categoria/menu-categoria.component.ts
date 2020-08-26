@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-//import { Categoria } from '../../models/categoria.model';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+// import { Categoria } from '../../models/categoria.model';
 import {ListaCategorias} from '../../ListaCategorias';
 
 @Component({
@@ -9,11 +9,16 @@ import {ListaCategorias} from '../../ListaCategorias';
 })
 export class MenuCategoriaComponent implements OnInit{
 
-  categorias=ListaCategorias;
+  categorias = ListaCategorias;
 
   constructor() { }
+
+  @Output() messageEvent = new EventEmitter<number>();
 
   ngOnInit(): void {
   }
 
+  escojerCat(id: number): void{
+    this.messageEvent.emit(id);
+  }
 }

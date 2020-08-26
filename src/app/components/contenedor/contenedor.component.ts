@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Pictograma } from '../../models/pictograma.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ListaPictogramas } from '../../ListaPictogramas';
 
 @Component({
   selector: 'app-contenedor',
@@ -9,7 +10,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 export class ContenedorComponent implements OnInit {
 
-  listaPict: Pictograma[] = [];
+  listaPict = [];
+  @Input() catSelected: number;
 
   constructor() { }
 

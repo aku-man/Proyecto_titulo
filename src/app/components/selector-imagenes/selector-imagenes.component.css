@@ -1,10 +1,15 @@
 .selector{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    border-radius: 4px;
     overflow: hidden;
     padding: 10px 10px 10px 10px;
+    border: solid 1px green;
 }
+
+.selector-grid{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-radius: 4px;
+}
+
 .example-box{
   width: 200px;
   height: 200px;

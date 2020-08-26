@@ -1,7 +1,8 @@
 <div class="menu" *ngFor='let cat of categorias'>
-    <a [routerLink]="['/selector-imagenes', cat.id]" class="boton"> 
+
+    <button (click)="escojerCat(cat.id)" class="boton"> 
         <b>{{cat.nombre}} </b>
-    </a>
+    </button>
     <img class="imagen" src="../../../assets/categorias/{{cat.id}}.jpg" height="48px" width="48px">
     
     <!-- <button class="boton" onclick="console.log('Test')"> <b>{{cat.nombre}} </b>    
