@@ -16,6 +16,7 @@ export class MenuCategoriaComponent implements OnInit{
   @Output() messageEvent = new EventEmitter<number>();
 
   ngOnInit(): void {
+    this.escojerCat(1);
   }
 
   escojerCat(id: number): void{

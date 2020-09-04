@@ -4,11 +4,13 @@
     margin: 0px 10px;
     padding: 10px 10px 10px 10px;
     border: solid 1px green;
+    min-height: 300px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
 }
 
 .selector-grid{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  
   border-radius: 4px;
 }
 
