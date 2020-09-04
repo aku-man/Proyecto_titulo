@@ -1,13 +1,16 @@
 <div class="menu" *ngFor='let cat of categorias'>
-    
-        <button (click)="escojerCat(cat.id)" class="btn btn-secondary btn-lg btn-block" 
-        style="margin-bottom: 5px; border: 1px groove black; display: grid; grid-template-columns: 85% 15%; margin-left: 5px; font-size: medium; text-align: left;"
+    <button (click)="escojerCat(cat.id)" class="btn btn-secondary btn-lg btn-block" 
+        style="margin-bottom: 5px;
+               border: 1px groove black; 
+               display: grid;
+               grid-template-columns: 85% 15%;
+               margin-left: 5px; 
+               font-size: medium; 
+               text-align: left;"
         > 
-            <b>{{cat.nombre}} </b>
-            <img class="imagen" src="../../../assets/categorias/{{cat.id}}.jpg" height="48px" width="48px">
-        </button>
-        
-   
+        <b>{{cat.nombre}} </b>
+        <img src="../../../assets/categorias/{{cat.id}}.jpg" height="48px" width="48px">
+    </button>
 </div>
 
 

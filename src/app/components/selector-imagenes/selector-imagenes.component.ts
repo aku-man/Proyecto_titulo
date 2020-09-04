@@ -29,6 +29,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+<<<<<<< HEAD
     // this.route.paramMap.subscribe(params =>{
     //   const categoria = Number(params.get('categoriaId'));
     //   console.log(categoria);
@@ -37,6 +38,13 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     //   console.log(this.categoriaid);
     //   console.log(this.lista);
     //   });
+=======
+    this.route.paramMap.subscribe(params =>{
+      const categoria = Number(params.get('categoriaId'));
+      this.lista = this.listaPicto.find(id => id.id === categoria);
+      this.categoriaid = categoria;
+      });
+>>>>>>> b4b8e97f87e6dbeef90df0d5348986ef03e68752
   }
 
   drop(event: CdkDragDrop<string[]>): void{
