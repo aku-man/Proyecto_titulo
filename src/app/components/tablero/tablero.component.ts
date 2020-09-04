@@ -22,5 +22,10 @@ export class TableroComponent implements OnInit {
   receiveMessage($event): void{
     this.catSelectedAux = $event;
   }
+  
 
+
+  
 }
+
+

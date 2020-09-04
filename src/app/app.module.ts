@@ -14,6 +14,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DigitalClockComponent } from './digital-clock/digital-clock.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContenedorComponent,
     SelectorImagenesComponent,
     NotImplementedComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    DigitalClockComponent
   ],
   imports: [
     BrowserModule,

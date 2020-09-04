@@ -2,6 +2,8 @@
 <div class="p-3 mb-2 bg-light text-dark" style="display: flex;" >
     <h1> Bienvenido 'Nombre_Usuario'!!</h1>
     <img src="../../../assets/images/552721.png" alt="">
+
+    <app-digital-clock></app-digital-clock>
 </div>
 
 
@@ -14,6 +16,41 @@ style="display: grid; grid-template-columns: 20% 80%;"
         <app-selector-imagenes class="picto" [catSelected] = "catSelectedAux" ></app-selector-imagenes>
     </div>
 </div>
+
+
+<!-- <div class="cont-reloj" > 
+    <div class="reloj" id="reloj"></div>
+    <div class="datos">
+        <span id="fec_Datos">
+
+        </span>
+    </div>
+</div> -->
+
+
+<!-- <script>
+    let mostraHora=()=>{
+        let reloj = document.getElementById('reloj')
+        let fechaDato = document.getElementById('fec_Datos')
+
+
+        let fechaHora = new Date()
+        let hora = fechaHora.getHours()
+        let minutos = fechaHora.getMinutes()
+        let segundos = fechaHora.getSeconds()
+
+        let dia = fechaHora.getDate()
+        let mes = fechaHora.getMonth()
+        let ano = fechaHora.getFullYear()
+
+        console.log(dia)
+        reloj.textContent = `${hora}:${minutos}:${segundos}`
+
+    }
+    console.log(dia)
+    mostraHora()
+</script> -->
+
 
 
 
