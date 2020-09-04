@@ -12,12 +12,10 @@ export class ContenedorComponent implements OnInit {
 
   listaPict: Pictograma[] = [];
   @Input() catSelected: number;
-  
 
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 
   drop(event: CdkDragDrop<string[]>): void{
