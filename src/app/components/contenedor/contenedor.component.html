@@ -2,6 +2,7 @@
     <div *ngFor="let pict of listaSelect" (click)="eliminarPict(pict)">
         <img src="../../../assets/pictogramas/{{pict.idCat}}/{{pict.imagen}}" alt="intento numero 1" class="example-box">
     </div>
+    <button (click)="limpiarTablero()"> Limpiar Pizarra</button>
 </div>
 
 

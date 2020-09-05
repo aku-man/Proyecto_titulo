@@ -27,4 +27,8 @@ export class ContenedorComponent implements OnInit, OnChanges {
     const pos = this.listaSelect.indexOf(pict);
     this.listaSelect.splice(pos, 1);
   }
+
+  limpiarTablero(): void{
+    this.listaSelect.splice(0, this.listaSelect.length);
+  }
 }
