@@ -3,7 +3,7 @@
     <h1> Bienvenido 'Nombre_Usuario'!!</h1>
     <img src="../../../assets/images/552721.png" alt="">
 
-    <app-digital-clock></app-digital-clock>
+    
 </div>
 
 
@@ -12,44 +12,26 @@ style="display: grid; grid-template-columns: 20% 80%;"
 >
     <app-menu-categoria class="menu" (messageEvent)="receiveMessage($event)"></app-menu-categoria>
     <div cdkDropListGroup>
-        <app-contenedor class="pizarra" [catSelected] = "catSelectedAux" ></app-contenedor>
-        <app-selector-imagenes class="picto" [catSelected] = "catSelectedAux" ></app-selector-imagenes>
+        <app-contenedor class="pizarra" [catSelected] = "catSelectedAux" [pictoSelected]="pictSelected" ></app-contenedor>
+        <app-selector-imagenes class="picto" [catSelected] = "catSelectedAux" (messageEvent)="recivirMensajePicto($event)"></app-selector-imagenes>
     </div>
 </div>
 
 
-<!-- <div class="cont-reloj" > 
-    <div class="reloj" id="reloj"></div>
-    <div class="datos">
-        <span id="fec_Datos">
+<div *ngFor ="let item of lista">
+    
+    <div *ngIf = "item.id == [catSelectedAux]" >
+        <div *ngFor = "let pict of item.pictogramas">
+            <div *ngIf = "pict.idPicto == [pictSelected]">
+                <img src="../../../assets/pictogramas/{{item.id}}/{{pict.imagen}}" alt="intento numero 1">
+            </div>
 
-        </span>
-    </div>
-</div> -->
+        </div>
 
-
-<!-- <script>
-    let mostraHora=()=>{
-        let reloj = document.getElementById('reloj')
-        let fechaDato = document.getElementById('fec_Datos')
+    </div>    
+</div>
 
 
-        let fechaHora = new Date()
-        let hora = fechaHora.getHours()
-        let minutos = fechaHora.getMinutes()
-        let segundos = fechaHora.getSeconds()
-
-        let dia = fechaHora.getDate()
-        let mes = fechaHora.getMonth()
-        let ano = fechaHora.getFullYear()
-
-        console.log(dia)
-        reloj.textContent = `${hora}:${minutos}:${segundos}`
-
-    }
-    console.log(dia)
-    mostraHora()
-</script> -->
 
 
 

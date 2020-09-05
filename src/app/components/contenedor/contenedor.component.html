@@ -1,25 +1,33 @@
-<div class='pizarra' cdkDropList
-    [cdkDropListData]="listaPict"
-    (cdkDropListDropped)="drop($event)">
+<div class='pizarra'>
+
+    <div *ngFor ="let item of lista">
     
+        <div *ngIf = "item.id == [catSelected]" >
+            <div *ngFor = "let pict of item.pictogramas">
+                <div *ngIf = "pict.idPicto == [pictoSelected]">
+                    <img src="../../../assets/pictogramas/{{item.id}}/{{pict.imagen}}" alt="intento numero 1">
+                </div>
+    
+            </div>
+    
+        </div>    
+    </div>
+    
+<!-- 
+    tablero
+
+    (dentro de la etiqueta div con las class pizarra
+    cdkDropList
+    [cdkDropListData]="listaPict"
+    (cdkDropListDropped)="drop($event)")
 
     <div *ngFor="let item of listaPict" class="example-box" cdkDrag >
         <img src="../../../assets/pictogramas/{{item.idCat}}/{{item.imagen}}" style="height: 150px; width: 150px;">
     </div>
+ -->
 
-
-    <!-- <div *ngFor="let pict of listaPict">
-        <div *ngIf="pict.id == [catSelected]" class="selector-grid">
-            <div *ngFor="let item of pict.pictogramas" cdkDrag class="example-box">
-                
-                    <img class="imagen" src="../../../assets/pictogramas/{{pict.id}}/{{item.imagen}} " style="  width: 70%;
-                    height: 70%;   border: 1px groove black;">
-                    <br>
-                    <p>{{item.nombre}}</p>
-                
-                
-            </div>
-        </div>
-    </div> -->
+    
     
 </div>
+
+

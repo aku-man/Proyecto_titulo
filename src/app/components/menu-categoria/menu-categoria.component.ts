@@ -22,4 +22,6 @@ export class MenuCategoriaComponent implements OnInit{
   escojerCat(id: number): void{
     this.messageEvent.emit(id);
   }
+
+ 
 }

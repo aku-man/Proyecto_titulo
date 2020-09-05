@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
 // import { Pictograma } from '../../models/pictograma.model';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {ActivatedRoute} from '@angular/router';
@@ -37,9 +37,10 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     //   console.log(this.categoriaid);
     //   console.log(this.lista);
     //   });
+    this.escogerPicto(5);
   }
 
-  drop(event: CdkDragDrop<string[]>): void{
+  /* drop(event: CdkDragDrop<string[]>): void{
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -48,5 +49,13 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
                         event.previousIndex,
                         event.currentIndex);
     }
+  } */
+
+  
+  @Output() messageEvent = new EventEmitter<number>();
+  escogerPicto(id :number):void{
+    this.messageEvent.emit(id);
+    //console.log(id);
   }
+
 }

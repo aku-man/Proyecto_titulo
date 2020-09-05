@@ -2,31 +2,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-
 }
 
 .digitalClock{
-    position: relative;
-    width: 300px;
-    height: 130px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
-    border: 20px solid #fff;
-    border-radius: 5px;
-    box-shadow: inset 0 0 15px black
-                      0 20px 20px rgba(0,0,0,4); 
-    font-size: 26px;
-    color:black;
+    text-align: center;
+    display: grid;
+    grid: 50% 50%;
+    justify-content: right;    
+    font-size: 100%;
+    color: #fff;
     text-transform: uppercase;
 }
 
 .dateTitle{
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 100%;
+
 }
 
 .digitalTime{
@@ -34,6 +24,5 @@
 }
 
 .ampm{
-    margin-top: 10px;
-    font-size: 12px;
+    font-size: 100%;
 }
