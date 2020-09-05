@@ -1,28 +1,7 @@
-<div class="selector"
-    >
-    
-   
-    <!-- 
-        selectro de imagenes
-
-        (dentro de la etiqueta div con la clase selector
-        
-        cdkDropList
-        [cdkDropListData]="listaPicto"
-        (cdkDropListDropped)="drop($event)")
-        
-    <div *ngFor="let item of listaPicto" cdkDrag class="example-box">
-                
+<div class="selector">
+    <div *ngFor="let item of listaPicto" (click) = "escogerPicto(item.idPicto)" class="example-box">
             <img class="imagen" src="../../../assets/pictogramas/{{item.idCat}}/{{item.imagen}}" >
             <br>
             <p>{{item.nombre}}</p>
-    </div> -->
-
-    <div *ngFor="let item of listaPicto">
-        <button (click) = "escogerPicto(item.idPicto)" >  
-            <img class="imagen" src="../../../assets/pictogramas/{{item.idCat}}/{{item.imagen}}" >
-            <br>
-            <p>{{item.nombre}}</p>
-        </button>   
     </div>
 </div>

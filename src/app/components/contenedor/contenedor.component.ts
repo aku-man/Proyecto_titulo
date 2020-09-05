@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { Aux } from '../../models/auxiliar.model';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Pictograma } from 'src/app/models/pictograma.model';
 
 import {ListaPictogramas} from '../../ListaPictogramas';
@@ -10,30 +8,26 @@ import {ListaPictogramas} from '../../ListaPictogramas';
   templateUrl: './contenedor.component.html',
   styleUrls: ['./contenedor.component.css']
 })
-export class ContenedorComponent implements OnInit {
+export class ContenedorComponent implements OnInit, OnChanges {
   lista = ListaPictogramas;
   listaPict: Pictograma[] = [];
   @Input() catSelected: number;
-  @Input() pictoSelected :number;
+  @Input() pictoSelected: number;
 
   constructor() { }
+
+  ngOnChanges(): void{
+    for (const item of this.lista){
+      if (item.id === this.catSelected){
+        this.listaPict = item.pictogramas;
+      }
+    }
+  }
 
   ngOnInit(): void {
     console.log(this.catSelected);
     console.log(this.pictoSelected);
   }
-
- /*  drop(event: CdkDragDrop<string[]>): void{
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-    }
-    console.log(this.catSelected);
-  } */
   
   
 }

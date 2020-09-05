@@ -11,7 +11,7 @@
 style="display: grid; grid-template-columns: 20% 80%;"
 >
     <app-menu-categoria class="menu" (messageEvent)="receiveMessage($event)"></app-menu-categoria>
-    <div cdkDropListGroup>
+    <div>
         <app-contenedor class="pizarra" [catSelected] = "catSelectedAux" [pictoSelected]="pictSelected" ></app-contenedor>
         <app-selector-imagenes class="picto" [catSelected] = "catSelectedAux" (messageEvent)="recivirMensajePicto($event)"></app-selector-imagenes>
     </div>
