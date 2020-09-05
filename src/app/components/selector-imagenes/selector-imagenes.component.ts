@@ -18,10 +18,10 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
   constructor(private route: ActivatedRoute) { }
 
   @Input() catSelected: number;
-  @Output() messageEvent = new EventEmitter<number>();
+  @Output() messageEvent = new EventEmitter<Pictograma>();
 
-  escogerPicto(id: number): void{
-    this.messageEvent.emit(id);
+  escogerPicto(pic: Pictograma): void{
+    this.messageEvent.emit(pic);
     // console.log(id);
   }
 
