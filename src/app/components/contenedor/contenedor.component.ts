@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Pictograma } from 'src/app/models/pictograma.model';
-
 import {ListaPictogramas} from '../../ListaPictogramas';
 
 @Component({
@@ -13,9 +12,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
   listaPict: Pictograma[] = [];
   @Input() catSelected: number;
   @Input() pictoSelected: number;
-
   constructor() { }
-
   ngOnChanges(): void{
     for (const item of this.lista){
       if (item.id === this.catSelected){
@@ -23,11 +20,8 @@ export class ContenedorComponent implements OnInit, OnChanges {
       }
     }
   }
-
   ngOnInit(): void {
     console.log(this.catSelected);
     console.log(this.pictoSelected);
   }
-  
-  
 }

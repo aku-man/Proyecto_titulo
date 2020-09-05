@@ -2,10 +2,7 @@
 <div class="p-3 mb-2 bg-light text-dark" style="display: flex;" >
     <h1> Bienvenido 'Nombre_Usuario'!!</h1>
     <img src="../../../assets/images/552721.png" alt="">
-
-    
 </div>
-
 
 <div class="p-3 mb-2 bg-light text-dark" 
 style="display: grid; grid-template-columns: 20% 80%;"
@@ -17,9 +14,7 @@ style="display: grid; grid-template-columns: 20% 80%;"
     </div>
 </div>
 
-
 <div *ngFor ="let item of lista">
-    
     <div *ngIf = "item.id == [catSelectedAux]" >
         <div *ngFor = "let pict of item.pictogramas">
             <div *ngIf = "pict.idPicto == [pictSelected]">
