@@ -26,7 +26,7 @@ export class DigitalClockComponent implements OnInit {
 
   }
 
-  private updateDate(date: Date){
+  private updateDate(date: Date): void{
     const hours = date.getHours();
     this.ampm = hours >= 12 ? 'PM' : 'AM';
     this.hour = hours % 12;

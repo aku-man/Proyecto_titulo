@@ -22,4 +22,9 @@ export class ContenedorComponent implements OnInit, OnChanges {
     console.log(this.catSelected);
     console.log(this.pictoSelected);
   }
+
+  eliminarPict(pict: Pictograma): void{
+    const pos = this.listaSelect.indexOf(pict);
+    this.listaSelect.splice(pos, 1);
+  }
 }
