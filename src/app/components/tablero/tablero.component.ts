@@ -1,5 +1,4 @@
 import { Component, OnInit,  } from '@angular/core';
-
 import {ListaPictogramas} from '../../ListaPictogramas';
 
 @Component({
@@ -9,8 +8,6 @@ import {ListaPictogramas} from '../../ListaPictogramas';
 })
 export class TableroComponent implements OnInit {
   lista = ListaPictogramas;
-
-
   catSelectedAux: number;
   pictSelected: number;
   constructor() { }
@@ -20,15 +17,11 @@ export class TableroComponent implements OnInit {
 
   receiveMessage($event): void{
     this.catSelectedAux = $event;
-    // console.log(this.catSelectedAux);
   }
 
   recivirMensajePicto($event): void{
     this.pictSelected = $event;
-    // console.log(this.pictSelected);
   }
-
-  
 }
 
 

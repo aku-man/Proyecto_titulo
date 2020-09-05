@@ -24,7 +24,6 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     this.messageEvent.emit(pic);
     // console.log(id);
   }
-
   ngOnChanges(changes: SimpleChanges): void {
     for (const item of this.listaAux) {
       if (item.id === this.catSelected){
@@ -32,9 +31,6 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
       }
     }
   }
-
   ngOnInit(): void {
-    // this.escogerPicto(5);
   }
-
 }
