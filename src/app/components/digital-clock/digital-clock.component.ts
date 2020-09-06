@@ -23,12 +23,11 @@ export class DigitalClockComponent implements OnInit {
     }, 1000);
 
     this.day = this.daysArray[this.date.getDay()];
-
   }
 
   private updateDate(date: Date): void{
     const hours = date.getHours();
-    this.ampm = hours >= 12 ? 'PM' : 'AM';
+    this.ampm = hours >= 12 ? ' PM' : ' AM';
     this.hour = hours % 12;
     this.hour = this.hour ? this.hour : 12;
     this.hour = this.hour < 10 ? '0' + this.hour : this.hour;

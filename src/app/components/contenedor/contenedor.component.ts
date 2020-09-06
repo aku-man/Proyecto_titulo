@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Pictograma } from 'src/app/models/pictograma.model';
 
 @Component({
@@ -10,6 +10,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
   listaSelect: Pictograma[] = [];
   @Input() catSelected: number;
   @Input() pictoSelected: Pictograma = null;
+  @Output() messageEvent = new EventEmitter<Pictograma[]>();
 
   constructor() { }
   ngOnChanges(): void{
@@ -19,8 +20,6 @@ export class ContenedorComponent implements OnInit, OnChanges {
     }
   }
   ngOnInit(): void {
-    console.log(this.catSelected);
-    console.log(this.pictoSelected);
   }
 
   eliminarPict(pict: Pictograma): void{
@@ -30,5 +29,9 @@ export class ContenedorComponent implements OnInit, OnChanges {
 
   limpiarTablero(): void{
     this.listaSelect.splice(0, this.listaSelect.length);
+  }
+
+  guardarFrase(): void{
+    this.messageEvent.emit(this.listaSelect);
   }
 }
