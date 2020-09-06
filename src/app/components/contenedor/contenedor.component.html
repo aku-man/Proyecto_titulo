@@ -1,8 +1,18 @@
 <div class='pizarra'>
     <div *ngFor="let pict of listaSelect" (click)="eliminarPict(pict)">
-        <img src="../../../assets/pictogramas/{{pict.idCat}}/{{pict.imagen}}" alt="intento numero 1" class="example-box">
+        <div class="pictograma">
+            <img src="../../../assets/pictogramas/{{pict.idCat}}/{{pict.imagen}}" alt="{{pict.nombre}}" class="example-box">
+            <p class="nombre_pictograma">{{pict.nombre}}</p>    
+        </div>
     </div>
-    <button (click)="limpiarTablero()"> Limpiar Pizarra</button>
 </div>
 
+<div class="iconos">
+    <div class="icono">
+        <img src="../../../assets/icons/estrella.jpg" alt="guardar" class="imagen_guardar">
+    </div>
+    <div (click)="limpiarTablero()" class="icono" >
+         <img src="../../../assets/icons/basurero.jpg" alt="basurero" class="imagen_basurero">
+    </div>
 
+</div>

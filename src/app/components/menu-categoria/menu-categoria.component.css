@@ -1,14 +1,5 @@
 
 .menu{
     display: flex;
-}
-
-.boton{
-    display: inline-flex;
-    margin: 5px 0px 5px 0px;
-    
-}
-
-.btn btn-secondary btn-lg btn-block:active{
-    background: lightgoldenrodyellow;
+    padding-left: 5px;
 }

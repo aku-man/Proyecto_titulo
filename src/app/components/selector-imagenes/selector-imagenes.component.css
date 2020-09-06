@@ -1,9 +1,6 @@
 .selector{
     width: 100%;
-    background:#A1A294;
-    margin: 0px 10px;
     padding: 10px 10px 10px 10px;
-    border: solid 1px green;
     min-height: 300px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -15,15 +12,17 @@
 }
 
 .example-box{
+  padding-top: 5px;
   width: 200px;
   height: 200px;
   border: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
+  font-size: 20px;
+  color: black;
   cursor: pointer;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: #fff;
+  background:linear-gradient(#6b1c1c,#925353,#d67a7a);
   border-radius: 4px;
   position: relative;
   z-index: 1;
@@ -31,7 +30,8 @@
 }
 
 .example-box:hover{
-  background: lightgoldenrodyellow;
+  background:linear-gradient(#26135a,#3a1e70,#6f4ac5);
+  color: white;
 }
 
 .cdk-drag-preview {

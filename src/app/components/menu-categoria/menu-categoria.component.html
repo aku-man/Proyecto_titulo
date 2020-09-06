@@ -1,11 +1,10 @@
-<div  *ngFor='let cat of categorias'>
+<div  *ngFor='let cat of categorias' class="menu">
     <button (click)="escojerCat(cat.id)" class="btn btn-info btn-lg btn-block" 
         style="display: grid;
                margin-bottom : 5px;
                border : 2px solid black;
                display: grid;
                grid-template-columns :  85% 15% ;
-               margin-left : 5px;
                font-size :  medium;
                text-align: left;
                border-radius: 5%;"> 
