@@ -1,0 +1,14 @@
+.nave{
+    display: flex;
+    position: relative;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.reloj{
+    margin-right: 10px;
+}
+
+.hola{
+    color: white;
+}

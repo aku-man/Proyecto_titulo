@@ -2,6 +2,7 @@
 .menu{
     display: flex;
     padding-left: 5px;
+    margin-top: 10px;
 }
 
 button{
@@ -13,7 +14,6 @@ button{
     font-size :  medium;
     text-align: left;
     border-radius: 5%;
-    background:linear-gradient(#055a09,#34b350,#56ec6a);
 }
 
 button:hover{

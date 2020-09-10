@@ -10,12 +10,8 @@ import { Aux } from 'src/app/models/auxiliar.model';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  
   @Input() listaSeleccionada: Pictograma[];
   constructor() { }
-
-  
-
   ngOnInit(): void {
   }
 

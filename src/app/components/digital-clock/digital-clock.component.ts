@@ -22,7 +22,7 @@ export class DigitalClockComponent implements OnInit {
       this.updateDate(date);
     }, 1000);
 
-    this.day = this.daysArray[this.date.getDay()];
+    this.day = this.daysArray[this.date.getDay() - 1];
   }
 
   private updateDate(date: Date): void{

@@ -1,5 +1,5 @@
 .selector{
-    width: 100%;
+    width: auto;
     padding: 10px 10px 10px 10px;
     min-height: 300px;
     display: grid;
@@ -15,14 +15,14 @@
   padding-top: 5px;
   width: 200px;
   height: 200px;
-  border: solid 1px #ccc;
+  border: ridge 10px black;
   font-size: 20px;
   color: black;
   cursor: pointer;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background:linear-gradient(#6b1c1c,#925353,#d67a7a);
+  background:white;
   border-radius: 4px;
   position: relative;
   z-index: 1;

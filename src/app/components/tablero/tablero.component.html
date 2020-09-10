@@ -1,10 +1,7 @@
 <app-navegacion></app-navegacion>
 
 <div class="home">
-<div class="bienvenida">
-    <h1> Bienvenido 'Nombre_Usuario'!!</h1>
-    <img src="../../../assets/images/552721.png" alt="foto_usuario" height="50px" width="50px">
-</div>
+
 
 <div class="contenedor_selector" >
     <app-menu-categoria class="menu" (messageEvent)="receiveMessage($event)"></app-menu-categoria>
@@ -13,7 +10,6 @@
         <app-selector-imagenes class="picto" [catSelected] = "catSelectedAux" (messageEvent)="recivirMensajePicto($event)"></app-selector-imagenes>
     </div>
 </div>
-
 
 <app-perfil [listaSeleccionada] = "listaSelected" ></app-perfil>
 </div>

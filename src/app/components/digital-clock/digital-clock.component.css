@@ -1,22 +1,12 @@
-:host{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .digitalClock{
-    text-align: center;
-    display: grid;
-    grid: 50% 50%;
-    justify-content: right;    
+    display: inline-block;
     font-size: 100%;
     color: #fff;
     text-transform: uppercase;
 }
 
-.dateTitle{
+.dayTitle{
     font-size: 100%;
-
 }
 
 .digitalTime{
