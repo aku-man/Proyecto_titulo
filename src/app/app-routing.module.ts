@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { TableroComponent } from './components/tablero/tablero.component';
 import { NotImplementedComponent } from './components/not-implemented/not-implemented.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { FrasesComponent } from './components/frases/frases.component';
 
 
 const routes: Routes = [
@@ -17,11 +19,11 @@ const routes: Routes = [
   },
   {
     path: 'Perfil',
-    component: NotImplementedComponent
+    component: PerfilComponent
   },
   {
     path: 'Frases',
-    component: NotImplementedComponent
+    component: FrasesComponent
   },
   {
     path: 'Ayuda',

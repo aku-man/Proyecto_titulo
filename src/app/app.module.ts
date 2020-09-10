@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { FrasesComponent } from './components/frases/frases.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     NotImplementedComponent,
     NotFoundComponent,
     DigitalClockComponent,
-    PerfilComponent
+    PerfilComponent,
+    FrasesComponent
   ],
   imports: [
     BrowserModule,
