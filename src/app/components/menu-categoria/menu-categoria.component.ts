@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {ListaCategorias} from '../../ListaCategorias';
+import {ImagenesService} from './../../services/imagenes.service';
+
+
 
 @Component({
   selector: 'app-menu-categoria',
@@ -8,12 +11,19 @@ import {ListaCategorias} from '../../ListaCategorias';
 })
 export class MenuCategoriaComponent implements OnInit{
   categorias = ListaCategorias;
-  constructor() { }
-  @Output() messageEvent = new EventEmitter<number>();
+  categoria: any;
+  constructor(private imagenes: ImagenesService) {
+    this.imagenes.retornaItems().subscribe(items => {
+      this.categoria = items;
+    });
+   }
+
+  @Output() messageEvent = new EventEmitter<string>();
   ngOnInit(): void {
-    this.escojerCat(1);
+    /* this.escogerCat('Pruebas Medicas'); */
   }
-  escojerCat(id: number): void{
-    this.messageEvent.emit(id);
+  escogerCat(nombre: string): void{
+
+    this.messageEvent.emit(nombre);
   }
 }

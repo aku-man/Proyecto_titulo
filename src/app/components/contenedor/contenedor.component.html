@@ -1,7 +1,7 @@
 <div class='pizarra'>
     <div *ngFor="let pict of listaSelect" (click)="eliminarPict(pict)">
         <div class="pictograma">
-            <img src="../../../assets/pictogramas/{{pict.idCat}}/{{pict.imagen}}" alt="{{pict.nombre}}" class="example-box">
+            <img src={{pict.url}} alt="{{pict.nombre}}" class="example-box">
             <p class="nombre_pictograma">{{pict.nombre}}</p>    
         </div>
     </div>

@@ -1,6 +1,4 @@
 export interface Pictograma {
-    idPicto: number;
+    url: string;
     nombre: string;
-    imagen: string;
-    idCat: number;
 }

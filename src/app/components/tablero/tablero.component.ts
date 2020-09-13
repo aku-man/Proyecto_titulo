@@ -2,6 +2,7 @@ import { Component, OnInit,  } from '@angular/core';
 import {ListaPictogramas} from '../../ListaPictogramas';
 import { Pictograma } from 'src/app/models/pictograma.model';
 
+
 @Component({
   selector: 'app-tablero',
   templateUrl: './tablero.component.html',
@@ -9,10 +10,11 @@ import { Pictograma } from 'src/app/models/pictograma.model';
 })
 export class TableroComponent implements OnInit {
   lista = ListaPictogramas;
-  catSelectedAux: number;
+  catSelectedAux: string;
   pictSelected: number;
   listaSelected: Pictograma[];
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
   }
@@ -27,8 +29,9 @@ export class TableroComponent implements OnInit {
 
   recivirMensajeListaPicto($event): void{
     this.listaSelected = $event;
-    console.log(this.listaSelected);
+    /* console.log(this.listaSelected); */
   }
+
 }
 
 

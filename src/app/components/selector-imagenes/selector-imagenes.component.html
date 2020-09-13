@@ -1,6 +1,6 @@
 <div class="selector">
     <div *ngFor="let item of listaPicto" (click)="escogerPicto(item)" class="example-box">
-            <img class="imagen" src="../../../assets/pictogramas/{{item.idCat}}/{{item.imagen}}" >
+            <img class="imagen" src={{item.url}} >
             <br>
             <p>{{item.nombre}}</p>
     </div>

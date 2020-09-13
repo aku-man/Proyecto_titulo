@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ListaPictogramas} from '../../ListaPictogramas';
 import { Aux } from '../../models/auxiliar.model';
 import { Pictograma } from 'src/app/models/pictograma.model';
+import { ImagenesService } from 'src/app/services/imagenes.service';
 
 @Component({
   selector: 'app-selector-imagenes',
@@ -12,12 +13,13 @@ import { Pictograma } from 'src/app/models/pictograma.model';
 export class SelectorImagenesComponent implements OnInit, OnChanges {
 
   listaAux: Aux[] = ListaPictogramas;
-  listaPicto: Pictograma[] = [];
+  listaPicto: any[] = [];
   lista: any;
   categoriaid: number;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private imagenes: ImagenesService) {
+  }
 
-  @Input() catSelected: number;
+  @Input() catSelected: string;
   @Output() messageEvent = new EventEmitter<Pictograma>();
 
   escogerPicto(pic: Pictograma): void{
@@ -25,11 +27,10 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     // console.log(id);
   }
   ngOnChanges(changes: SimpleChanges): void {
-    for (const item of this.listaAux) {
-      if (item.id === this.catSelected){
-        this.listaPicto = item.pictogramas;
-      }
-    }
+    console.log(this.catSelected);
+    this.imagenes.obtenerCategoriaN(this.catSelected).subscribe((pictograma) => {
+      this.listaPicto = pictograma;
+    });
   }
   ngOnInit(): void {
   }

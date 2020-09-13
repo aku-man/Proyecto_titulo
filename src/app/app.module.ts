@@ -17,6 +17,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FrasesComponent } from './components/frases/frases.component';
+import { AngularFireModule } from '@angular/fire';
+
+import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -31,14 +35,17 @@ import { FrasesComponent } from './components/frases/frases.component';
     NotFoundComponent,
     DigitalClockComponent,
     PerfilComponent,
-    FrasesComponent
+    FrasesComponent,
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AppRoutingModule,
     DragDropModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

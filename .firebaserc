@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tablero-de-comunicacion-2020": {
+      "hosting": {
+        "Proyecto": [
+          "tablero-de-comunicacion-2020"
+        ]
+      }
+    }
+  }
+}
