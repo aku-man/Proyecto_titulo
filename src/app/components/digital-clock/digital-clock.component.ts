@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./digital-clock.component.css']
 })
 export class DigitalClockComponent implements OnInit {
-  private daysArray = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+  private daysArray = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
   private date = new Date();
   public hour: any;
   public minute: string;
@@ -22,7 +22,7 @@ export class DigitalClockComponent implements OnInit {
       this.updateDate(date);
     }, 1000);
 
-    this.day = this.daysArray[this.date.getDay() - 1];
+    this.day = this.daysArray[this.date.getDay()];
   }
 
   private updateDate(date: Date): void{

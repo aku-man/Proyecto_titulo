@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ListaPictogramas} from '../../ListaPictogramas';
 import { Aux } from '../../models/auxiliar.model';
 import { Pictograma } from 'src/app/models/pictograma.model';
 import { ImagenesService } from 'src/app/services/imagenes.service';
@@ -12,7 +11,7 @@ import { ImagenesService } from 'src/app/services/imagenes.service';
 })
 export class SelectorImagenesComponent implements OnInit, OnChanges {
 
-  listaAux: Aux[] = ListaPictogramas;
+  // listaAux: Aux[] = ListaPictogramas;
   listaPicto: any[] = [];
   lista: any;
   categoriaid: number;
@@ -27,7 +26,6 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     // console.log(id);
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.catSelected);
     this.imagenes.obtenerCategoriaN(this.catSelected).subscribe((pictograma) => {
       this.listaPicto = pictograma;
     });
