@@ -1,5 +1,5 @@
 import { Component, OnInit,  } from '@angular/core';
-import {ListaPictogramas} from '../../ListaPictogramas';
+/* import {ListaPictogramas} from '../../ListaPictogramas'; */
 import { Pictograma } from 'src/app/models/pictograma.model';
 
 
@@ -9,7 +9,7 @@ import { Pictograma } from 'src/app/models/pictograma.model';
   styleUrls: ['./tablero.component.css']
 })
 export class TableroComponent implements OnInit {
-  lista = ListaPictogramas;
+  /* lista = ListaPictogramas; */
   catSelectedAux: string;
   pictSelected: number;
   listaSelected: Pictograma[];

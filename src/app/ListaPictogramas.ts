@@ -1,10 +1,9 @@
 import { Aux } from './models/auxiliar.model';
 import { Pictograma } from './models/pictograma.model';
 
-export const ListaPictogramas: Aux[] = [{
+/* export const ListaPictogramas: Aux[] = [{
     id: 1,
     pictogramas: [{
-        idPicto: 1,
         nombre: 'Analisis',
         imagen: 'imagen1.jpg',
         idCat: 1
@@ -1294,3 +1293,4 @@ export const ListaPictogramas: Aux[] = [{
     ]
   }
 ];
+ */

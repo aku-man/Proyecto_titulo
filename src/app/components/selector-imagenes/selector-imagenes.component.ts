@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ListaPictogramas} from '../../ListaPictogramas';
+/* import {ListaPictogramas} from '../../ListaPictogramas'; */
 import { Aux } from '../../models/auxiliar.model';
 import { Pictograma } from 'src/app/models/pictograma.model';
 import { ImagenesService } from 'src/app/services/imagenes.service';
@@ -12,7 +12,7 @@ import { ImagenesService } from 'src/app/services/imagenes.service';
 })
 export class SelectorImagenesComponent implements OnInit, OnChanges {
 
-  listaAux: Aux[] = ListaPictogramas;
+  /* listaAux: Aux[] = ListaPictogramas; */
   listaPicto: any[] = [];
   lista: any;
   categoriaid: number;
@@ -24,7 +24,13 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
 
   escogerPicto(pic: Pictograma): void{
     this.messageEvent.emit(pic);
-    // console.log(id);
+    const utterance = new SpeechSynthesisUtterance(pic.nombre);
+
+
+    console.log(speechSynthesis.getVoices());
+
+    utterance.voice = speechSynthesis.getVoices()[0];
+    speechSynthesis.speak(utterance);
   }
   ngOnChanges(changes: SimpleChanges): void {
     console.log(this.catSelected);
