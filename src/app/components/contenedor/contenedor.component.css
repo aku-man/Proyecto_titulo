@@ -4,6 +4,7 @@
     height: 200px;
     border: 1px solid black;
     overflow-x: auto;
+    overflow-y: hidden;
     display: flex;
     background: white;
     margin-top: 10px;

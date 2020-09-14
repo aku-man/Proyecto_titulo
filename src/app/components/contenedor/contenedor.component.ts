@@ -8,7 +8,6 @@ import { Pictograma } from 'src/app/models/pictograma.model';
 })
 export class ContenedorComponent implements OnInit, OnChanges {
   listaSelect: Pictograma[] = [];
-  @Input() catSelected: number;
   @Input() pictoSelected: Pictograma = null;
   @Output() messageEvent = new EventEmitter<Pictograma[]>();
 

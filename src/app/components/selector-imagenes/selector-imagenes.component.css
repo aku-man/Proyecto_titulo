@@ -34,6 +34,11 @@
   color: white;
 }
 
+.example-box:active{
+  background:linear-gradient(#26135a,#3a1e70,#6f4ac5);
+  color: white;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
