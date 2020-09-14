@@ -20,7 +20,7 @@ export class MenuCategoriaComponent implements OnInit{
 
   @Output() messageEvent = new EventEmitter<string>();
   ngOnInit(): void {
-    /* this.escogerCat('Pruebas Medicas'); */
+     this.escogerCat('¿Que tengo?');
   }
   escogerCat(nombre: string): void{
 

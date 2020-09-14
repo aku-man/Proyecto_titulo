@@ -33,7 +33,6 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     speechSynthesis.speak(utterance);
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.catSelected);
     this.imagenes.obtenerCategoriaN(this.catSelected).subscribe((pictograma) => {
       this.listaPicto = pictograma;
     });

@@ -25,7 +25,6 @@ export class ImagenesService {
   obtenerCategoriaN(nombreCategoria: string): any{
     this.pictogramaCollection = this.afs.collection<Item>(nombreCategoria);
     this.pictogramas = this.pictogramaCollection.valueChanges();
-    console.log(nombreCategoria);
     return this.pictogramas;
   }
 
