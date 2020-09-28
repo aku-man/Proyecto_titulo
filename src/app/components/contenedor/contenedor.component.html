@@ -1,17 +1,20 @@
-<div class='pizarra'>
-    <div *ngFor="let pict of listaSelect" (click)="eliminarPict(pict)">
-        <div class="pictograma">
-            <img src={{pict.url}} alt="{{pict.nombre}}" class="example-box">
-            <p class="nombre_pictograma">{{pict.nombre}}</p>    
+<div class='contenedor'>
+    <div class="pizarra">
+        <div *ngFor="let pict of listaSelect"  class="select">
+            <div class="pictograma" (click)="eliminarPict(pict)">
+                <img src={{pict.url}} alt="{{pict.nombre}}" class="example-box">
+                <p class="nombre_pictograma">{{pict.nombre}}</p>    
+            </div>
         </div>
+    </div>
+    <div class="botones">
+        <div (click)="reproducirFrase()" class="icono">
+            <img src="../../../assets/icons/picto_escuchar.png" alt="basurero" class="imagen_basurero">
+        </div>
+        <div (click)="limpiarTablero()" class="icono" >
+            <img src="../../../assets/icons/picto_borrar.png" alt="basurero" class="imagen_basurero">
+       </div>
     </div>
 </div>
 
-<div class="iconos">
-    <div (click)="guardarFrase()" class="icono">
-        <img src="../../../assets/icons/estrella.jpg" alt="guardar" class="imagen_guardar">
-    </div>
-    <div (click)="limpiarTablero()" class="icono" >
-         <img src="../../../assets/icons/basurero.jpg" alt="basurero" class="imagen_basurero">
-    </div>
-</div>
+<

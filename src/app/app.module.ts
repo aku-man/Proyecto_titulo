@@ -21,6 +21,8 @@ import { AngularFireModule } from '@angular/fire';
 
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     AngularFireAnalyticsModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

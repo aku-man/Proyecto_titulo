@@ -1,23 +1,11 @@
 .home{
-background-image: url("https://2.bp.blogspot.com/-xKl88md8wN0/U_eExYHmQUI/AAAAAAABExY/tc0ayG4bs80/s1600/fondo-para-foto-azul-infantil2.png");
-background-repeat:no-repeat;
-background-position:center center;
-background-attachment:fixed;
--o-background-size: 100% 100%, auto;
--moz-background-size: 100% 100%, auto;
--webkit-background-size: 100% 100%, auto;
-background-size: 100% 100%, auto;
-}
-
-.bienvenida{
-    display: flex;
+    background-color: #4caf50;
 }
 
 .contenedor_selector{
-    display: grid; grid-template-columns: 20% 80%;
+    display: grid;
+    grid-template-columns: 20% 80%;
 }
-
-
 
 .menu{
     grid-column: 1;

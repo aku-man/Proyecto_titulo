@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { analytics } from 'firebase';
 
 @Component({
   selector: 'app-digital-clock',
@@ -13,7 +14,6 @@ export class DigitalClockComponent implements OnInit {
   public second: string;
   public ampm: string;
   public day: string;
-
   constructor() { }
 
   ngOnInit(): void {
@@ -21,7 +21,8 @@ export class DigitalClockComponent implements OnInit {
       const date = new Date();
       this.updateDate(date);
     }, 1000);
-
+    console.log(this.date.getDay());
+    this.obtenerDia(this.date);
     this.day = this.daysArray[this.date.getDay()];
   }
 
@@ -35,6 +36,49 @@ export class DigitalClockComponent implements OnInit {
     this.minute = minutes < 10 ? '0' + minutes : minutes.toString();
     const seconds = date.getSeconds();
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
+  }
+
+  private obtenerDia(date: Date): void{
+    const dia = this.daysArray[date.getDay()];
+    let intro;
+    console.log(dia);
+    switch (dia){
+      case 'Lunes' : {
+        intro = document.getElementById('lunes');
+        intro.style.backgroundColor = '#cddc39';
+        break;
+      }
+      case 'Martes' : {
+        intro = document.getElementById('martes');
+        intro.style.backgroundColor = '#cddc39';
+        break;
+      }
+      case 'Miercoles' : {
+        intro = document.getElementById('miercoles');
+        intro.style.backgroundColor = '#cddc39';
+        break;
+      }
+      case 'Jueves' : {
+        intro = document.getElementById('jueves');
+        intro.style.backgroundColor = '#cddc39';
+        break;
+      }
+      case 'Viernes' : {
+        intro = document.getElementById('viernes');
+        intro.style.backgroundColor = '#cddc39';
+        break;
+      }
+      case 'Sabado' : {
+        intro = document.getElementById('sabado');
+        intro.style.backgroundColor = '#cddc39';
+        break;
+      }
+      case 'Domingo' : {
+        intro = document.getElementById('domingo');
+        intro.style.backgroundColor = '#cddc39';
+        break;
+      }
+    }
   }
 
 }

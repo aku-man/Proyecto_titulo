@@ -1,35 +1,33 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item">
-          <a routerLink="/Tablero" routerLinkActive="active" class="nav-link disabled" > Mi Tablero </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" routerLink="/Perfil" routerLinkActive="active"> Mi Perfil </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" routerLink="/Frases" routerLinkActive="active"> Mis Frases </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" routerLink="/Alumnos" routerLinkActive="active"> Mi agenda </a>
-        </li>
-      </ul>
+<nav>
+    <div class="algo">
       <div class="nave">
         <div class="reloj">
           <app-digital-clock  ></app-digital-clock>
         </div>
       </div>
-      <div class="hola"> 
+      <div>
+      <button mat-button [matMenuTriggerFor]="menu" 
+      style="background: white;
+             height: 50px;
+             width: 150px;
+             font-size: 30px;
+             margin-top: 20px;">
         Hola
-        <img src="../../../assets/images/552721.png" alt="foto_usuario" height="20px" width="20px">
-      </div>
+        <img src="../../../assets/images/552721.png" alt="foto_usuario" height="30px" width="30px">
+      </button>
+      <mat-menu #menu="matMenu" style="display: block;">
+        <a class="nav-link disabled" routerLink="/Tablero" routerLinkActive="active"> Mi Tablero </a><p></p>
+        <a class="nav-link disabled" routerLink="/Perfil" routerLinkActive="active"> Mi Perfil </a><p></p>
+        <a class="nav-link disabled" routerLink="/Frases" routerLinkActive="active"> Mis Frases </a><p></p>
+        <a class="nav-link disabled" routerLink="/Alumnos" routerLinkActive="active"> Mi agenda </a>
+      </mat-menu> 
+    </div>
     </div>
   </nav>
 
+
+ 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

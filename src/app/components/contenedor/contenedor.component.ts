@@ -8,6 +8,7 @@ import { Pictograma } from 'src/app/models/pictograma.model';
 })
 export class ContenedorComponent implements OnInit, OnChanges {
   listaSelect: Pictograma[] = [];
+  Lista: [] = [];
   @Input() pictoSelected: Pictograma = null;
   @Output() messageEvent = new EventEmitter<Pictograma[]>();
 
@@ -30,7 +31,12 @@ export class ContenedorComponent implements OnInit, OnChanges {
     this.listaSelect.splice(0, this.listaSelect.length);
   }
 
-  guardarFrase(): void{
-    this.messageEvent.emit(this.listaSelect);
+  reproducirFrase(): void{
+    for (const pict of this.listaSelect){
+      const utterance = new SpeechSynthesisUtterance(pict.nombre);
+      console.log(speechSynthesis.getVoices());
+      utterance.voice = speechSynthesis.getVoices()[0];
+      speechSynthesis.speak(utterance);
+    }
   }
 }

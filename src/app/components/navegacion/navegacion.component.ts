@@ -1,4 +1,6 @@
+import { trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import {} from '@angular/material/menu';
 
 @Component({
   selector: 'app-navegacion',
@@ -10,3 +12,4 @@ export class NavegacionComponent implements OnInit {
   ngOnInit(): void {
   }
 }
+export class MenuOverviewExample {}

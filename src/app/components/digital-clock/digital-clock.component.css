@@ -1,4 +1,4 @@
-.digitalClock{
+/* .digitalClock{
     display: inline-block;
     font-size: 100%;
     color: #fff;
@@ -15,4 +15,88 @@
 
 .ampm{
     font-size: 100%;
+} */
+
+
+
+
+.contenedor{
+    display: inline-flex;
+    background: white;
+    height: 100px;
+    width: 700px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+
+#lunes{
+    padding-top: 40px;
+    height: 100px;
+    width: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80px;
+    text-align: center;
+    border-right: 1px solid black;
+}
+
+#martes{
+    padding-top: 40px;
+    height: 100px;
+    width: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80px;
+    text-align: center;
+    border-right: 1px solid black;
+}
+
+#miercoles{
+    padding-top: 40px;
+    height: 100px;
+    width: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80px;
+    text-align: center;
+    border-right: 1px solid black;
+}
+
+#jueves{
+    padding-top: 40px;
+    height: 100px;
+    width: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80px;
+    text-align: center;
+    border-right: 1px solid black;
+}
+
+#viernes{
+    padding-top: 40px;
+    height: 100px;
+    width: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80px;
+    text-align: center;
+    border-right: 1px solid black;
+}
+
+#sabado{
+    padding-top: 40px;
+    height: 100px;
+    width: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80px;
+    text-align: center;
+    border-right: 1px solid black;
+}
+
+#domingo{
+    padding-top: 40px;
+    height: 100px;
+    width: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80px;
+    text-align: center;
+    border-right: 1px solid black;
 }
