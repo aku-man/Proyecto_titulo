@@ -1,4 +1,6 @@
 export interface Categoria {
-    id: number;
+    idCategoria: string;
     nombre: string;
+    url: string;
+    idGrupo: string;
 }

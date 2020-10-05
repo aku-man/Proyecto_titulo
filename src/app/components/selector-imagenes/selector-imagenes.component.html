@@ -1,7 +1,48 @@
-<div class="selector">
+<!-- <div class="selector">
     <div *ngFor="let item of listaPicto" (click)="escogerPicto(item)" class="example-box">
         <img class="imagen" src={{item.url}} >
         <br>
         <p>{{item.nombre}}</p>
     </div>
 </div>
+
+
+ -->
+
+<div class="selector">
+    <img src="../../../assets/icons/casa.png" 
+         style="width: 200px;
+                height: 200px;"
+         (click)="inicio()">
+    <div *ngFor="let ruta of arregloDireccion" class="example-box">
+        <img src={{ruta.url}} class="imagen">
+        <p>{{ruta.nombre}}</p>
+    </div> 
+</div>
+
+
+
+<div >
+    <div *ngIf="[arregloDireccion.length] == 0" class="selector" >
+        <div *ngFor="let i of lista"  class="example-box" (click)="escogerGrupo(i)">
+            <img src={{i.url}} class="imagen">
+            <p>{{i.nombre}}</p>
+        </div>
+    </div>
+    <div *ngIf="[arregloDireccion.length] == 1" class="selector" >
+        <div *ngFor="let i of lista3"   (click)="escogerCategoria(i)" >
+            <div *ngIf="i.idGrupo ==[categoriaid]" class="example-box">
+                <img src={{i.url}} class="imagen">
+                <p>{{i.nombre}}</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="[arregloDireccion.length] == 2" class="selector">
+        <div *ngFor="let item of listaPicto" (click)="escogerPicto(item)" class="example-box">
+            <img class="imagen" src={{item.url}} >
+            <br>
+            <p>{{item.nombre}}</p>
+        </div>
+    </div>
+</div>
+

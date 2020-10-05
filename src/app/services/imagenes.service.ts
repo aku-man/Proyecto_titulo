@@ -12,6 +12,8 @@ export class ImagenesService {
   items: Observable<Item[]>;
   private pictogramaCollection: AngularFirestoreCollection<Item>;
   pictogramas: Observable<Item[]>;
+  private gruposCollection: AngularFirestoreCollection<Item>;
+  grupos: Observable<Item[]>;
 
   constructor(private afs: AngularFirestore) {
   }
@@ -22,6 +24,7 @@ export class ImagenesService {
   }
 
   obtenerCategoriaN(nombreCategoria: string): any{
+    console.log(nombreCategoria);
     this.pictogramaCollection = this.afs.collection<Item>(nombreCategoria);
     this.pictogramas = this.pictogramaCollection.valueChanges();
     return this.pictogramas;
@@ -30,6 +33,13 @@ export class ImagenesService {
   retornaItems(): any{
     this.obtenerCategorias();
     return this.items;
+  }
+
+  obtenerGrupos(): any{
+    this.gruposCollection = this.afs.collection<Item>('Grupo');
+    this.grupos = this.gruposCollection.valueChanges();
+    console.log(this.grupos);
+    return this.grupos;
   }
 }
 
