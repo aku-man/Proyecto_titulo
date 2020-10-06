@@ -71,12 +71,14 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     });
   }
 
-  escogerRuta(): void{
-    if (this.arregloDireccion.length > 1 ){
-      console.log('ENTRO');
-      this.arregloDireccion.pop();
-      this.escogerGrupo(this.arregloDireccion[0]);
-      this.lista3 = [];
+  volver(ruta: any): void{
+    const posicion = this.arregloDireccion.indexOf(ruta);
+    if (posicion === 1){
+      return;
+    }
+    else{
+      this.arregloDireccion = [];
+      this.escogerCategoria(ruta);
     }
   }
 }

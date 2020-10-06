@@ -1,28 +1,21 @@
 .selector{
-    width: auto;
-    padding: 5%;
-    min-height: 300px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-}
-
-.selector-grid{
-  
-  border-radius: 4px;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .example-box{
-  padding-top: 5px;
-  width: 200px;
-  height: 200px;
+  margin-right: 20px;
+  width: 150px;
+  height: 150px;
   font-size: 20px;
   color: black;
   cursor: pointer;
-  align-items: center;
   text-align: center;
   background:white;
   border-radius: 10%;
-  margin-bottom: 10%;
+  margin-bottom: 20px;
 }
 
 .example-box:hover{
@@ -30,12 +23,63 @@
   color: white;
 }
 
-.example-box:active{
-  background:linear-gradient(#26135a,#3a1e70,#6f4ac5);
-  color: white;
-}
-
 .imagen{
   width: 70%;
   height: 70%;
+}
+
+.inicio{
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
+}
+
+.inicio:active{
+  transform: translateY(2px);
+}
+
+.selector-ruta{
+  border: 5px solid white;
+  border-radius: 10px;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5px;
+  background: repeating-linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0) 20px,
+      rgba(0, 0, 0, 0) 40px,
+      #80deea 40px,
+      #80deea 60px
+    );
+}
+
+.caja-ruta{
+  margin-left: 30px;
+  margin-right: 10px;
+  width: 120px;
+  height: 120px;
+  font-size: 14px;
+  color: black;
+  cursor: pointer;
+  align-items: center;
+  text-align: center;
+  background:white;
+  border-radius: 10%;
+  margin-bottom: 10px;
+}
+
+.imagen-ruta{
+  width: 70%;
+  height: 70%;
+}
+
+.caja-ruta:active{
+  transform: translateY(2px);
+}
+
+.ruta{
+  display: flex;
+  justify-content: center;
 }

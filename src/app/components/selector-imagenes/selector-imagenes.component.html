@@ -1,28 +1,17 @@
-<!-- <div class="selector">
-    <div *ngFor="let item of listaPicto" (click)="escogerPicto(item)" class="example-box">
-        <img class="imagen" src={{item.url}} >
-        <br>
-        <p>{{item.nombre}}</p>
+<div class="ruta">
+    <div class="selector-ruta">
+        <img src="../../../assets/icons/casa.png" 
+             class="inicio"
+            (click)="inicio()">
+        <div *ngFor="let ruta of arregloDireccion" (click)="volver(ruta)" class="caja-ruta">
+            <img src={{ruta.url}} class="imagen-ruta">
+            <p>{{ruta.nombre}}</p>
+        </div> 
     </div>
 </div>
 
 
- -->
-
-<div class="selector">
-    <img src="../../../assets/icons/casa.png" 
-         style="width: 200px;
-                height: 200px;"
-         (click)="inicio()">
-    <div *ngFor="let ruta of arregloDireccion" class="example-box">
-        <img src={{ruta.url}} class="imagen">
-        <p>{{ruta.nombre}}</p>
-    </div> 
-</div>
-
-
-
-<div >
+<div class="display">
     <div *ngIf="[arregloDireccion.length] == 0" class="selector" >
         <div *ngFor="let i of lista"  class="example-box" (click)="escogerGrupo(i)">
             <img src={{i.url}} class="imagen">

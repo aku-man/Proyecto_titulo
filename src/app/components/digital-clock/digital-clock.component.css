@@ -1,102 +1,95 @@
-/* .digitalClock{
-    display: inline-block;
-    font-size: 100%;
-    color: #fff;
-    text-transform: uppercase;
-}
-
-.dayTitle{
-    font-size: 100%;
-}
-
-.digitalTime{
-    display: flex;
-}
-
-.ampm{
-    font-size: 100%;
-} */
-
-
-
-
 .contenedor{
-    display: inline-flex;
+    display: flex;
     background: white;
-    height: 100px;
-    width: 700px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
+    height: 50px;
+    width: 350px;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 10px;
 }
-
 
 #lunes{
-    padding-top: 40px;
-    height: 100px;
-    width: 100px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 80px;
+    width: 50px;
+    height: 100%;
+    font-size: 50px;
     text-align: center;
-    border-right: 1px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 15px;
 }
 
-#martes{
-    padding-top: 40px;
-    height: 100px;
-    width: 100px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 80px;
+ #martes{
+    width: 50px;
+    height: 100%;
+    font-size: 50px;
     text-align: center;
-    border-right: 1px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 15px;
 }
 
 #miercoles{
-    padding-top: 40px;
-    height: 100px;
-    width: 100px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 80px;
+    width: 50px;
+    height: 100%;
+    font-size: 50px;
     text-align: center;
-    border-right: 1px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 15px;
 }
 
 #jueves{
-    padding-top: 40px;
-    height: 100px;
-    width: 100px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 80px;
+    width: 50px;
+    height: 100%;
+    font-size: 50px;
     text-align: center;
-    border-right: 1px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 15px;
 }
 
 #viernes{
-    padding-top: 40px;
-    height: 100px;
-    width: 100px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 80px;
+    width: 50px;
+    height: 100%;
+    font-size: 50px;
     text-align: center;
-    border-right: 1px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 15px;
 }
 
 #sabado{
-    padding-top: 40px;
-    height: 100px;
-    width: 100px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 80px;
+    width: 50px;
+    height: 100%;
+    font-size: 50px;
     text-align: center;
-    border-right: 1px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 15px;
 }
 
 #domingo{
-    padding-top: 40px;
-    height: 100px;
-    width: 100px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 80px;
+    width: 50px;
+    height: 100%;
+    font-size: 50px;
     text-align: center;
-    border-right: 1px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 15px;
 }

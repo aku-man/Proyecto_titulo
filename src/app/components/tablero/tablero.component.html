@@ -1,13 +1,11 @@
-<app-navegacion></app-navegacion>
 <div class="home">
+    <app-navegacion ></app-navegacion>
     <div class="contenedor_selector" >
-        <app-menu-categoria class="menu" (messageEvent)="receiveMessage($event)"></app-menu-categoria>
-        <div>
-            <app-contenedor class="pizarra" [pictoSelected]="pictSelected"  (messageEvent)="recivirMensajeListaPicto($event)"></app-contenedor>
-            <app-selector-imagenes class="picto" [catSelected] = "catSelectedAux" (messageEvent)="recivirMensajePicto($event)"></app-selector-imagenes>
-        </div>
+        <app-contenedor  [pictoSelected]="pictSelected"  (messageEvent)="recivirMensajeListaPicto($event)"></app-contenedor>
+        <app-selector-imagenes  [catSelected] = "catSelectedAux" (messageEvent)="recivirMensajePicto($event)"></app-selector-imagenes>
     </div>
 </div>
+
 
 
 
