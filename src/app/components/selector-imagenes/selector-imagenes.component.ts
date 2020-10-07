@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { Pictograma } from 'src/app/models/pictograma.model';
 import { ImagenesService } from 'src/app/services/imagenes.service';
-import {Grupo } from 'src/app/models/grupo.model';
+import { Grupo } from 'src/app/models/grupo.model';
 import { Categoria } from 'src/app/models/categoria.model';
+
 
 @Component({
   selector: 'app-selector-imagenes',
@@ -11,14 +12,13 @@ import { Categoria } from 'src/app/models/categoria.model';
   styleUrls: ['./selector-imagenes.component.css']
 })
 export class SelectorImagenesComponent implements OnInit, OnChanges {
-  listaPicto: any[] = [];
+  listaPicto: Pictograma[] = [];
   arregloDireccion: Grupo[] = [];
   listaCategoria: any[] = [];
   lista: any;
   lista2: any;
   lista3: any[] = [];
   categoriaid: string;
-
 
   constructor(private route: ActivatedRoute, private imagenes: ImagenesService) {
   }

@@ -22,6 +22,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MatMenuModule } from '@angular/material/menu';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 
 
 
@@ -48,7 +49,8 @@ import { MatMenuModule } from '@angular/material/menu';
     BrowserAnimationsModule,
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
-    MatMenuModule
+    MatMenuModule,
+    DragAndDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

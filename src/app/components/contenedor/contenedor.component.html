@@ -1,6 +1,8 @@
 <div class='contenedor'>
-    <div class="pizarra">
-        <div *ngFor="let pict of listaSelect"  class="select">
+    <div class="pizarra"
+    mwlDroppable (drop)="onDrop($event)" 
+    dragOverClass="drop-over-active">
+        <div *ngFor="let pict of listaSelect">
             <div class="pictograma" (click)="eliminarPict(pict)">
                 <img src={{pict.url}} alt="{{pict.nombre}}" class="example-box">
                 <p class="nombre_pictograma">{{pict.nombre}}</p>    

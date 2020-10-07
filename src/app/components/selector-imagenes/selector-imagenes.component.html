@@ -27,7 +27,11 @@
         </div>
     </div>
     <div *ngIf="[arregloDireccion.length] == 2" class="selector">
-        <div *ngFor="let item of listaPicto" (click)="escogerPicto(item)" class="example-box">
+        <div *ngFor="let item of listaPicto" 
+        (click)="escogerPicto(item)" 
+        class="example-box"
+        mwlDraggable
+        [dropData]=item>
             <img class="imagen" src={{item.url}} >
             <br>
             <p>{{item.nombre}}</p>

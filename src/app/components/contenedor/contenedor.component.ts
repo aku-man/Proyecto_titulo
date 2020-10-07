@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Pictograma } from 'src/app/models/pictograma.model';
+import { DropEvent } from 'angular-draggable-droppable';
 
 @Component({
   selector: 'app-contenedor',
@@ -11,6 +12,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
   Lista: [] = [];
   @Input() pictoSelected: Pictograma = null;
   @Output() messageEvent = new EventEmitter<Pictograma[]>();
+  droppedData: Pictograma = null;
 
   constructor() { }
   ngOnChanges(): void{
@@ -38,5 +40,9 @@ export class ContenedorComponent implements OnInit, OnChanges {
       utterance.voice = speechSynthesis.getVoices()[0];
       speechSynthesis.speak(utterance);
     }
+  }
+
+  onDrop({ dropData }: DropEvent<Pictograma>): void {
+    this.listaSelect.push(dropData);
   }
 }
