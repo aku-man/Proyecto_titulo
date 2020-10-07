@@ -83,3 +83,9 @@
   display: flex;
   justify-content: center;
 }
+
+.display{
+  
+  background-color: #00bcd4;
+  height: 100vh;
+}
