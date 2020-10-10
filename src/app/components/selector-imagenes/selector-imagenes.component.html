@@ -26,11 +26,14 @@
             </div>
         </div>
     </div>
-    <div *ngIf="[arregloDireccion.length] == 2" class="selector">
+    <div *ngIf="[arregloDireccion.length] == 2" 
+    class="selector" 
+    dragOverClass="drop-over-active">
         <div *ngFor="let item of listaPicto" 
         (click)="escogerPicto(item)" 
         class="example-box"
         mwlDraggable
+        (dragEnd)="dragEnd($event, item)"
         [dropData]=item>
             <img class="imagen" src={{item.url}} >
             <br>

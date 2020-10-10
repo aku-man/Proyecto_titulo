@@ -4,6 +4,7 @@ import { Pictograma } from 'src/app/models/pictograma.model';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 import { Grupo } from 'src/app/models/grupo.model';
 import { Categoria } from 'src/app/models/categoria.model';
+import { DropEvent } from 'angular-draggable-droppable';
 
 
 @Component({
@@ -80,5 +81,19 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
       this.arregloDireccion = [];
       this.escogerCategoria(ruta);
     }
+  }
+
+  onDrop({ dropData }: DropEvent<Pictograma>): void {
+    if (dropData){
+      this.listaPicto.push(dropData);
+    }
+  }
+
+  dragEnd(event, item): void {
+    // console.log('Element was dragged', event);
+    // if (item){
+    //   const pos = this.listaPicto.indexOf(item);
+    //   this.listaPicto.splice(pos, 1);
+    // }
   }
 }

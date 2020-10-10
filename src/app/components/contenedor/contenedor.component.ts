@@ -43,6 +43,17 @@ export class ContenedorComponent implements OnInit, OnChanges {
   }
 
   onDrop({ dropData }: DropEvent<Pictograma>): void {
-    this.listaSelect.push(dropData);
+    if (dropData){
+      const found = this.listaSelect.includes(dropData);
+      if (!found){
+        this.listaSelect.push(dropData);
+      }
+    }
+  }
+
+  dragEnd(event, item): void {
+    console.log('Element was dragged', event);
+    const pos = this.listaSelect.indexOf(item);
+    this.listaSelect.splice(pos, 1);
   }
 }
