@@ -5,6 +5,7 @@ import { NotImplementedComponent } from './components/not-implemented/not-implem
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FrasesComponent } from './components/frases/frases.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,14 @@ const routes: Routes = [
   {
     path: 'Tablero',
     component: TableroComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'Login',
+    component: LoginComponent
   },
   {
     path: 'Perfil',

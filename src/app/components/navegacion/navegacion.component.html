@@ -7,11 +7,23 @@
         <button mat-button [matMenuTriggerFor]="menu" class="boton-menu">
           Bienvenido
         </button>
-        <mat-menu #menu="matMenu" style="display: block;">
-          <a class="nav-link disabled" routerLink="/Tablero" routerLinkActive="active"> Mi Tablero </a><p></p>
-          <a class="nav-link disabled" routerLink="/Perfil" routerLinkActive="active"> Mi Perfil </a><p></p>
-          <a class="nav-link disabled" routerLink="/Frases" routerLinkActive="active"> Mis Frases </a><p></p>
-          <a class="nav-link disabled" routerLink="/Alumnos" routerLinkActive="active"> Mi agenda </a>
+        <mat-menu #menu="matMenu" style="display: flex;
+        flex-direction: column;">
+        <div>
+          <a  routerLink="/Tablero" routerLinkActive="active"> Mi Tablero </a>
+        </div>
+        <div>
+          <a  routerLink="/Perfil" routerLinkActive="active"> Mi Perfil </a>
+        </div>
+        <div>
+          <a  routerLink="/Frases" routerLinkActive="active"> Mis Frases </a>
+        </div>
+        <div>
+          <a  routerLink="/Alumnos" routerLinkActive="active"> Mi agenda </a>
+        </div>
+        <div>
+          <a  routerLink="/Login" routerLinkActive="active"> Iniciar sesion </a>
+        </div>
         </mat-menu> 
       </div>
 </nav>

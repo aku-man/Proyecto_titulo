@@ -30,7 +30,7 @@
     class="selector" 
     dragOverClass="drop-over-active">
         <div *ngFor="let item of listaPicto" 
-        (click)="escogerPicto(item)" 
+        
         class="example-box"
         mwlDraggable
         (dragEnd)="dragEnd($event, item)"
@@ -42,3 +42,6 @@
     </div>
 </div>
 
+
+
+<!-- (click)="escogerPicto(item)"  -->
