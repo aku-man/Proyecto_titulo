@@ -24,6 +24,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { DragAndDropModule } from 'angular-draggable-droppable';
 import { LoginComponent } from './components/login/login.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { RegisterComponent } from './components/register/register.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -41,6 +43,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
     PerfilComponent,
     FrasesComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
     AngularFirestoreModule,
     MatMenuModule,
     DragAndDropModule,
+    FormsModule,
     NgxAuthFirebaseUIModule.forRoot(
       {
         apiKey: 'AIzaSyCY56PtNlDTIqLsz01p-sexG6JvadnFlBA',

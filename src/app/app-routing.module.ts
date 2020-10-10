@@ -6,6 +6,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FrasesComponent } from './components/frases/frases.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,14 @@ const routes: Routes = [
   {
     path: 'Alumnos',
     component: NotImplementedComponent
+  },
+  {
+    path: 'Register',
+    component: RegisterComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: '**',
