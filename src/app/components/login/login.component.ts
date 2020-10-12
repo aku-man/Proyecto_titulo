@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthProvider } from 'ngx-auth-firebaseui';
@@ -11,13 +12,13 @@ import { AuthProvider } from 'ngx-auth-firebaseui';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSuccess(): void {
-    /* this.router.navigate(['/home']); */
+     this.router.navigate(['/Tablero']); 
     console.log('logea3');
   }
 
