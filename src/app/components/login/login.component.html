@@ -1,12 +1,15 @@
 <!-- begin login -->
-<div class="login login-with-news-feed" style="background-image: url(../../../assets/images/PICTOGRAMAS_AUTISMO-removebg-preview.png);
+<div class="login login-with-news-feed" >
      
-     background-size:contain">
     <!-- begin news-feed -->
     <div class="news-feed">
-        <div class="news-image"></div>
+        <div class="news-image" style="background-image: url(../../../assets/images/PICTOGRAMAS_AUTISMO-removebg-preview.png);
+        background-color: #4dd0e1;"></div>
         <div class="news-caption">
-            <h4 class="caption-title"><b>Tablero</b> Pictograma</h4>
+            <h4 class="caption-title"><b>Pictogram</b> Tab</h4>
+            <p>
+                Tablero enfocado en el desarrollo comunicacional
+            </p>
         </div>
     </div>
     <!-- end news-feed -->
@@ -15,19 +18,19 @@
         <!-- begin login-header -->
         <div class="login-header">
             <div class="brand">
-                <span class="logo"></span> <b>Tablero</b> Pictograma
-                <small>Tablero enfocado en el desarrollo comunicacional</small>
+                <!-- <span class="logo"></span> --> <b>Iniciar sesión</b><p></p>
+                <small>Completar correctamente los campos para entrar a la aplicación con su cuenta</small>
             </div>
-            <div class="icon">
+            <!-- <div class="icon">
                 <i class="fa fa-sign-in"></i>
-            </div>
+            </div> -->
         </div>
         <!-- end login-header -->
         <!-- begin login-content -->
         <div class="login-content">
             <ngx-auth-firebaseui-login [providers]="[]"
                                        [appearance]="'outline'" 
-                                       [titleText]="'Inicia sesión'" 
+                                       [titleText]="''" 
                                        [rememberMeText]="'Recuerdame'" 
                                        [loginButtonText]="'Iniciar sesión'" 
                                        [orLabelText]="'Ó'" 

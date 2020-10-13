@@ -1,7 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { environment } from '../environments/environment';
 
+// Rutas
 import { AppRoutingModule } from './app-routing.module';
+
+// Comoponentes del proyecto
 import { AppComponent } from './app.component';
 import { TableroComponent } from './components/tablero/tablero.component';
 import { MenuCategoriaComponent } from './components/menu-categoria/menu-categoria.component';
@@ -10,23 +14,23 @@ import { ContenedorComponent } from './components/contenedor/contenedor.componen
 import { SelectorImagenesComponent } from './components/selector-imagenes/selector-imagenes.component';
 import { NotImplementedComponent } from './components/not-implemented/not-implemented.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DigitalClockComponent } from './components/digital-clock/digital-clock.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FrasesComponent } from './components/frases/frases.component';
-import { AngularFireModule } from '@angular/fire';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
+// Modulos del proyecto
+import { AngularFireModule } from '@angular/fire';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MatMenuModule } from '@angular/material/menu';
 import { DragAndDropModule } from 'angular-draggable-droppable';
-import { LoginComponent } from './components/login/login.component';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
-import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -56,6 +60,7 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     DragAndDropModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxAuthFirebaseUIModule.forRoot(
       {
         apiKey: 'AIzaSyCY56PtNlDTIqLsz01p-sexG6JvadnFlBA',

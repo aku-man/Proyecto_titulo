@@ -5,7 +5,7 @@
         <div class="news-image" style="background-image: url(../../../assets/images/PICTOGRAMAS_AUTISMO-removebg-preview.png);
         background-color: #4dd0e1;"></div>
         <div class="news-caption">
-            <h4 class="caption-title"><b>Pictogram</b></h4>
+            <h4 class="caption-title"><b>Pictogram</b> Tab</h4>
             <p>
                 Tablero enfocado en el desarrollo comunicacional
             </p>
@@ -22,7 +22,59 @@
         <!-- end register-header -->
         <!-- begin register-content -->
         <div class="register-content">
-            <ngx-auth-firebaseui-register></ngx-auth-firebaseui-register>
+            <form [formGroup]="formulario" class="margin-bottom-0">
+                <label class="control-label">Nombre <span class="text-danger">*</span></label>
+                <div class="row row-space-10">
+                    <div class="col-md-6 m-b-15">
+                        <input type="text" formControlName="nombre" [(ngModel)]="nombre" class="form-control" placeholder="Nombre" />
+                    </div>
+                    <div class="col-md-6 m-b-15">
+                        <input type="text" class="form-control" formControlName="apellido" [(ngModel)]="apellido" placeholder="Apellido" required />
+                    </div>
+                </div>
+                <label class="control-label">Email <span class="text-danger">*</span></label>
+                <div class="row m-b-15">
+                    <div class="col-md-12">
+                        <input type="text" formControlName="email" [(ngModel)]="email" class="form-control" placeholder="Direccion Email" required />
+                    </div>
+                </div>
+                <label class="control-label">Confirmar Email <span class="text-danger">*</span></label>
+                <div class="row m-b-15">
+                    <div class="col-md-12">
+                        <input type="text" formControlName="confirmEmail" [(ngModel)]="confEmail" class="form-control" placeholder="Confirmar direccion Email" required />
+                    </div>
+                </div>
+                <label class="control-label">Contraseña <span class="text-danger">*</span></label>
+                <div class="row m-b-15">
+                    <div class="col-md-12">
+                        <input type="password" formControlName="pass" [(ngModel)]="pass" class="form-control" placeholder="Contraseña" required />
+                    </div>
+                </div>
+                <label class="control-label">Confirmar Contraseña <span class="text-danger">*</span></label>
+                <div class="row m-b-15">
+                    <div class="col-md-12">
+                        <input type="password" formControlName="confirmPass" [(ngModel)]="confirmPass" class="form-control" placeholder="Confirmar Contraseña" required />
+                    </div>
+                </div>
+               <!--  <div class="checkbox checkbox-css m-b-30">
+                    <div class="checkbox checkbox-css m-b-30">
+                        <input type="checkbox" id="agreement_checkbox" value="">
+                        <label for="agreement_checkbox">
+                      By clicking Sign Up, you agree to our <a href="javascript:;">Terms</a> and that you have read our <a href="javascript:;">Data Policy</a>, including our <a href="javascript:;">Cookie Use</a>.
+                    </label>
+                    </div>
+                </div> -->
+                <div class="register-buttons">
+                    <button type="submit" [disabled]="!formulario.valid" (click)="validarDatos()" class="btn btn-primary btn-block btn-lg">Registrarse</button>
+                </div>
+                <div class="m-t-20 m-b-40 p-b-40 text-inverse">
+                    Si ya posees una cuenta has click <a routerLink="/Login">aqui</a> para iniciar sesion.
+                </div>
+                <hr />
+                <!-- <p class="text-center">
+                    &copy; Color Admin All Right Reserved 2018
+                </p> -->
+            </form>
         </div>
         <!-- end register-content -->
     </div>

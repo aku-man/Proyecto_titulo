@@ -15,8 +15,7 @@ export class ImagenesService {
   private gruposCollection: AngularFirestoreCollection<Item>;
   grupos: Observable<Item[]>;
 
-  constructor(private afs: AngularFirestore) {
-  }
+  constructor(private afs: AngularFirestore) {}
 
   obtenerCategorias(): any{
     this.itemsCollection = this.afs.collection<Item>('categorias');

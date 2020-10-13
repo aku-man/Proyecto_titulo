@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSuccess(): void {
-     this.router.navigate(['/Tablero']); 
-    console.log('logea3');
+     this.router.navigate(['/Tablero']);
   }
 
   onResetPasswordRequested(): void {
