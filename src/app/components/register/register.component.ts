@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
   pass: string = null;
   confirmPass: string = null;
   validar = false;
+  user: Usuario = new Usuario();
 
   formulario: FormGroup;
   constructor(private formBuilder: FormBuilder, private router: Router, private usuario: UsuariosService){
@@ -28,8 +30,8 @@ export class RegisterComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required
-// tslint:disable-next-line: max-line-length
-/* Validators.pattern(/^([0-9]{1,2}[0-9]{6}[0-9kK]{1}\s{0,})$|^[0-9]{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}\s{0,}$|^([0-9]{1,2}[0-9]{6}-[0-9kK]{1}\s{0,})$/) */
+          // tslint:disable-next-line: max-line-length
+        /* Validators.pattern(/^([0-9]{1,2}[0-9]{6}[0-9kK]{1}\s{0,})$|^[0-9]{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}\s{0,}$|^([0-9]{1,2}[0-9]{6}-[0-9kK]{1}\s{0,})$/) */
         ])
       ),
       apellido: new FormControl(
@@ -65,15 +67,29 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  // Funcion que se activa al hacer click en "registrarse" y que hace las validaciones para crear el usuario
+  // de forma correcta
+
   validarDatos(): void{
     this.validarEmail(this.email);
     this.comprobarEmail(this.email, this.confEmail);
     this.comprobarPass(this.pass, this.confirmPass);
+    this.largoContraseña(this.pass);
     if (this.validar === true){
+      this.user.nombre = this.nombre;
+      this.user.apellido = this.apellido;
+      this.user.contraseña = this.pass;
+      this.user.email = this.email;
+      this.usuario.onRegister(this.user);
       this.router.navigate(['/Login']);
-      this.usuario.guardarUsuario(this.email, this.pass, this.nombre, this.apellido);
+      /* this.usuario.guardarUsuario(this.email, this.pass, this.nombre, this.apellido); */
     }
   }
+
+
+
+
+  // funciones para validar los datos ingresadosal formulario
 
   validarEmail(valor): void {
     if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor)){
@@ -104,6 +120,19 @@ export class RegisterComponent implements OnInit {
         this.validar = false;
       }
       else {
+        this.validar = true;
+      }
+    }
+  }
+
+  largoContraseña(valor): void{
+    if (this.validar === true){
+      if ( valor.length < 6){
+        alert('La contraseña debe poseer mas de 6 caracteres');
+        this.validar = false;
+      }
+      else {
+        console.log('contraseña ingresada posee el largo permitido');
         this.validar = true;
       }
     }

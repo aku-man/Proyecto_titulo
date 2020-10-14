@@ -28,29 +28,34 @@
         <!-- end login-header -->
         <!-- begin login-content -->
         <div class="login-content">
-            <ngx-auth-firebaseui-login [providers]="[]"
-                                       [appearance]="'outline'" 
-                                       [titleText]="''" 
-                                       [rememberMeText]="'Recuerdame'" 
-                                       [loginButtonText]="'Iniciar sesión'" 
-                                       [orLabelText]="'Ó'" 
-                                       [forgotPasswordText]="'¿Olvidó su contraseña?'" 
-                                       [emailText]="'Email'"
-                                       [emailErrorRequiredText]="'Email es requerido'" 
-                                       [emailErrorPatternText]="'Porfavor, ingresa un email válido'" 
-                                       [passwordText]="'Contraseña'" 
-                                       [passwordErrorRequiredText]="'La contraseña es requerida'" 
-                                       (onSuccess)="onSuccess()" 
-                                       [messageOnAuthError]="'El email o contraseña ingresados son incorrectos'"
-                                       [registrationEnabled]="false" 
-                                       [resetPasswordEnabled]="true" 
-                                       (onResetPasswordRequested)="onResetPasswordRequested()">
-
-            </ngx-auth-firebaseui-login>
+            <form [formGroup]="formulario" class="margin-bottom-0">
+                <div class="form-group m-b-15">
+                    <input type="text" formControlName="email" [(ngModel)]="email" class="form-control form-control-lg" placeholder="Dirección Email" required />
+                </div>
+                <div class="form-group m-b-15">
+                    <input type="password" formControlName="password" [(ngModel)]="password" class="form-control form-control-lg" placeholder="Contraseña" required />
+                </div>
+                <!-- <div class="checkbox checkbox-css m-b-30">
+                  <input type="checkbox" id="remember_me_checkbox" value="" />
+                  <label for="remember_me_checkbox">
+                    Recordarme
+                  </label>
+                </div> -->
+                <div class="login-buttons">
+                    <button type="submit" [disabled]="!formulario.valid" (click)="loggearse()" class="btn btn-success btn-block btn-lg">Iniciar sesión</button>
+                </div>
+                <div class="m-t-20 m-b-40 p-b-40 text-inverse">
+                    Si no tienes una cuenta todavia, has click <a routerLink="/Register" class="text-success">aquí</a> para registrarte.
+                </div>
+                <hr />
+                <!-- <p class="text-center text-grey-darker">
+                    &copy; Color Admin All Right Reserved 2018
+                </p> -->
+            </form>
         </div>
-        <div class="m-t-20 m-b-40 p-b-40 text-inverse" style="text-align: center;">
+       <!--  <div class="m-t-20 m-b-40 p-b-40 text-inverse" style="text-align: center;">
             <a routerLink="/Register">Registrarse</a>
-        </div>
+        </div> -->
         <!-- end login-content -->
     </div>
     <!-- end right-container -->
