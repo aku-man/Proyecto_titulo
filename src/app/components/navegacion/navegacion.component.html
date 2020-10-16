@@ -1,35 +1,30 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <nav class="algo">
-        <div>
-          <app-digital-clock  ></app-digital-clock>
+    <div>
+        <app-digital-clock></app-digital-clock>
+    </div>
+
+    <div id="header" class="header navbar" style="display: flex; justify-content: end;">
+        <div class="dropdown navbar-user" ngbDropdown>
+            <a href="javascript:;" class="dropdown-toggle" ngbDropdownToggle>
+                <img src="../../../assets/images/552721.png" alt="" />
+                <span class="d-none d-md-inline" style="color:black; font-size: 25px;">Bienvenido</span> 
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+                <a routerLink="/Tablero" class="dropdown-item">Mi Tablero</a>
+                <a routerLink="/Perfil" class="dropdown-item">Mi Perfil</a>
+                <a routerLink="/Frases" class="dropdown-item">Mis Frases</a>
+                <a routerLink="/Agenda" class="dropdown-item">Mi Agenda</a>
+                <div class="dropdown-divider"></div>
+                <a routerLink="/Cerrar sesion" class="dropdown-item">Cerrar Sesión</a>
+            </div>
         </div>
-      <div>
-        <button mat-button [matMenuTriggerFor]="menu" class="boton-menu">
-          Bienvenido
-        </button>
-        <mat-menu #menu="matMenu" style="display: flex;
-        flex-direction: column;">
-        <div>
-          <a  routerLink="/Tablero" routerLinkActive="active"> Mi Tablero </a>
-        </div>
-        <div>
-          <a  routerLink="/Perfil" routerLinkActive="active"> Mi Perfil </a>
-        </div>
-        <div>
-          <a  routerLink="/Frases" routerLinkActive="active"> Mis Frases </a>
-        </div>
-        <div>
-          <a  routerLink="/Alumnos" routerLinkActive="active"> Mi agenda </a>
-        </div>
-        <div>
-          <a  routerLink="/Login" routerLinkActive="active"> Iniciar sesion </a>
-        </div>
-        <div>
-          <a  routerLink="/Register" routerLinkActive="active"> Registrarse </a>
-        </div>
-        </mat-menu> 
-      </div>
+    </div>
 </nav>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="Scripts/bootstrap.min.js"></script>

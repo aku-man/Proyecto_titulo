@@ -31,7 +31,7 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -51,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),

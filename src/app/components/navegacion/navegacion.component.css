@@ -1,6 +1,6 @@
 .algo{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     background: #01579b;
     align-items: center;
     height: 100px;

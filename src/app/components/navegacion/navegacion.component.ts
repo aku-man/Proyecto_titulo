@@ -1,5 +1,5 @@
 import { trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Renderer2, OnInit } from '@angular/core';
 import {} from '@angular/material/menu';
 
 @Component({
@@ -8,8 +8,8 @@ import {} from '@angular/material/menu';
   styleUrls: ['./navegacion.component.css']
 })
 export class NavegacionComponent implements OnInit {
-  constructor() { }
   ngOnInit(): void {
   }
 }
-export class MenuOverviewExample {}
+
+
