@@ -1,11 +1,18 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Pictograma } from 'src/app/models/pictograma.model';
 import { DropEvent } from 'angular-draggable-droppable';
+import { trigger, keyframes, animate, transition } from '@angular/animations';
+import * as kf from '../../keyframes';
 
 @Component({
   selector: 'app-contenedor',
   templateUrl: './contenedor.component.html',
-  styleUrls: ['./contenedor.component.css']
+  styleUrls: ['./contenedor.component.css'],
+  animations: [
+    trigger('pictogramAnimator', [
+      transition('* => shakeX', animate(1000, keyframes(kf.shakeX))),
+    ])
+  ]
 })
 export class ContenedorComponent implements OnInit, OnChanges {
   listaSelect: Pictograma[] = [];
@@ -13,6 +20,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
   @Input() pictoSelected: Pictograma = null;
   @Output() messageEvent = new EventEmitter<Pictograma[]>();
   droppedData: Pictograma = null;
+  animationState: string;
 
   constructor() { }
   ngOnChanges(): void{
@@ -48,6 +56,9 @@ export class ContenedorComponent implements OnInit, OnChanges {
       if (!found){
         this.listaSelect.push(dropData);
       }
+      else{
+        this.startAnimation('shakeX');
+      }
     }
   }
 
@@ -55,5 +66,18 @@ export class ContenedorComponent implements OnInit, OnChanges {
     console.log('Element was dragged', event);
     const pos = this.listaSelect.indexOf(item);
     this.listaSelect.splice(pos, 1);
+  }
+
+
+  startAnimation(state: string): void{
+    console.log(this.animationState);
+    if (!this.animationState){
+      this.animationState = state;
+    }
+
+  }
+
+  resetAnimationState(): void{
+    this.animationState = '';
   }
 }
