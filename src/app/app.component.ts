@@ -28,4 +28,14 @@ export class AppComponent {
     }
   }
   }
+
+    // set page right collapse
+    onToggleSidebarRight(val: boolean): void {
+      if (this.pageSettings.pageSidebarRightCollapsed) {
+        this.pageSettings.pageSidebarRightCollapsed = false;
+      } else {
+        this.pageSettings.pageSidebarRightCollapsed = true;
+      }
+    }
+
 }

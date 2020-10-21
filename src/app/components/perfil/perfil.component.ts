@@ -7,6 +7,8 @@ import { Component, OnInit, Input, OnChanges, Output} from '@angular/core';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
+
+  isCollapsed = true;
   constructor() { }
   ngOnInit(): void {
   }
