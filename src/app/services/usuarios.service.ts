@@ -45,4 +45,26 @@ export class UsuariosService {
     );
   } catch (error) {}
  }
+
+  verificarSesion(): any{
+    // tslint:disable-next-line: only-arrow-functions
+    this.afsauth.onAuthStateChanged((user) => {
+      if (user) {
+        return true;
+      } else {
+        console.log('no se esta logeado');
+        return false;
+      }
+    });
+  }
+
+  desloggearse(): void{
+    this.afsauth.signOut()
+    .then(algo => {
+      console.log(algo, 'creo que se deslogeo');
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
 }

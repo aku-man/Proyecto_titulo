@@ -7,6 +7,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { FrasesComponent } from './components/frases/frases.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AgendaComponent } from './components/agenda/agenda.component';
 
 
 const routes: Routes = [
@@ -52,8 +53,24 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: 'Agenda',
+    component: AgendaComponent
+  },
+  {
+    path: 'agenda',
+    component: AgendaComponent
+  },
+  {
     path: '**',
     component: NotFoundComponent
+  },
+  {
+    path: 'Agenda',
+    component: AgendaComponent
+  },
+  {
+    path: 'agenda',
+    component: AgendaComponent
   }
 ];
 

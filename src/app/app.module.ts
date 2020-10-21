@@ -19,6 +19,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { FrasesComponent } from './components/frases/frases.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AgendaComponent } from './components/agenda/agenda.component';
 
 // Modulos del proyecto
 import { AngularFireModule } from '@angular/fire';
@@ -49,6 +50,7 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
     FrasesComponent,
     LoginComponent,
     RegisterComponent,
+    AgendaComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,11 +6,11 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background: #80deea;
+    background: white;
 }
 
 .pizarra{
-    background: #80deea;
+    background:white;
     height: 200px;
     width: 90%;
     -webkit-box-sizing: border-box;
@@ -25,6 +25,7 @@
 .pictograma{
     height: 150px;
     width: 150px;
+    border: 1px solid black;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;

@@ -10,13 +10,14 @@
                 <img src="../../../assets/images/552721.png" alt="" />
                 <span class="d-none d-md-inline" style=" color:black; font-size: 25px;">Bienvenido</span> 
             </a>
+            
             <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
                 <a routerLink="/Tablero" class="dropdown-item">Mi Tablero</a>
                 <a routerLink="/Perfil" class="dropdown-item">Mi Perfil</a>
                 <a routerLink="/Frases" class="dropdown-item">Mis Frases</a>
                 <a routerLink="/Agenda" class="dropdown-item">Mi Agenda</a>
                 <div class="dropdown-divider"></div>
-                <a routerLink="/Cerrar sesion" class="dropdown-item">Cerrar Sesión</a>
+                <a routerLink="/Tablero" class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
             </div>
         </div>
     </div>
