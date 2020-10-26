@@ -35,6 +35,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
+import * as firebase from 'firebase';
+
+firebase.initializeApp(environment.firebaseConfig)
+
 @NgModule({
   declarations: [
     AppComponent,

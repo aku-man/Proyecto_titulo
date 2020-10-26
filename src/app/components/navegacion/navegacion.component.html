@@ -5,21 +5,38 @@
     </div>
 
     <div id="header" class="header navbar" style="display: flex; justify-content: flex-end;">
-        <div class="dropdown navbar-user" ngbDropdown >
-            <a href="javascript:;" class="dropdown-toggle" ngbDropdownToggle>
-                <img src="../../../assets/images/552721.png" alt="" />
-                <span class="d-none d-md-inline" style=" color:black; font-size: 25px;">Bienvenido</span> 
-            </a>
-            
-            <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
-                <a routerLink="/Tablero" class="dropdown-item">Mi Tablero</a>
-                <a routerLink="/Perfil" class="dropdown-item">Mi Perfil</a>
-                <a routerLink="/Frases" class="dropdown-item">Mis Frases</a>
-                <a routerLink="/Agenda" class="dropdown-item">Mi Agenda</a>
-                <div class="dropdown-divider"></div>
-                <a routerLink="/Tablero" class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a>
+        <ng-container *ngIf="item != 0 ; else elseTemplate">
+            <div class="dropdown navbar-user" ngbDropdown>
+                <a href="javascript:;" class="dropdown-toggle" ngbDropdownToggle>
+                    <img src="../../../assets/images/552721.png" alt="" />
+                    <span class="d-none d-md-inline" style=" color:black; font-size: 25px;">Bienvenido</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+                    <a routerLink="/Tablero" class="dropdown-item">Mi Tablero</a>
+                    <a routerLink="/Perfil" class="dropdown-item">Mi Perfil</a>
+                    <a routerLink="/Frases" class="dropdown-item">Mis Frases</a>
+                    <a routerLink="/Agenda" class="dropdown-item">Mi Agenda</a>
+                    <div class="dropdown-divider"></div>
+                    <a routerLink="/Tablero" class="dropdown-item" (click)="onLogOut()">Cerrar Sesión</a>
+                </div>
             </div>
-        </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <div class="dropdown navbar-user" ngbDropdown>
+                <a href="javascript:;" class="dropdown-toggle" ngbDropdownToggle>
+                    <img src="../../../assets/images/552721.png" alt="" />
+                    <span class="d-none d-md-inline" style=" color:black; font-size: 25px;">Bienvenido</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+                    <a routerLink="/Login" class="dropdown-item">Iniciar Sesion</a>
+                    <a routerLink="/Registro" class="dropdown-item">Registro</a>
+                </div>
+            </div>
+        </ng-template>
+
+
     </div>
 </nav>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -49,17 +49,23 @@ export class LoginComponent implements OnInit {
   loggearse(): void{
     this.validarEmail(this.email);
     this.largoContraseña(this.password);
+    let self = this;
     if (this.validar === true){
-      const user = this.usuario.login(this.email, this.password);
-      user.then((objeto) => {
-        if (objeto){
-          console.log('loggea3');
-          this.router.navigate(['/Tablero']);
+      this.usuario.login(this.email, this.password).then( 
+        async (value) => {
+          self.router.navigate(['/Tablero']);
+          this.usuario.emitNavChangeEvent(1);
+          //this.router.navigate(['/Tablero']);
+      },
+      async  (error) => {
+        if (error.code === 'auth/wrong-password') {
+          alert('El email o contraseña ingresados son incorrectos');
         }
-        else{
+        if (error.code === 'auth/user-not-found') {
           alert('El email o contraseña ingresados son incorrectos');
         }
       });
+      
     }
   }
 
