@@ -5,7 +5,7 @@
     </div>
 
     <div id="header" class="header navbar" style="display: flex; justify-content: flex-end;">
-        <ng-container *ngIf="item != 0 ; else elseTemplate">
+        <ng-container *ngIf="item === 1 ; else elseTemplate">
             <div class="dropdown navbar-user" ngbDropdown>
                 <a href="javascript:;" class="dropdown-toggle" ngbDropdownToggle>
                     <img src="../../../assets/images/552721.png" alt="" />
