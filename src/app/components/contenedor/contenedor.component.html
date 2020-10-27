@@ -4,13 +4,11 @@
     dragOverClass="drop-over-active">
         <div *ngFor="let pict of listaSelect">
             <div class="pictograma" 
-            (click)="eliminarPict(pict)"
             mwlDraggable
             (dragEnd)="dragEnd($event, pict)"
             [dropData]=pict
             [@pictogramAnimator]="animationState"
             (@pictogramAnimator.done)="resetAnimationState()"
-            
             
             >
                 <img src={{pict.url}} alt="{{pict.nombre}}" class="example-box">

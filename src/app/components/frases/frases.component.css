@@ -1,0 +1,35 @@
+.pictograma{
+    height: 150px;
+    width: 150px;
+    border: 1px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    background:white;
+    border-radius: 10%;
+    margin-left: 10px;
+}
+
+.example-box{
+    height: 100px;
+    width: 100px;
+}
+
+.pizarra{
+    height: 200px;
+    width: 90%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.row h2{
+    margin: 0 0 0 0;
+}

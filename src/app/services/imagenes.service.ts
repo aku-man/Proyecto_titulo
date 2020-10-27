@@ -23,7 +23,7 @@ export class ImagenesService {
   }
 
   obtenerCategoriaN(nombreCategoria: string): any{
-    console.log(nombreCategoria);
+    // console.log(nombreCategoria);
     this.pictogramaCollection = this.afs.collection<Item>(nombreCategoria);
     this.pictogramas = this.pictogramaCollection.valueChanges();
     return this.pictogramas;
@@ -37,7 +37,7 @@ export class ImagenesService {
   obtenerGrupos(): any{
     this.gruposCollection = this.afs.collection<Item>('Grupo');
     this.grupos = this.gruposCollection.valueChanges();
-    console.log(this.grupos);
+    // console.log(this.grupos);
     return this.grupos;
   }
 }

@@ -20,7 +20,7 @@ export class DigitalClockComponent implements OnInit {
     setInterval(() => {
       const date = new Date();
     }, 1000);
-    console.log(this.date.getDay());
+    // console.log(this.date.getDay());
     this.obtenerDia(this.date);
     this.day = this.daysArray[this.date.getDay()];
   }
@@ -28,7 +28,7 @@ export class DigitalClockComponent implements OnInit {
   private obtenerDia(date: Date): void{
     const dia = this.daysArray[date.getDay()];
     let intro;
-    console.log(dia);
+    // console.log(dia);
     switch (dia){
       case 'Lunes' : {
         intro = document.getElementById('lunes');
