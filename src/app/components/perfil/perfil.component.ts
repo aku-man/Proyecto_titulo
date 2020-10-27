@@ -1,5 +1,9 @@
 import { Component, OnInit, Input, OnChanges, Output} from '@angular/core';
+import { DocumentReference } from '@angular/fire/firestore';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Usprin } from '../../models/usprin.model';
 
 @Component({
   selector: 'app-perfil',
@@ -7,16 +11,26 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
+  // nuevo usuario creado
+  nuevoUsuario: Usprin = new Usprin();
+
+  // datos para crear un nuevo usuario
   nombre: string = null;
   apellido: string = null;
   fecha: string = null;
+  id: string = null;
+  edad: string = null;
+
+  // datos para cambiar la contraseña
   pass: string = null;
   confirmPass: string = null;
-  isCollapsed = true;
   validar = false;
+
+  // datos para el uso del formulario de registro de nuevo usuario
   formulario: FormGroup;
   formularioUsuario: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+
+  constructor(private formBuilder: FormBuilder, private usuario: UsuariosService) { }
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       pass: new FormControl(
@@ -30,7 +44,7 @@ export class PerfilComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])
-      ),
+      )
     });
 
     this.formularioUsuario = this.formBuilder.group({
@@ -51,12 +65,29 @@ export class PerfilComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])
+      ),
+      edad: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
       )
     });
   }
 
-  crearUsuario(): void{
+  async crearUsuario(): Promise<void>{
     console.log('usuario creado');
+    await this.usuario.obtenerUser().then(user => {
+      this.id = user.uid;
+    });
+    console.log(this.id);
+    this.nuevoUsuario.nombre = this.nombre;
+    this.nuevoUsuario.apellido = this.apellido;
+    this.nuevoUsuario.fechaDeNacimiento = this.fecha;
+    this.nuevoUsuario.idTutor = this.id;
+    this.nuevoUsuario.edad = this.edad;
+    console.log(this.nuevoUsuario);
+    this.usuario.registrarUsuario(this.nuevoUsuario)
   }
 
   eliminarUsuario(): void{
@@ -71,8 +102,7 @@ export class PerfilComponent implements OnInit {
     this.comprobarPass(this.pass, this.confirmPass);
     this.largoContraseña(this.pass);
     if (this.validar === true){
-      console.log('buena contraseña oe');
-      /* this.usuario.guardarUsuario(this.email, this.pass, this.nombre, this.apellido); */
+      this.usuario.cambiarPass(this.pass);
     }
   }
 

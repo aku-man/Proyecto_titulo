@@ -2,10 +2,11 @@ import { Injectable, EventEmitter, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
-import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference} from '@angular/fire/firestore';
 import { Usuario } from '../models/usuario.model';
 import * as firebase from 'firebase';
 import { ConstantPool } from '@angular/compiler';
+import { Usprin } from '../models/usprin.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ import { ConstantPool } from '@angular/compiler';
 export class UsuariosService {
   navchange: EventEmitter<number> = new EventEmitter();
   user$: Observable<any>;
+
   nuevoUsuario = {
     id: '',
     nombre: '',
@@ -60,7 +62,6 @@ export class UsuariosService {
   firebase.auth().onAuthStateChanged((user) => {
     if (user != null) {
       const algo = 'asdasdasd';
-      console.log('user', user);
       this.emitNavChangeEvent(1);
 
     } else {
@@ -69,6 +70,18 @@ export class UsuariosService {
     }
   });
 }
+
+async obtenerUser(){
+  const user = firebase.auth().currentUser;
+  if(user != null){
+    return user;
+  }
+  else{
+    return;
+  }
+}
+
+
 
 async onOut() {
 
@@ -80,4 +93,37 @@ async onOut() {
     // An error happened.
   });
 }
+
+
+async registrarUsuario(user: Usprin){
+  let id: string = null;
+  await this.afs.collection('Usuarios').add({
+    nombre: user.nombre,
+    apellido: user.apellido,
+    fechaDeNacimiento: user.fechaDeNacimiento,
+    edad: user.edad,
+    idTutor: user.idTutor,
+    idUsuario: ''
+  })
+  .then((docRef) => {
+    id = docRef.id;
+    console.log("Document written with ID: ", docRef.id);
+  })
+  .catch((error) => {
+    console.error("Error adding document: ", error);
+  });
+
+  await this.afs.collection('Usuarios').doc(id).update({
+    idUsuario: id
+  });
+}
+
+async cambiarPass(nuevoPass: string){
+  let user = firebase.auth().currentUser;
+  user.updatePassword(nuevoPass);
+  await this.afs.collection('users').doc(user.uid).update({
+    contraseña: nuevoPass
+  });
+}
+
 }
