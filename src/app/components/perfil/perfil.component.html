@@ -243,10 +243,17 @@
                         </div>
                         <label class="control-label">Edad <span class="text-danger">*</span></label>
                         <div class="row m-b-15">
-                            <div class="col-md-12">
-                                <input type="text" formControlName="fecha" [(ngModel)]="fecha" class="form-control" placeholder="Fecha de nacimiento" required />
+                            <div class="col-2">
+                                <input type="text" formControlName="edad" [(ngModel)]="edad" class="form-control" placeholder="Edad" required />
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="example-date-input" class="col-2 col-form-label">Fecha</label>
+                            <div class="col-10">
+                              <input class="form-control" formControlName="fecha" [(ngModel)]="fecha" type="date" value="" id="example-date-input" required>
+                            </div>
+                        </div>
+                        
                         <div class="register-buttons">
                             <button type="submit" [disabled]="!formularioUsuario.valid" (click)="crearUsuario()" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">Crear Usuario</button>
                         </div>
