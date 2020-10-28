@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { UsuariosService } from '../../services/usuarios.service';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthProvider } from 'ngx-auth-firebaseui';
 
 @Component({
   selector: 'app-login',
@@ -36,12 +33,6 @@ export class LoginComponent implements OnInit {
   }
 
   onResetPasswordRequested(): void {
-  /*   const _dialogGrafico = this.dialog.open(ForgotPasswordComponent, {
-      width: '25vw',
-      height : '35vh',
-      data: {
-      }
-    }); */
   }
 
   // Funcion cuando se clickea "iniciar sesion" y que permite validar y obtener los datos de la base de datos

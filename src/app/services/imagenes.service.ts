@@ -29,8 +29,6 @@ export class ImagenesService {
     return this.pictogramas;
   }
 
-
-
   retornaItems(): any{
     this.obtenerCategorias();
     return this.items;

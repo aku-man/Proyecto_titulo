@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
-import { Usuario } from '../../models/usuario.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +13,7 @@ export class AgendaComponent implements OnInit {
   loggeado: any;
   ngOnInit(): void {
   }
+  // tslint:disable-next-line: typedef
   async onLogOut(){
     const resul = await this.usuario.onOut();
     /* console.log('asdd', resul); */

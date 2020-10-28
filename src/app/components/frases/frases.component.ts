@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Frase } from '../../models/frase.model';
-
 import { UsuariosService } from 'src/app/services/usuarios.service';
-import { Usuario } from '../../models/usuario.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,6 +31,8 @@ export class FrasesComponent implements OnInit {
   }];
   ngOnInit(): void {
   }
+
+  // tslint:disable-next-line: typedef
   async onLogOut(){
     const resul = await this.usuario.onOut();
     /* console.log('asdd', resul); */

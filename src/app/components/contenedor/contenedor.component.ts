@@ -41,7 +41,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
 
   limpiarTablero(): void{
     /* console.log(this.listaSelect); */
-    // this.listaSelect.splice(0, this.listaSelect.length);
+    this.listaSelect.splice(0, this.listaSelect.length);
   }
 
   reproducirFrase(): void{

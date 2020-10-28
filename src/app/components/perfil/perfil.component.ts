@@ -1,8 +1,5 @@
-import { Component, OnInit, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import { DocumentReference } from '@angular/fire/firestore';
+import { Component, OnInit, SimpleChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Usuario } from 'src/app/models/usuario.model';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usprin } from '../../models/usprin.model';
 import { Router } from '@angular/router';
@@ -40,6 +37,7 @@ export class PerfilComponent implements OnInit {
   formularioUsuario: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router) { }
+  // tslint:disable-next-line: typedef
   async ngOnInit() {
     this.formulario = this.formBuilder.group({
       pass: new FormControl(
@@ -89,6 +87,7 @@ export class PerfilComponent implements OnInit {
     console.log('oninit');
   }
 
+
   async ngOnChanges(changes: SimpleChanges){
     await this.usuario.obtenerUser().then(user => {
       this.id = user.uid;
@@ -112,22 +111,12 @@ export class PerfilComponent implements OnInit {
     this.usuario.registrarUsuario(this.nuevoUsuario);
   }
 
-  /* async obtenerInfoHijos(userId :string){
-    for ( let index = this.contador; index < this.user.arrayIdChildren.length; index++) {
-     this.contador++;
-     this.hijosService.obtenerInfoHijo(this.user.arrayIdChildren[index], userId).subscribe((data:Child)=>{
-      this.arregloHijos.push(data);
-
-    });
-    }
-  } */
-
   // tslint:disable-next-line: typedef
  async buscarUsuarios(){
     console.log(this.tutor);
     /* this.usuarioList = []; */
     if (this.inicio === 1){
-      for (let i of this.tutor.arregloUsuarios){
+      for (const i of this.tutor.arregloUsuarios){
         console.log(i);
         (await this.usuario.usuariosPorId(i)).subscribe((user) => {
           this.usuarioList.push(user);
@@ -135,7 +124,7 @@ export class PerfilComponent implements OnInit {
       }
       this.inicio = 3;
     }
-    else if(this.inicio === 2){
+    else if (this.inicio === 2){
       this.inicio = 3;
       (await this.usuario.usuariosPorId(this.tutor.arregloUsuarios[this.tutor.arregloUsuarios.length - 1 ])).subscribe((user) => {
         this.usuarioList.push(user);
@@ -199,6 +188,7 @@ export class PerfilComponent implements OnInit {
     console.log(id); */
   }
 
+  // tslint:disable-next-line: typedef
   async onLogOut(){
     const resul = await this.usuario.onOut();
     /* console.log('asdd', resul); */

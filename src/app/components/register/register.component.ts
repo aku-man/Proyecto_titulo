@@ -86,9 +86,6 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-
-
-
   // funciones para validar los datos ingresadosal formulario
 
   validarEmail(valor): void {

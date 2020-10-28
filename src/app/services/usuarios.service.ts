@@ -1,11 +1,9 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
-import { Subject } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference} from '@angular/fire/firestore';
 import { Usuario } from '../models/usuario.model';
 import * as firebase from 'firebase';
-import { ConstantPool } from '@angular/compiler';
 import { Usprin } from '../models/usprin.model';
 import { firestore } from 'firebase';
 
@@ -59,6 +57,7 @@ export class UsuariosService {
   });
 }
 
+ // tslint:disable-next-line: typedef
  async obtenerUsuario(){
   firebase.auth().onAuthStateChanged((user) => {
     if (user != null) {
@@ -71,9 +70,10 @@ export class UsuariosService {
   });
 }
 
+// tslint:disable-next-line: typedef
 async obtenerUser(){
   const user = firebase.auth().currentUser;
-  if(user != null){
+  if (user != null){
     return user;
   }
   else{
@@ -82,17 +82,20 @@ async obtenerUser(){
 }
 
 
+// tslint:disable-next-line: typedef
 putUsuarioEnTutor(idUsuario: string, idTutor: string){
   return this.afs.collection('users').doc(idTutor).update({
     arregloUsuarios: firestore.FieldValue.arrayUnion(idUsuario)
   });
 }
 
+// tslint:disable-next-line: typedef
 async getInformationProfile(uid: string) {
-  return await this.afs.collection("users").doc(uid).valueChanges();
+  return await this.afs.collection('users').doc(uid).valueChanges();
 }
 
 
+// tslint:disable-next-line: typedef
 async onOut() {
 
  firebase.auth().signOut().then(() => {
@@ -104,6 +107,7 @@ async onOut() {
 }
 
 
+// tslint:disable-next-line: typedef
 async registrarUsuario(user: Usprin){
   let id: string = null;
   await this.afs.collection('Usuarios').add({
@@ -120,7 +124,7 @@ async registrarUsuario(user: Usprin){
     /* console.log("Document written with ID: ", docRef.id); */
   })
   .catch((error) => {
-    console.error("Error adding document: ", error);
+    console.error('Error adding document: ', error);
   });
   console.log('1');
   await this.afs.collection('Usuarios').doc(id).update({
@@ -129,6 +133,7 @@ async registrarUsuario(user: Usprin){
   console.log('2');
 }
 
+// tslint:disable-next-line: typedef
 async cambiarPass(nuevoPass: string){
   // tslint:disable-next-line: prefer-const
   let user = firebase.auth().currentUser;
@@ -138,6 +143,7 @@ async cambiarPass(nuevoPass: string){
   });
 }
 
+// tslint:disable-next-line: typedef
 async deleteUsuario(id: string, idTutor: string){
   console.log(id, '  ', idTutor);
   /* await this.afs.collection('Usuarios').doc(id).delete(); */
@@ -157,6 +163,7 @@ async deleteUsuario(id: string, idTutor: string){
 
 }
 
+// tslint:disable-next-line: typedef
 async usuariosPorId(idPersona){
   return await this.afs.collection('Usuarios').doc(idPersona).valueChanges();
 }

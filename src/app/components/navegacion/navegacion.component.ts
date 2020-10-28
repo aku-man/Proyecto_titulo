@@ -15,7 +15,7 @@ export class NavegacionComponent implements OnInit, OnDestroy, DoCheck {
   largo: number;
 
   catSelectedAux: number;
-  item: number = 0;
+  item = 0;
   subscription: any;
 
   constructor( private changeDetectorRef: ChangeDetectorRef, private usuario: UsuariosService, private router: Router){}
@@ -26,11 +26,7 @@ export class NavegacionComponent implements OnInit, OnDestroy, DoCheck {
        .subscribe((item) => this.selectedNavItem(item));
   }
 
-
-  /* async ngOnChanges(changes: SimpleChanges) {
-    await this.verificar();
-  } */
-
+  // tslint:disable-next-line: typedef
   async ngOnInit() {
    await this.verificar();
    this.subscription = this.usuario.getNavChangeEmitter()
@@ -48,6 +44,7 @@ export class NavegacionComponent implements OnInit, OnDestroy, DoCheck {
   }
 
 
+  // tslint:disable-next-line: typedef
   async verificar(){
    await this.usuario.obtenerUsuario();
    /* console.log('verifica', this.item); */
@@ -59,6 +56,7 @@ export class NavegacionComponent implements OnInit, OnDestroy, DoCheck {
     /* console.log('selected', this.catSelectedAux); */
   }
 
+  // tslint:disable-next-line: typedef
   async onLogOut(){
     const resul = await this.usuario.onOut();
     /* console.log('asdd', resul); */
