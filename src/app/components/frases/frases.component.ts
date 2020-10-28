@@ -1,14 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Frase } from '../../models/frase.model';
 
+import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Usuario } from '../../models/usuario.model';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-frases',
   templateUrl: './frases.component.html',
   styleUrls: ['./frases.component.css']
 })
 export class FrasesComponent implements OnInit {
-  constructor() { }
-
+  constructor(private usuario: UsuariosService, private router: Router) { }
+  loggeado: any;
   listaFrase: Frase[] = [{
     frecuencia : 3,
     listaPicto : [{
@@ -29,4 +33,15 @@ export class FrasesComponent implements OnInit {
   }];
   ngOnInit(): void {
   }
+  async onLogOut(){
+    const resul = await this.usuario.onOut();
+    /* console.log('asdd', resul); */
+    this.loggeado = await this.usuario.obtenerUsuario();
+    if (resul !== undefined) {
+      this.router.navigate(['/Tablero']);
+    }
+  }
 }
+
+
+

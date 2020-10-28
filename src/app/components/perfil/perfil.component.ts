@@ -5,6 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usprin } from '../../models/usprin.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -12,6 +13,8 @@ import { Usprin } from '../../models/usprin.model';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
+  loggeado: any;
+
   // nuevo usuario creado
   nuevoUsuario: Usprin = new Usprin();
   tutor: any ;
@@ -36,7 +39,7 @@ export class PerfilComponent implements OnInit {
   formulario: FormGroup;
   formularioUsuario: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private usuario: UsuariosService) { }
+  constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router) { }
   async ngOnInit() {
     this.formulario = this.formBuilder.group({
       pass: new FormControl(
@@ -194,5 +197,12 @@ export class PerfilComponent implements OnInit {
     console.log(id); */
   }
 
-
+  async onLogOut(){
+    const resul = await this.usuario.onOut();
+    /* console.log('asdd', resul); */
+    this.loggeado = await this.usuario.obtenerUsuario();
+    if (resul !== undefined) {
+      this.router.navigate(['/Tablero']);
+    }
+  }
 }
