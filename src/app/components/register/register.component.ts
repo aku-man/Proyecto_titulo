@@ -93,7 +93,7 @@ export class RegisterComponent implements OnInit {
 
   validarEmail(valor): void {
     if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor)){
-     console.log('aprobado');
+     /* console.log('aprobado'); */
      this.validar = true;
     } else {
      alert('La dirección de email es incorrecta.');
@@ -132,7 +132,7 @@ export class RegisterComponent implements OnInit {
         this.validar = false;
       }
       else {
-        console.log('contraseña ingresada posee el largo permitido');
+        /* console.log('contraseña ingresada posee el largo permitido'); */
         this.validar = true;
       }
     }

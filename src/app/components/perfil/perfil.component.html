@@ -71,17 +71,17 @@
         </div>
 
 
-        <div class="accordion" id="accordionExample">
+        <div class="accordion" id="accordionExample{{indice}}"  *ngFor="let item of usuarioList;let indice=index" style="margin-bottom: 10px;">
             <div class="card">
                 <div class="card-header" id="headingOne" style="background-color: #242a30; color: white;">
                     <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Usuario N
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" attr.data-target="#collapseOne{{indice}}" aria-expanded="true" attr.aria-controls="collapseOne{{indice}}">
+                    Usuario {{indice +1}}
                 </button>
                     </h2>
                 </div>
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseOne{{indice}}" class="collapse show" aria-labelledby="headingOne" attr.data-parent="#accordionExample{{indice}}">
                     <div class="card-body" style="background-color: #6c757d;">
                         <div class="row" style="align-items: center;
                     display: flex;
@@ -96,13 +96,13 @@
 
                             <div class="row">
                                 <dt class="text-inverse text-right col-6 text-truncate">Nombre</dt>
-                                <dd>Marcelo Alexander</dd>
+                                <dd>{{item.nombre}}</dd>
                                 <dt class="text-inverse text-right col-6 text-truncate">Apellido</dt>
-                                <dd>Lizardi Castro</dd>
+                                <dd>{{item.apellido}}</dd>
                                 <dt class="text-inverse text-right col-6 text-truncate">Fecha de nacimiento</dt>
-                                <dd>18 de Junio</dd>
+                                <dd>{{item.fechaDeNacimiento}}</dd>
                                 <dt class="text-inverse text-right col-6 text-truncate">Edad</dt>
-                                <dd>24</dd>
+                                <dd>{{item.edad}}</dd>
                             </div>
                             <div class="col" style="display: flex;
                         flex-direction: column;
@@ -122,7 +122,7 @@
                                 </button>
                                 </div>
                                 <div class="row">
-                                    <button type="button" class="btn btn-link" style="background-color: #242a30;
+                                    <button (click)="eliminar(item.idUsuario)" type="button" class="btn btn-link" style="background-color: #242a30;
                                 width: 200px;" data-toggle="modal" data-target="#modal5">
                                     Eliminar Usuario
                                 </button>

@@ -30,7 +30,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
   escogerPicto(pic: Pictograma): void{
     this.messageEvent.emit(pic);
     const utterance = new SpeechSynthesisUtterance(pic.nombre);
-    console.log(speechSynthesis.getVoices());
+    /* console.log(speechSynthesis.getVoices()); */
     utterance.voice = speechSynthesis.getVoices()[0];
     speechSynthesis.speak(utterance);
   }

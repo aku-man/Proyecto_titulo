@@ -40,7 +40,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
   }
 
   limpiarTablero(): void{
-    console.log(this.listaSelect);
+    /* console.log(this.listaSelect); */
     // this.listaSelect.splice(0, this.listaSelect.length);
   }
 
@@ -74,7 +74,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
 
       this.listaFrase.push(nuevaFrase);
     }
-    console.log(this.listaFrase);
+    /* console.log(this.listaFrase); */
   }
 
   onDrop({ dropData }: DropEvent<Pictograma>): void {
@@ -104,7 +104,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
 
 
   startAnimation(state: string): void{
-    console.log(this.animationState);
+    /* console.log(this.animationState); */
     if (!this.animationState){
       this.animationState = state;
     }

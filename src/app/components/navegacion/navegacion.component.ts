@@ -38,9 +38,9 @@ export class NavegacionComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   selectedNavItem(item: number): void{
-    console.log(this.item);
+    /* console.log(this.item); */
     this.item = item;
-    console.log(this.item);
+    /* console.log(this.item); */
   }
 
   ngOnDestroy(): void{
@@ -50,18 +50,18 @@ export class NavegacionComponent implements OnInit, OnDestroy, DoCheck {
 
   async verificar(){
    await this.usuario.obtenerUsuario();
-   console.log('verifica', this.item);
+   /* console.log('verifica', this.item); */
   }
 
   receiveCaca($event): void{
-    console.log('selected', this.catSelectedAux);
+    /* console.log('selected', this.catSelectedAux); */
     this.catSelectedAux = $event;
-    console.log('selected', this.catSelectedAux);
+    /* console.log('selected', this.catSelectedAux); */
   }
 
   async onLogOut(){
     const resul = await this.usuario.onOut();
-    console.log('asdd', resul);
+    /* console.log('asdd', resul); */
     this.loggeado = await this.usuario.obtenerUsuario();
     if (resul !== undefined) {
       this.router.navigate(['/Tablero']);
