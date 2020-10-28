@@ -18,7 +18,7 @@ export class PerfilComponent implements OnInit {
   // nuevo usuario creado
   nuevoUsuario: Usprin = new Usprin();
   tutor: any ;
-  inicio = true;
+  inicio = 1;
 
   // lista de usuarios por tutor
   usuarioList = [];
@@ -98,7 +98,7 @@ export class PerfilComponent implements OnInit {
 
   async crearUsuario(): Promise<void>{
     console.log('usuario creado');
-    this.inicio = false;
+    this.inicio = 2;
     await this.usuario.obtenerUser().then(user => {
       this.id = user.uid;
     });
@@ -126,15 +126,17 @@ export class PerfilComponent implements OnInit {
  async buscarUsuarios(){
     console.log(this.tutor);
     /* this.usuarioList = []; */
-    if (this.inicio === true){
+    if (this.inicio === 1){
       for (let i of this.tutor.arregloUsuarios){
         console.log(i);
         (await this.usuario.usuariosPorId(i)).subscribe((user) => {
           this.usuarioList.push(user);
         });
       }
+      this.inicio = 3;
     }
-    else{
+    else if(this.inicio === 2){
+      this.inicio = 3;
       (await this.usuario.usuariosPorId(this.tutor.arregloUsuarios[this.tutor.arregloUsuarios.length - 1 ])).subscribe((user) => {
         this.usuarioList.push(user);
       });
