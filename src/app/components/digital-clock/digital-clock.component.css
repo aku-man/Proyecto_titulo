@@ -1,95 +1,94 @@
 .contenedor{
     display: flex;
-    background: white;
-    height: 50px;
-    width: 350px;
+    background: #e1bee7;
+    height: 100px;
+    width: 700px;
     align-items: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin-left: 10px;
 }
 
 #lunes{
-    width: 50px;
+    width: 100px;
     height: 100%;
-    font-size: 50px;
+    font-size: 75px;
     text-align: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
-    padding-top: 15px;
+    padding-top: 40px;
 }
 
  #martes{
-    width: 50px;
+    width: 100px;
     height: 100%;
-    font-size: 50px;
+    font-size: 75px;
     text-align: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
-    padding-top: 15px;
+    padding-top: 40px;
 }
 
 #miercoles{
-    width: 50px;
+    width: 100px;
     height: 100%;
-    font-size: 50px;
+    font-size: 75px;
     text-align: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
-    padding-top: 15px;
+    padding-top: 40px;
 }
 
 #jueves{
-    width: 50px;
+    width: 100px;
     height: 100%;
-    font-size: 50px;
+    font-size: 75px;
     text-align: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
-    padding-top: 15px;
+    padding-top: 40px;
 }
 
 #viernes{
-    width: 50px;
+    width: 100px;
     height: 100%;
-    font-size: 50px;
+    font-size: 75px;
     text-align: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
-    padding-top: 15px;
+    padding-top: 40px;
 }
 
 #sabado{
-    width: 50px;
+    width: 100px;
     height: 100%;
-    font-size: 50px;
+    font-size: 75px;
     text-align: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
-    padding-top: 15px;
+    padding-top: 40px;
 }
 
 #domingo{
-    width: 50px;
+    width: 100px;
     height: 100%;
-    font-size: 50px;
+    font-size: 75px;
     text-align: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
-    padding-top: 15px;
+    padding-top: 40px;
 }

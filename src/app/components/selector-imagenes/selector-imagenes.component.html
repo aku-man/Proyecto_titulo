@@ -15,14 +15,14 @@
     <div *ngIf="[arregloDireccion.length] == 0" class="selector" >
         <div *ngFor="let i of lista"  class="example-box" (click)="escogerGrupo(i)">
             <img src={{i.url}} class="imagen">
-            <p>{{i.nombre}}</p>
+            <p style="font-size: 18px;">{{i.nombre}}</p>
         </div>
     </div>
     <div *ngIf="[arregloDireccion.length] == 1" class="selector" >
         <div *ngFor="let i of lista3"   (click)="escogerCategoria(i)" >
             <div *ngIf="i.idGrupo ==[categoriaid]" class="example-box">
                 <img src={{i.url}} class="imagen">
-                <p>{{i.nombre}}</p>
+                <p style="font-size: 18px;">{{i.nombre}}</p>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
         [dropData]=item>
             <img class="imagen" src={{item.url}} >
             <br>
-            <p>{{item.nombre}}</p>
+            <p style="font-size: 18px;">{{item.nombre}}</p>
         </div>
     </div>
 </div>

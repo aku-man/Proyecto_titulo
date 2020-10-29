@@ -36,6 +36,8 @@ export class PerfilComponent implements OnInit {
   formulario: FormGroup;
   formularioUsuario: FormGroup;
 
+  idEliminar: any;
+
   constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router) { }
   // tslint:disable-next-line: typedef
   async ngOnInit() {
@@ -80,27 +82,27 @@ export class PerfilComponent implements OnInit {
         ])
       )
     });
-    await this.usuario.obtenerUser().then(user => {
+    await this.usuario.obtenerUser().then(async user => {
       this.id = user.uid;
+      await this.getTutor(this.id);
     });
-    this.getTutor(this.id);
-    console.log('oninit');
   }
 
 
-  async ngOnChanges(changes: SimpleChanges){
-    await this.usuario.obtenerUser().then(user => {
+ async ngOnChanges(changes: SimpleChanges){
+    /* await this.usuario.obtenerUser().then(user => {
       this.id = user.uid;
-    });
-    this.getTutor(this.id);
+    }); */
+    await this.getTutor(this.id);
+    await this.buscarUsuarios();
   }
 
   async crearUsuario(): Promise<void>{
     console.log('usuario creado');
     this.inicio = 2;
-    await this.usuario.obtenerUser().then(user => {
+    /* await this.usuario.obtenerUser().then(user => {
       this.id = user.uid;
-    });
+    }); */
     /* this.getTutor(this.id); */
     /* console.log(this.id); */
     this.nuevoUsuario.nombre = this.nombre;
@@ -108,21 +110,29 @@ export class PerfilComponent implements OnInit {
     this.nuevoUsuario.fechaDeNacimiento = this.fecha;
     this.nuevoUsuario.idTutor = this.id;
     this.nuevoUsuario.edad = this.edad;
-    this.usuario.registrarUsuario(this.nuevoUsuario);
+    await this.usuario.registrarUsuario(this.nuevoUsuario);
   }
 
   // tslint:disable-next-line: typedef
  async buscarUsuarios(){
-    console.log(this.tutor);
+ /*    console.log(this.tutor);
+    if(this.tutor.arregloUsuarios.length > 0){
+      await this.
+    }
+    else{
+      console.log('vacio')
+    } */
     /* this.usuarioList = []; */
     if (this.inicio === 1){
+      this.usuarioList = [];
+      this.inicio = 3;
+      console.log('users', this.tutor.arregloUsuarios);
       for (const i of this.tutor.arregloUsuarios){
         console.log(i);
         (await this.usuario.usuariosPorId(i)).subscribe((user) => {
           this.usuarioList.push(user);
         });
       }
-      this.inicio = 3;
     }
     else if (this.inicio === 2){
       this.inicio = 3;
@@ -130,22 +140,33 @@ export class PerfilComponent implements OnInit {
         this.usuarioList.push(user);
       });
     }
-    console.log(this.usuarioList);
+    console.log(this.usuarioList); 
   }
 
   // tslint:disable-next-line: typedef
   async getTutor(id: string) {
     console.log('entro');
-    (await this.usuario.getInformationProfile(id)).subscribe((user) => {
+    (await this.usuario.getInformationProfile(id)).subscribe(async (user) => {
       this.tutor = user;
       if (this.tutor.arregloUsuarios != null){
-        this.buscarUsuarios();
+        await this.buscarUsuarios();
       }
     });
   }
 
-  eliminarUsuario(): void{
-    /* this.usuario.deleteUsuario(this.idEliminar, this.tutor.id); */
+  async eliminarUsuario(){
+    await this.usuario.deleteUsuario(this.idEliminar, this.tutor.id);
+    this.inicio = 1;
+    await this.usuario.borrar(this.idEliminar);
+    await this.getTutor(this.id);
+/*     const index = this.tutor.arregloUsuarios.indexOf(this.id);
+    if (index > -1){
+      this.tutor.arregloUsuarios.splice(index, 1);
+      console.log('borrado');
+      this.borrado = true;
+    } */
+    
+    console.log(this.usuarioList);
   }
 
   cargarPreferencias(): void{
@@ -183,9 +204,9 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-  eliminar(id): void{
-    /* this.idEliminar = id;
-    console.log(id); */
+  eliminar(item): void{
+    this.idEliminar = item;
+    console.log(item);
   }
 
   // tslint:disable-next-line: typedef

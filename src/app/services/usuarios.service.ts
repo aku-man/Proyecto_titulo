@@ -24,6 +24,8 @@ export class UsuariosService {
 
   nuevoId: string = null;
   largo = new EventEmitter< number >();
+  tutor: any;
+  borrado = false;
   constructor(private afsauth: AngularFireAuth, private afs: AngularFirestore) { }
 
   emitNavChangeEvent(number): void{
@@ -145,23 +147,28 @@ async cambiarPass(nuevoPass: string){
 
 // tslint:disable-next-line: typedef
 async deleteUsuario(id: string, idTutor: string){
-  console.log(id, '  ', idTutor);
   /* await this.afs.collection('Usuarios').doc(id).delete(); */
-  /* (await this.getInformationProfile(idTutor)).subscribe(async (user) => {
+  this.borrado = false;
+  (await this.getInformationProfile(idTutor)).subscribe(async (user) => {
     this.tutor = user;
     const index = this.tutor.arregloUsuarios.indexOf(id);
-    console.log('borrado1');
     if (index > -1){
       this.tutor.arregloUsuarios.splice(index, 1);
-      console.log('borrado2');
+      console.log('borrado');
+      this.borrado = true;
     }
-    console.log('borrado3', this.tutor.arregloUsuarios);
+    console.log(this.tutor.arregloUsuarios);
     await this.afs.collection('users').doc(idTutor).update({
       arregloUsuarios: this.tutor.arregloUsuarios
     });
-  }); */
-
+    console.log(this.tutor.arregloUsuarios);
+  });
 }
+
+async borrar(id){
+  await this.afs.collection('Usuarios').doc(id).delete();
+}
+
 
 // tslint:disable-next-line: typedef
 async usuariosPorId(idPersona){
