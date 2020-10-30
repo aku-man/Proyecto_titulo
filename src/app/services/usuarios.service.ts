@@ -7,6 +7,8 @@ import * as firebase from 'firebase';
 import { Usprin } from '../models/usprin.model';
 import { firestore } from 'firebase';
 
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -165,14 +167,25 @@ async deleteUsuario(id: string, idTutor: string){
   });
 }
 
+async usuarios(){
+  await this.afs.collection('Usuarios')
+}
+
+
 async borrar(id){
   await this.afs.collection('Usuarios').doc(id).delete();
 }
 
 
 // tslint:disable-next-line: typedef
-async usuariosPorId(idPersona){
-  return await this.afs.collection('Usuarios').doc(idPersona).valueChanges();
+async usuariosPorId(){
+  return  this.afs.collection('Usuarios').snapshotChanges().pipe(map(profesionales => {
+    return profesionales.map(a => {
+      const data = a.payload.doc.data() as Usprin;
+      data.idUsuario = a.payload.doc.id;
+      return data;
+    })
+  }))
 }
 
 }
