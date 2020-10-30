@@ -20,6 +20,10 @@ import { FrasesComponent } from './components/frases/frases.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import timeGridWeek from '@fullcalendar/timegrid'; // a plugin
 
 // Modulos del proyecto
 import { AngularFireModule } from '@angular/fire';
@@ -35,9 +39,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
-import * as firebase from 'firebase';
 
-firebase.initializeApp(environment.firebaseConfig)
+import * as firebase from 'firebase';
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+  timeGridWeek
+]);
+
+
+firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -99,6 +110,8 @@ firebase.initializeApp(environment.firebaseConfig)
         guardProtectedRoutesUntilEmailIsVerified: true,
         enableEmailVerification: true, // default: true
       }),
+      FullCalendarModule, // register FullCalendar with you app
+
   ],
   providers: [],
   bootstrap: [AppComponent]

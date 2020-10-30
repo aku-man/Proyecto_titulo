@@ -1,4 +1,4 @@
-<div style="background-color: #e0e0e0;
+<div style="background-color: white;
     height: 100%;">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,5 +23,13 @@
             </ul>
         </div>
     </nav>
+    <div class="calendar-container">
+        <full-calendar 
+        class="calendar" 
+        [options]="this.calendarOptions"> 
+
+        </full-calendar>
+    </div>
+    <button (click)="exportarDia()">exportar</button>
 </div>
 
