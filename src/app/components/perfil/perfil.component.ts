@@ -2,7 +2,10 @@ import { Component, OnInit, SimpleChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usprin } from '../../models/usprin.model';
+import { CategoriaUsuario } from '../../models/CategoriaUsuario.model';
 import { Router } from '@angular/router';
+
+import { PictogramasService } from '../../services/pictogramas.service';
 
 @Component({
   selector: 'app-perfil',
@@ -15,6 +18,8 @@ export class PerfilComponent implements OnInit {
   // nuevo usuario creado
   nuevoUsuario: Usprin = new Usprin();
   tutor: any ;
+  usuarioTutor: any;
+  nuevaCategoria: CategoriaUsuario = new CategoriaUsuario();
 
   // lista de usuarios por tutor
   usuarioList = [];
@@ -31,13 +36,27 @@ export class PerfilComponent implements OnInit {
   confirmPass: string = null;
   validar = false;
 
+  // datos para crear categoria
+  nombreCategoria: string = null;
+
+  // datos para crear pictograma
+  nombrePictograma: string = null;
+
   // datos para el uso del formulario de registro de nuevo usuario
   formulario: FormGroup;
   formularioUsuario: FormGroup;
+  formularioCategoria: FormGroup;
+  formularioPictograma: FormGroup;
 
   idEliminar: any;
+  archivo: any;
+  imagenUrl: any;
 
-  constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router) { }
+
+  constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router
+            , private storage: PictogramasService) { }
+
+
   // tslint:disable-next-line: typedef
   async ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -48,6 +67,24 @@ export class PerfilComponent implements OnInit {
         ])
       ),
       confirmPass: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      )
+    });
+
+    this.formularioCategoria = this.formBuilder.group({
+      nombreCategoria: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      )
+    });
+
+    this.formularioPictograma = this.formBuilder.group({
+      nombrePictograma: new FormControl(
         '',
         Validators.compose([
           Validators.required
@@ -82,6 +119,9 @@ export class PerfilComponent implements OnInit {
       )
     });
     await this.conseguirId();
+    (await this.usuario.getInformationProfile(this.id)).subscribe(async usuariosCompletos => {
+      this.usuarioTutor = await usuariosCompletos;
+    });
     (await this.usuario.usuariosPorId()).subscribe(async usuariosCompletos => {
       this.usuarioList = [];
       for (const u of usuariosCompletos){
@@ -95,6 +135,9 @@ export class PerfilComponent implements OnInit {
   // tslint:disable-next-line: typedef
   async conseguirId(){
     await this.usuario.obtenerUser().then(async user => {
+        (await this.usuario.getInformationProfile(user.uid)).subscribe(async usuariosCompletos => {
+          this.tutor = await usuariosCompletos;
+        });
         this.id = user.uid;
     });
   }
@@ -154,6 +197,10 @@ export class PerfilComponent implements OnInit {
     this.idEliminar = item;
   }
 
+/*   async getTutor() {
+    this.tutor = await this.usuario.getInformationProfile(this.id);
+  } */
+
   // tslint:disable-next-line: typedef
   async onLogOut(){
     const resul = await this.usuario.onOut();
@@ -162,5 +209,37 @@ export class PerfilComponent implements OnInit {
     if (resul !== undefined) {
       this.router.navigate(['/Tablero']);
     }
+  }
+
+  // tslint:disable-next-line: typedef
+  seleccionarImagen(datosArchivo){
+    this.archivo = datosArchivo;
+  }
+
+  // tslint:disable-next-line: typedef
+  async subirImagen(){
+    console.log('datos imagen', this.archivo);
+    this.imagenUrl = await this.storage.subirImagenStorage(this.archivo);
+    if(this.imagenUrl !== null){
+      this.crearCategoria();
+    }
+  }
+
+  crearCategoria(){
+    this.nuevaCategoria.nombre = this.nombreCategoria;
+    this.nuevaCategoria.url = this.imagenUrl;
+    this.storage.registrarCategoria(this.nuevaCategoria, this.idEliminar);
+  }
+
+  async subirImagenPictograma(){
+    console.log('datos imagen', this.archivo);
+    /* this.imagenUrl = await this.storage.subirImagenStorage(this.archivo);
+    if(this.imagenUrl !== null){
+      this.crearCategoria();
+    } */
+  }
+
+  idUtilizar(item): void{
+    this.idEliminar = item;
   }
 }

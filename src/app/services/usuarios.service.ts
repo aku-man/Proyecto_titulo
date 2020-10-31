@@ -87,16 +87,11 @@ async obtenerUser(){
 
 
 // tslint:disable-next-line: typedef
-putUsuarioEnTutor(idUsuario: string, idTutor: string){
+/* putUsuarioEnTutor(idUsuario: string, idTutor: string){
   return this.afs.collection('users').doc(idTutor).update({
     arregloUsuarios: firestore.FieldValue.arrayUnion(idUsuario)
   });
-}
-
-// tslint:disable-next-line: typedef
-async getInformationProfile(uid: string) {
-  return await this.afs.collection('users').doc(uid).valueChanges();
-}
+} */
 
 
 // tslint:disable-next-line: typedef
@@ -124,7 +119,6 @@ async registrarUsuario(user: Usprin){
   })
   .then((docRef) => {
     id = docRef.id;
-    this.putUsuarioEnTutor(docRef.id, user.idTutor);
     /* console.log("Document written with ID: ", docRef.id); */
   })
   .catch((error) => {
@@ -148,8 +142,7 @@ async cambiarPass(nuevoPass: string){
 }
 
 // tslint:disable-next-line: typedef
-async deleteUsuario(id: string, idTutor: string){
-  /* await this.afs.collection('Usuarios').doc(id).delete(); */
+/* async deleteUsuario(id: string, idTutor: string){
   this.borrado = false;
   (await this.getInformationProfile(idTutor)).subscribe(async (user) => {
     this.tutor = user;
@@ -165,13 +158,15 @@ async deleteUsuario(id: string, idTutor: string){
     });
     console.log(this.tutor.arregloUsuarios);
   });
-}
+} */
 
+// tslint:disable-next-line: typedef
 async usuarios(){
   await this.afs.collection('Usuarios')
 }
 
 
+// tslint:disable-next-line: typedef
 async borrar(id){
   await this.afs.collection('Usuarios').doc(id).delete();
 }
@@ -184,8 +179,14 @@ async usuariosPorId(){
       const data = a.payload.doc.data() as Usprin;
       data.idUsuario = a.payload.doc.id;
       return data;
-    })
-  }))
+    });
+  }));
 }
+
+// tslint:disable-next-line: typedef
+async getInformationProfile(uid: string) {
+  return  this.afs.collection('users').doc(uid).valueChanges();
+}
+
 
 }

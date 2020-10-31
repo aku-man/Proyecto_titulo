@@ -43,11 +43,11 @@
             </div>
             <div class="row">
                 <dt class="text-inverse text-right col-4 text-truncate">Nombre</dt>
-                <dd class="col-8 text-truncate">Marcelo Alexander</dd>
+                <dd class="col-8 text-truncate">nombre</dd>
                 <dt class="text-inverse text-right col-4 text-truncate">Apellido</dt>
-                <dd class="col-8 text-truncate">Lizardi Castro</dd>
+                <dd class="col-8 text-truncate">apellido</dd>
                 <dt class="text-inverse text-right col-4 text-truncate">Correo</dt>
-                <dd class="col-8 text-truncate">marcelolizardi18@gmail.com</dd>
+                <dd class="col-8 text-truncate">correo</dd>
             </div>
             <!-- <div class="col" style="display: flex;
             justify-content: center;
@@ -120,7 +120,7 @@
                             </button>
                                 </div>
                                 <div class="row">
-                                    <button type="button" class="btn btn-link" style="background-color: #242a30;
+                                    <button (click)="idUtilizar(item.idUsuario)" type="button" class="btn btn-link" style="background-color: #242a30;
                                 width: 200px;
                                 margin-bottom: 5px;" data-toggle="modal" data-target="#modal1">
                                     Gestionar Tablero
@@ -163,7 +163,8 @@
                     align-items: center;">
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
                         width: 200px;
-                        margin-bottom: 5px;">
+                        margin-bottom: 5px;" 
+                        data-toggle="modal" data-target="#agregarUsuario">
                             Agregar Categoría
                     </button>
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
@@ -178,7 +179,8 @@
                     </button>
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
                          width: 200px;
-                        margin-bottom: 5px;">
+                        margin-bottom: 5px;"
+                        data-toggle="modal" data-target="#agregarPictograma">
                             Agregar Pictograma
                     </button>
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
@@ -299,6 +301,62 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-dismiss="modal" (click)="eliminarUsuario()">Si</button>
+                    <button class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="agregarUsuario">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0 ;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="formularioCategoria" class="margin-bottom-0">
+                        <div class="form-group row">
+                          <label for="nombreCategoria" class="col-sm-2 col-form-label">Nombre</label>
+                          <div class="col-sm-10">
+                            <input type="nombreCategoria" class="form-control" formControlName="nombreCategoria" [(ngModel)]="nombreCategoria" id="nombreCategoria" placeholder="Nombre Categoria" required>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <h3>Seleccionar imagen</h3>
+                            <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)">
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" (click)="subirImagen()" [disabled]="!formularioCategoria.valid" data-dismiss="modal" >Si</button>
+                    <button class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="agregarPictograma">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0 ;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="formularioPictograma" class="margin-bottom-0">
+                        <div class="form-group row">
+                          <label for="nombrePictograma" class="col-sm-2 col-form-label">Nombre</label>
+                          <div class="col-sm-10">
+                            <input type="nombrePictograma" class="form-control" formControlName="nombrePictograma" [(ngModel)]="nombrePictograma" id="nombrePictograma" placeholder="Nombre Pictograma" required>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <h3>Seleccionar imagen</h3>
+                            <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)">
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" (click)="subirImagenPictograma()" [disabled]="!formularioPictograma.valid" data-dismiss="modal" >Si</button>
                     <button class="btn btn-danger" data-dismiss="modal">No</button>
                 </div>
             </div>
