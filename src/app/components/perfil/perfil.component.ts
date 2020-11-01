@@ -2,10 +2,12 @@ import { Component, OnInit, SimpleChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usprin } from '../../models/usprin.model';
+import { PictogramaUsuario } from '../../models/pictogramaUsuario.model';
 import { CategoriaUsuario } from '../../models/CategoriaUsuario.model';
 import { Router } from '@angular/router';
 
 import { PictogramasService } from '../../services/pictogramas.service';
+import { ImagenesService } from 'src/app/services/imagenes.service';
 
 @Component({
   selector: 'app-perfil',
@@ -20,6 +22,7 @@ export class PerfilComponent implements OnInit {
   tutor: any ;
   usuarioTutor: any;
   nuevaCategoria: CategoriaUsuario = new CategoriaUsuario();
+  nuevoPictograma: PictogramaUsuario = new PictogramaUsuario();
 
   // lista de usuarios por tutor
   usuarioList = [];
@@ -41,6 +44,7 @@ export class PerfilComponent implements OnInit {
 
   // datos para crear pictograma
   nombrePictograma: string = null;
+  nombreCat: string = null;
 
   // datos para el uso del formulario de registro de nuevo usuario
   formulario: FormGroup;
@@ -51,10 +55,14 @@ export class PerfilComponent implements OnInit {
   idEliminar: any;
   archivo: any;
   imagenUrl: any;
+  imagenUrlPictograma: any;
+  usuarioAgregarPictograma: any;
 
+  listaCategoria: any;
 
   constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router
-            , private storage: PictogramasService) { }
+            , private storage: PictogramasService
+            , private imagenes: ImagenesService) { }
 
 
   // tslint:disable-next-line: typedef
@@ -233,13 +241,33 @@ export class PerfilComponent implements OnInit {
 
   async subirImagenPictograma(){
     console.log('datos imagen', this.archivo);
-    /* this.imagenUrl = await this.storage.subirImagenStorage(this.archivo);
-    if(this.imagenUrl !== null){
-      this.crearCategoria();
-    } */
+    this.imagenUrlPictograma = await this.storage.subirImagenStoragePictograma(this.archivo);
+    if(this.imagenUrlPictograma !== null){
+      console.log(this.imagenUrlPictograma);
+      this.crearPictograma();
+    }
   }
 
-  idUtilizar(item): void{
+  crearPictograma(){
+    this.nuevoPictograma.nombre = this.nombrePictograma;
+    this.nuevoPictograma.url = this.imagenUrlPictograma;
+    this.nuevoPictograma.idCategoria = this.usuarioAgregarPictograma.idCategoria;
+    this.storage.registrarPictogramaa(this.nuevoPictograma, this.idEliminar);
+  }
+
+  idUtilizar(item){
     this.idEliminar = item;
+    this.imagenes.obtenerCategoriasUsuario(this.idEliminar).subscribe((categoria) => {
+      this.listaCategoria = categoria;
+      console.log(this.listaCategoria);
+      for (let items of this.listaCategoria ){
+        console.log(items.nombre);
+      }
+    });
+  }
+
+  seleccionarCategoria(user){
+    console.log(user);
+    this.usuarioAgregarPictograma = user;
   }
 }
