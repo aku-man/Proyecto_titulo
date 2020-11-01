@@ -89,4 +89,12 @@ export class PictogramasService {
     });
   }
 
+  async eliminarCategoria(idCategoria, idUsuario){
+    await this.afs.collection('Usuarios').doc(idUsuario).collection('Categoria').doc(idCategoria).delete();
+  }
+
+  async eliminarPictograma(idPictograma, idUsuario){
+    await this.afs.collection('Usuarios').doc(idUsuario).collection('Pictograma').doc(idPictograma).delete();
+  }
+
 }

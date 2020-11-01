@@ -56,9 +56,14 @@ export class PerfilComponent implements OnInit {
   archivo: any;
   imagenUrl: any;
   imagenUrlPictograma: any;
-  usuarioAgregarPictograma: any;
+  usuarioAgregarPictograma: any = null;
+  usuarioEliminarCategoria: any = null;
+  usuarioEliminarCatPictograma: any = null;
+  usuarioEliminarPictograma: any = null;
 
   listaCategoria: any;
+  listaPictograma: any = [];
+
 
   constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router
             , private storage: PictogramasService
@@ -90,6 +95,7 @@ export class PerfilComponent implements OnInit {
         ])
       )
     });
+
 
     this.formularioPictograma = this.formBuilder.group({
       nombrePictograma: new FormControl(
@@ -139,6 +145,7 @@ export class PerfilComponent implements OnInit {
       }
     });
   }
+
 
   // tslint:disable-next-line: typedef
   async conseguirId(){
@@ -249,25 +256,97 @@ export class PerfilComponent implements OnInit {
   }
 
   crearPictograma(){
-    this.nuevoPictograma.nombre = this.nombrePictograma;
-    this.nuevoPictograma.url = this.imagenUrlPictograma;
-    this.nuevoPictograma.idCategoria = this.usuarioAgregarPictograma.idCategoria;
-    this.storage.registrarPictogramaa(this.nuevoPictograma, this.idEliminar);
+    if (this.usuarioAgregarPictograma !== null){
+      this.nuevoPictograma.nombre = this.nombrePictograma;
+      this.nuevoPictograma.url = this.imagenUrlPictograma;
+      this.nuevoPictograma.idCategoria = this.usuarioAgregarPictograma.idCategoria;
+      this.storage.registrarPictogramaa(this.nuevoPictograma, this.idEliminar);
+      alert('Pictograma creado');
+    }
+    else{
+      alert('debe seleccionar una categoria a la que agregar el pictograma');
+    }
   }
 
   idUtilizar(item){
     this.idEliminar = item;
     this.imagenes.obtenerCategoriasUsuario(this.idEliminar).subscribe((categoria) => {
       this.listaCategoria = categoria;
-      console.log(this.listaCategoria);
-      for (let items of this.listaCategoria ){
-        console.log(items.nombre);
-      }
     });
   }
 
   seleccionarCategoria(user){
     console.log(user);
     this.usuarioAgregarPictograma = user;
+  }
+
+
+  /* ----------------------------------- */
+  // Funciones para eliminar categoria
+  /* ----------------------------------- */
+
+  seleccionarEliminarCategoria(user){
+    this.usuarioEliminarCategoria = user;
+    console.log(user);
+  }
+
+  async eliminarCategoria(){
+    if (this.usuarioEliminarCategoria !== null){
+      await this.storage.eliminarCategoria(this.usuarioEliminarCategoria.idCategoria, this.idEliminar);
+      alert('Se elimino la categoria con exito');
+    }
+    else{
+      alert('no se selecciono categoria a eliminar');
+    }
+  }
+
+
+
+  /* ----------------------------------- */
+  // Funciones para eliminar pictograma
+  /* ----------------------------------- */
+
+  seleccionarEliminarCatPictograma(categoria){
+    this.listaPictograma = [];
+    if (categoria === null){
+      this.usuarioEliminarPictograma = null;
+    }
+    console.log(categoria);
+    this.usuarioEliminarCatPictograma = categoria;
+    console.log(this.usuarioEliminarCatPictograma);
+    this.imagenes.obtenerPictogramasUsuario(this.idEliminar).subscribe((pictograma) => {
+      /* this.listaPictograma = pictograma; */
+      this.listaPictograma = [];
+      for ( let item of pictograma ){
+        if (item.idCategoria === this.usuarioEliminarCatPictograma.idCategoria){
+          this.listaPictograma.push(item);
+        }
+      }
+      console.log(this.listaPictograma);
+    });
+  }
+
+  seleccionarEliminarPictograma(item){
+    console.log(item);
+    this.usuarioEliminarPictograma = item;
+
+  }
+
+  async eliminarPictogrma(){
+    console.log('entro');
+    console.log(this.usuarioEliminarCatPictograma, this.usuarioEliminarPictograma);
+    if (this.usuarioEliminarCatPictograma === null && this.usuarioEliminarPictograma === null){
+      console.log('entro1');
+      alert('No se elimino el pictograma ya que no se selecciono Categoria y Pictograma')
+    }
+    else if (this.usuarioEliminarPictograma === null){
+      console.log('entro2');
+      alert('no se selecciono Pictograma a eliminar');
+    }
+    else if (this.usuarioEliminarCatPictograma !== null && this.usuarioEliminarPictograma !== null){
+      console.log('entro3');
+      await this.storage.eliminarPictograma(this.usuarioEliminarPictograma.idPictograma, this.idEliminar);
+      alert('Se elimino el Pictograma con exito');
+    }
   }
 }

@@ -169,7 +169,8 @@
                     </button>
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
                         width: 200px;
-                        margin-bottom: 5px;">
+                        margin-bottom: 5px;"
+                        data-toggle="modal" data-target="#eliminarCategoria">
                             Eliminar Categoría
                     </button>
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
@@ -185,7 +186,8 @@
                     </button>
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
                         width: 200px;
-                        margin-bottom: 5px;">
+                        margin-bottom: 5px;"
+                        data-toggle="modal" data-target="#eliminarPictograma">
                             Eliminar Pictograma
                     </button>
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
@@ -344,7 +346,7 @@
                         <div class="form-group">
                             <label for="categoriaSeleccionada">Seleccionar Categoria</label>
                             <select class="form-control" id="categoriaSeleccionada" >
-                                <option value=""></option>
+                                <option value="" (click)="seleccionarCategoria(null)"></option>
                                 <option *ngFor="let categoria of listaCategoria" (click)="seleccionarCategoria(categoria)" >{{categoria.nombreCategoria}}</option>
                             </select>
                           </div>
@@ -362,6 +364,70 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-dismiss="modal" (click)="subirImagenPictograma()" [disabled]="!formularioPictograma.valid" data-dismiss="modal" >Si</button>
+                    <button class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="eliminarCategoria">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0 ;">
+                <div class="modal-header">
+                    <h2>Eliminar Categoria</h2>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                    <label for="categoriaSeleccionada">Seleccionar Categoria</label>
+                        <select class="form-control" id="categoriaSeleccionada">
+                            <option value="" (click)="seleccionarEliminarCategoria(null)"></option>
+                            <option *ngFor="let categoria of listaCategoria" (click)="seleccionarEliminarCategoria(categoria)">
+                                {{categoria.nombreCategoria}}
+                            </option>
+                        </select>
+                        <!-- <div style="max-width: 150px;
+                                max-height: 150px;
+                                min-width: 50px;
+                                min-height: 50px;"
+                                *ngIf ="![usuarioEliminarCategoria.nombreCategoria]">
+                                <img  class="img-thumbnail" src={{usuarioEliminarCategoria.url}} alt="">
+                        </div> -->
+                        </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" (click)="eliminarCategoria()">Si</button>
+                    <button class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="eliminarPictograma">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0 ;">
+                <div class="modal-header">
+                    <h2>Eliminar Pictograma</h2>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <label for="catSeleccionada">Seleccionar Categoria</label>
+                        <select class="form-control" id="catSeleccionada">
+                            <option value="" (click)="seleccionarEliminarCatPictograma(null)"></option>
+                            <option *ngFor="let categoria of listaCategoria" (click)="seleccionarEliminarCatPictograma(categoria)">
+                                {{categoria.nombreCategoria}}
+                            </option>
+                        </select>
+                        <label for="pictSeleccionado">Seleccionar Pictograma</label>
+                        <select class="form-control" id="pictSeleccionado">
+                            <option value="" (click)="seleccionarEliminarPictograma(null)"></option>
+                            <option *ngFor="let pictograma of listaPictograma" (click)="seleccionarEliminarPictograma(pictograma)">
+                                {{pictograma.nombrePictograma}}
+                            </option>
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" (click)="eliminarPictogrma()">Si</button>
                     <button class="btn btn-danger" data-dismiss="modal">No</button>
                 </div>
             </div>
