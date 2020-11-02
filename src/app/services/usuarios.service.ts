@@ -7,6 +7,8 @@ import * as firebase from 'firebase';
 import { Usprin } from '../models/usprin.model';
 import { firestore } from 'firebase';
 
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +26,8 @@ export class UsuariosService {
 
   nuevoId: string = null;
   largo = new EventEmitter< number >();
+  tutor: any;
+  borrado = false;
   constructor(private afsauth: AngularFireAuth, private afs: AngularFirestore) { }
 
   emitNavChangeEvent(number): void{
@@ -83,16 +87,11 @@ async obtenerUser(){
 
 
 // tslint:disable-next-line: typedef
-putUsuarioEnTutor(idUsuario: string, idTutor: string){
+/* putUsuarioEnTutor(idUsuario: string, idTutor: string){
   return this.afs.collection('users').doc(idTutor).update({
     arregloUsuarios: firestore.FieldValue.arrayUnion(idUsuario)
   });
-}
-
-// tslint:disable-next-line: typedef
-async getInformationProfile(uid: string) {
-  return await this.afs.collection('users').doc(uid).valueChanges();
-}
+} */
 
 
 // tslint:disable-next-line: typedef
@@ -120,7 +119,6 @@ async registrarUsuario(user: Usprin){
   })
   .then((docRef) => {
     id = docRef.id;
-    this.putUsuarioEnTutor(docRef.id, user.idTutor);
     /* console.log("Document written with ID: ", docRef.id); */
   })
   .catch((error) => {
@@ -144,28 +142,51 @@ async cambiarPass(nuevoPass: string){
 }
 
 // tslint:disable-next-line: typedef
-async deleteUsuario(id: string, idTutor: string){
-  console.log(id, '  ', idTutor);
-  /* await this.afs.collection('Usuarios').doc(id).delete(); */
-  /* (await this.getInformationProfile(idTutor)).subscribe(async (user) => {
+/* async deleteUsuario(id: string, idTutor: string){
+  this.borrado = false;
+  (await this.getInformationProfile(idTutor)).subscribe(async (user) => {
     this.tutor = user;
     const index = this.tutor.arregloUsuarios.indexOf(id);
-    console.log('borrado1');
     if (index > -1){
       this.tutor.arregloUsuarios.splice(index, 1);
-      console.log('borrado2');
+      console.log('borrado');
+      this.borrado = true;
     }
-    console.log('borrado3', this.tutor.arregloUsuarios);
+    console.log(this.tutor.arregloUsuarios);
     await this.afs.collection('users').doc(idTutor).update({
       arregloUsuarios: this.tutor.arregloUsuarios
     });
-  }); */
+    console.log(this.tutor.arregloUsuarios);
+  });
+} */
 
+// tslint:disable-next-line: typedef
+async usuarios(){
+  await this.afs.collection('Usuarios')
+}
+
+
+// tslint:disable-next-line: typedef
+async borrar(id){
+  await this.afs.collection('Usuarios').doc(id).delete();
+}
+
+
+// tslint:disable-next-line: typedef
+async usuariosPorId(){
+  return  this.afs.collection('Usuarios').snapshotChanges().pipe(map(profesionales => {
+    return profesionales.map(a => {
+      const data = a.payload.doc.data() as Usprin;
+      data.idUsuario = a.payload.doc.id;
+      return data;
+    });
+  }));
 }
 
 // tslint:disable-next-line: typedef
-async usuariosPorId(idPersona){
-  return await this.afs.collection('Usuarios').doc(idPersona).valueChanges();
+async getInformationProfile(uid: string) {
+  return  this.afs.collection('users').doc(uid).valueChanges();
 }
+
 
 }

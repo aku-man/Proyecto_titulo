@@ -38,6 +38,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 
 import * as firebase from 'firebase';
@@ -82,6 +83,7 @@ firebase.initializeApp(environment.firebaseConfig);
     FormsModule,
     ReactiveFormsModule,
     HighlightModule,
+    AngularFireStorageModule,
     NgxAuthFirebaseUIModule.forRoot(
       {
         apiKey: 'AIzaSyCY56PtNlDTIqLsz01p-sexG6JvadnFlBA',

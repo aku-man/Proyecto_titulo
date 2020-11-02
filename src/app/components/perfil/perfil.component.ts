@@ -2,7 +2,12 @@ import { Component, OnInit, SimpleChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usprin } from '../../models/usprin.model';
+import { PictogramaUsuario } from '../../models/pictogramaUsuario.model';
+import { CategoriaUsuario } from '../../models/CategoriaUsuario.model';
 import { Router } from '@angular/router';
+
+import { PictogramasService } from '../../services/pictogramas.service';
+import { ImagenesService } from 'src/app/services/imagenes.service';
 
 @Component({
   selector: 'app-perfil',
@@ -15,7 +20,9 @@ export class PerfilComponent implements OnInit {
   // nuevo usuario creado
   nuevoUsuario: Usprin = new Usprin();
   tutor: any ;
-  inicio = 1;
+  usuarioTutor: any;
+  nuevaCategoria: CategoriaUsuario = new CategoriaUsuario();
+  nuevoPictograma: PictogramaUsuario = new PictogramaUsuario();
 
   // lista de usuarios por tutor
   usuarioList = [];
@@ -32,11 +39,37 @@ export class PerfilComponent implements OnInit {
   confirmPass: string = null;
   validar = false;
 
+  // datos para crear categoria
+  nombreCategoria: string = null;
+
+  // datos para crear pictograma
+  nombrePictograma: string = null;
+  nombreCat: string = null;
+
   // datos para el uso del formulario de registro de nuevo usuario
   formulario: FormGroup;
   formularioUsuario: FormGroup;
+  formularioCategoria: FormGroup;
+  formularioPictograma: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router) { }
+  idEliminar: any;
+  archivo: any;
+  imagenUrl: any;
+  imagenUrlPictograma: any;
+  usuarioAgregarPictograma: any = null;
+  usuarioEliminarCategoria: any = null;
+  usuarioEliminarCatPictograma: any = null;
+  usuarioEliminarPictograma: any = null;
+
+  listaCategoria: any;
+  listaPictograma: any = [];
+
+
+  constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router
+            , private storage: PictogramasService
+            , private imagenes: ImagenesService) { }
+
+
   // tslint:disable-next-line: typedef
   async ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -47,6 +80,25 @@ export class PerfilComponent implements OnInit {
         ])
       ),
       confirmPass: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      )
+    });
+
+    this.formularioCategoria = this.formBuilder.group({
+      nombreCategoria: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      )
+    });
+
+
+    this.formularioPictograma = this.formBuilder.group({
+      nombrePictograma: new FormControl(
         '',
         Validators.compose([
           Validators.required
@@ -80,72 +132,45 @@ export class PerfilComponent implements OnInit {
         ])
       )
     });
-    await this.usuario.obtenerUser().then(user => {
-      this.id = user.uid;
+    await this.conseguirId();
+    (await this.usuario.getInformationProfile(this.id)).subscribe(async usuariosCompletos => {
+      this.usuarioTutor = await usuariosCompletos;
     });
-    this.getTutor(this.id);
-    console.log('oninit');
+    (await this.usuario.usuariosPorId()).subscribe(async usuariosCompletos => {
+      this.usuarioList = [];
+      for (const u of usuariosCompletos){
+       if (this.id !== null && this.id === u.idTutor){
+        await this.usuarioList.push(u);
+       }
+      }
+    });
   }
 
 
-  async ngOnChanges(changes: SimpleChanges){
-    await this.usuario.obtenerUser().then(user => {
-      this.id = user.uid;
+  // tslint:disable-next-line: typedef
+  async conseguirId(){
+    await this.usuario.obtenerUser().then(async user => {
+        (await this.usuario.getInformationProfile(user.uid)).subscribe(async usuariosCompletos => {
+          this.tutor = await usuariosCompletos;
+        });
+        this.id = user.uid;
     });
-    this.getTutor(this.id);
   }
 
   async crearUsuario(): Promise<void>{
     console.log('usuario creado');
-    this.inicio = 2;
-    await this.usuario.obtenerUser().then(user => {
-      this.id = user.uid;
-    });
-    /* this.getTutor(this.id); */
-    /* console.log(this.id); */
+    this.usuarioList = [];
     this.nuevoUsuario.nombre = this.nombre;
     this.nuevoUsuario.apellido = this.apellido;
     this.nuevoUsuario.fechaDeNacimiento = this.fecha;
     this.nuevoUsuario.idTutor = this.id;
     this.nuevoUsuario.edad = this.edad;
-    this.usuario.registrarUsuario(this.nuevoUsuario);
+    await this.usuario.registrarUsuario(this.nuevoUsuario);
   }
 
   // tslint:disable-next-line: typedef
- async buscarUsuarios(){
-    console.log(this.tutor);
-    /* this.usuarioList = []; */
-    if (this.inicio === 1){
-      for (const i of this.tutor.arregloUsuarios){
-        console.log(i);
-        (await this.usuario.usuariosPorId(i)).subscribe((user) => {
-          this.usuarioList.push(user);
-        });
-      }
-      this.inicio = 3;
-    }
-    else if (this.inicio === 2){
-      this.inicio = 3;
-      (await this.usuario.usuariosPorId(this.tutor.arregloUsuarios[this.tutor.arregloUsuarios.length - 1 ])).subscribe((user) => {
-        this.usuarioList.push(user);
-      });
-    }
-    console.log(this.usuarioList);
-  }
-
-  // tslint:disable-next-line: typedef
-  async getTutor(id: string) {
-    console.log('entro');
-    (await this.usuario.getInformationProfile(id)).subscribe((user) => {
-      this.tutor = user;
-      if (this.tutor.arregloUsuarios != null){
-        this.buscarUsuarios();
-      }
-    });
-  }
-
-  eliminarUsuario(): void{
-    /* this.usuario.deleteUsuario(this.idEliminar, this.tutor.id); */
+  async eliminarUsuario(){
+    await this.usuario.borrar(this.idEliminar);
   }
 
   cargarPreferencias(): void{
@@ -183,10 +208,13 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-  eliminar(id): void{
-    /* this.idEliminar = id;
-    console.log(id); */
+  eliminar(item): void{
+    this.idEliminar = item;
   }
+
+/*   async getTutor() {
+    this.tutor = await this.usuario.getInformationProfile(this.id);
+  } */
 
   // tslint:disable-next-line: typedef
   async onLogOut(){
@@ -195,6 +223,130 @@ export class PerfilComponent implements OnInit {
     this.loggeado = await this.usuario.obtenerUsuario();
     if (resul !== undefined) {
       this.router.navigate(['/Tablero']);
+    }
+  }
+
+  // tslint:disable-next-line: typedef
+  seleccionarImagen(datosArchivo){
+    this.archivo = datosArchivo;
+  }
+
+  // tslint:disable-next-line: typedef
+  async subirImagen(){
+    console.log('datos imagen', this.archivo);
+    this.imagenUrl = await this.storage.subirImagenStorage(this.archivo);
+    if(this.imagenUrl !== null){
+      this.crearCategoria();
+    }
+  }
+
+  crearCategoria(){
+    this.nuevaCategoria.nombre = this.nombreCategoria;
+    this.nuevaCategoria.url = this.imagenUrl;
+    this.storage.registrarCategoria(this.nuevaCategoria, this.idEliminar);
+  }
+
+  async subirImagenPictograma(){
+    console.log('datos imagen', this.archivo);
+    this.imagenUrlPictograma = await this.storage.subirImagenStoragePictograma(this.archivo);
+    if(this.imagenUrlPictograma !== null){
+      console.log(this.imagenUrlPictograma);
+      this.crearPictograma();
+    }
+  }
+
+  crearPictograma(){
+    if (this.usuarioAgregarPictograma !== null){
+      this.nuevoPictograma.nombre = this.nombrePictograma;
+      this.nuevoPictograma.url = this.imagenUrlPictograma;
+      this.nuevoPictograma.idCategoria = this.usuarioAgregarPictograma.idCategoria;
+      this.storage.registrarPictogramaa(this.nuevoPictograma, this.idEliminar);
+      alert('Pictograma creado');
+    }
+    else{
+      alert('debe seleccionar una categoria a la que agregar el pictograma');
+    }
+  }
+
+  idUtilizar(item){
+    this.idEliminar = item;
+    this.imagenes.obtenerCategoriasUsuario(this.idEliminar).subscribe((categoria) => {
+      this.listaCategoria = categoria;
+    });
+  }
+
+  seleccionarCategoria(user){
+    console.log(user);
+    this.usuarioAgregarPictograma = user;
+  }
+
+
+  /* ----------------------------------- */
+  // Funciones para eliminar categoria
+  /* ----------------------------------- */
+
+  seleccionarEliminarCategoria(user){
+    this.usuarioEliminarCategoria = user;
+    console.log(user);
+  }
+
+  async eliminarCategoria(){
+    if (this.usuarioEliminarCategoria !== null){
+      await this.storage.eliminarCategoria(this.usuarioEliminarCategoria.idCategoria, this.idEliminar);
+      alert('Se elimino la categoria con exito');
+    }
+    else{
+      alert('no se selecciono categoria a eliminar');
+    }
+  }
+
+
+
+  /* ----------------------------------- */
+  // Funciones para eliminar pictograma
+  /* ----------------------------------- */
+
+  seleccionarEliminarCatPictograma(categoria){
+    this.listaPictograma = [];
+    if (categoria === null){
+      this.usuarioEliminarPictograma = null;
+    }
+    console.log(categoria);
+    this.usuarioEliminarCatPictograma = categoria;
+    console.log(this.usuarioEliminarCatPictograma);
+    this.imagenes.obtenerPictogramasUsuario(this.idEliminar).subscribe((pictograma) => {
+      /* this.listaPictograma = pictograma; */
+      this.listaPictograma = [];
+      for ( let item of pictograma ){
+        if (item.idCategoria === this.usuarioEliminarCatPictograma.idCategoria){
+          this.listaPictograma.push(item);
+        }
+      }
+      console.log(this.listaPictograma);
+    });
+  }
+
+  seleccionarEliminarPictograma(item){
+    console.log(item);
+    this.usuarioEliminarPictograma = item;
+
+  }
+
+  async eliminarPictogrma(){
+    console.log('entro');
+    console.log(this.usuarioEliminarCatPictograma, this.usuarioEliminarPictograma);
+    if (this.usuarioEliminarCatPictograma === null && this.usuarioEliminarPictograma === null){
+      console.log('entro1');
+      alert('No se elimino el pictograma ya que no se selecciono Categoria y Pictograma')
+    }
+    else if (this.usuarioEliminarPictograma === null){
+      console.log('entro2');
+      alert('no se selecciono Pictograma a eliminar');
+    }
+    else if (this.usuarioEliminarCatPictograma !== null && this.usuarioEliminarPictograma !== null){
+      console.log('entro3');
+      await this.storage.eliminarPictograma(this.usuarioEliminarPictograma.idPictograma, this.idEliminar);
+      alert('Se elimino el Pictograma con exito');
     }
   }
 }
