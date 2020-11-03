@@ -27,7 +27,7 @@
             <ng-template #personalizada>
                 <div class="example-box">
                     <img src={{i.url}} class="imagen">
-                    <p style="font-size: 18px;">{{i.nombreCategoria}}</p>
+                    <p style="font-size: 18px;">{{i.nombre}}</p>
                 </div>
             </ng-template>
             
@@ -37,7 +37,6 @@
     class="selector" 
     dragOverClass="drop-over-active">
         <div *ngFor="let item of listaPicto" 
-        
         class="example-box"
         mwlDraggable
         (dragEnd)="dragEnd($event, item)"

@@ -50,6 +50,20 @@ export class PerfilComponent implements OnInit {
   nombreCat: string = null;
   formularioPictograma: FormGroup;
 
+  // datos para editar categorias
+  formularioEditarCategoria: FormGroup;
+  nuevoNombreCategoria: string = null;
+  usuarioEditarCategoria: any;
+  imagenUrlEditarCategoria: any;
+
+  // datos para editar pictograma
+  formularioEditarPictograma: FormGroup;
+  nuevoNombrePictograma: string = null;
+  listaPictogramaEditar: any = [];
+  usuarioEditarPictograma: any = null;
+  usuarioEditarCatPictograma: any = null;
+  imagenUrlEditarPictograma: any = null;
+
   // datos varios
   idEliminar: any;
   archivo: any;
@@ -109,6 +123,24 @@ export class PerfilComponent implements OnInit {
       )
     });
 
+    this.formularioEditarCategoria = this.formBuilder.group({
+      nuevoNombreCategoria: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      )
+    });
+
+    this.formularioEditarPictograma = this.formBuilder.group({
+      nuevoNombrePictograma: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      )
+    });
+
     this.formularioUsuario = this.formBuilder.group({
       nombre: new FormControl(
         '',
@@ -160,6 +192,10 @@ export class PerfilComponent implements OnInit {
     });
   }
 
+  /* ----------------------------------- */
+  // Funcion para crear usuario
+  /* ----------------------------------- */
+
   async crearUsuario(): Promise<void>{
     console.log('usuario creado');
     this.usuarioList = [];
@@ -171,12 +207,19 @@ export class PerfilComponent implements OnInit {
     await this.usuario.registrarUsuario(this.nuevoUsuario);
   }
 
+  /* ----------------------------------- */
+  // Funcion para eliminar usuario
+  /* ----------------------------------- */
+
   // tslint:disable-next-line: typedef
   async eliminarUsuario(){
     await this.usuario.borrar(this.idEliminar);
     this.imagenes.cargarUsuario(null, this.id);
   }
 
+  /* ----------------------------------- */
+  // Funciones para cambiar contraseña
+  /* ----------------------------------- */
 
   validarDatos(): void{
     this.comprobarPass(this.pass, this.confirmPass);
@@ -213,9 +256,9 @@ export class PerfilComponent implements OnInit {
     this.idEliminar = item;
   }
 
-/*   async getTutor() {
-    this.tutor = await this.usuario.getInformationProfile(this.id);
-  } */
+  /* ----------------------------------- */
+  // Funciones para desloggearse
+  /* ----------------------------------- */
 
   // tslint:disable-next-line: typedef
   async onLogOut(){
@@ -227,10 +270,19 @@ export class PerfilComponent implements OnInit {
     }
   }
 
+  /* ------------------------------------------------------------- */
+  // Funcion para obtener el archivo con los datos de la imagen
+  /* ------------------------------------------------------------- */
+
   // tslint:disable-next-line: typedef
   seleccionarImagen(datosArchivo){
     this.archivo = datosArchivo;
   }
+
+
+  /* ----------------------------------- */
+  // Funciones para crear categorias
+  /* ----------------------------------- */
 
   // tslint:disable-next-line: typedef
   async subirImagen(){
@@ -247,6 +299,10 @@ export class PerfilComponent implements OnInit {
     this.nuevaCategoria.url = this.imagenUrl;
     this.storage.registrarCategoria(this.nuevaCategoria, this.idEliminar);
   }
+
+  /* ----------------------------------- */
+  // Funciones para crear pictogramas
+  /* ----------------------------------- */
 
   // tslint:disable-next-line: typedef
   async subirImagenPictograma(){
@@ -342,6 +398,7 @@ export class PerfilComponent implements OnInit {
 
   }
 
+
   // tslint:disable-next-line: typedef
   async eliminarPictogrma(){
     console.log('entro');
@@ -361,10 +418,14 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-// tslint:disable-next-line: typedef
-obtenerIdUsuario(user){
-  this.idCargarPreferencias = user;
-}
+  /* ----------------------------------- */
+  // Funciones para cargar preferencias
+  /* ----------------------------------- */
+
+  // tslint:disable-next-line: typedef
+  obtenerIdUsuario(user){
+    this.idCargarPreferencias = user;
+  }
 
   cargarPreferencias(validar): void{
     if (validar === true){
@@ -377,4 +438,94 @@ obtenerIdUsuario(user){
     }
     console.log(this.validarIdCargarPreferencias);
   }
+
+
+  /* ----------------------------------------- */
+  // Funciones para actualizar una categoria
+  /* ----------------------------------------- */
+
+  seleccionarCategoriaEditar(user){
+    console.log(user);
+    this.usuarioEditarCategoria = user;
+  }
+
+  async subirImagenEditarCategoria(){
+    console.log('datos imagen', this.archivo);
+    this.imagenUrlEditarCategoria = await this.storage.subirImagenStorage(this.archivo);
+    if (this.imagenUrlEditarCategoria !== null){
+      console.log(this.imagenUrlEditarCategoria);
+      this.editarCategoria();
+    }
+  }
+
+  editarCategoria(){
+    if (this.usuarioEditarCategoria !== null){
+      console.log(this.nuevoNombreCategoria);
+      console.log(this.imagenUrlEditarCategoria);
+      console.log(this.usuarioEditarCategoria.idCategoria);
+      console.log(this.idEliminar);
+      // tslint:disable-next-line: max-line-length
+      this.storage.editarCategoria(this.nuevoNombreCategoria, this.imagenUrlEditarCategoria, this.usuarioEditarCategoria.idCategoria, this.idEliminar);
+      alert('Pictograma creado');
+    }
+    else{
+      alert('debe seleccionar una categoria a la que agregar el pictograma');
+    }
+  }
+
+
+  /* ----------------------------------------- */
+  // Funciones para actualizar una pictograma
+  /* ----------------------------------------- */
+
+  // tslint:disable-next-line: typedef
+  seleccionarEditarCatPictograma(categoria){
+    this.listaPictogramaEditar = [];
+    if (categoria === null){
+      this.usuarioEditarPictograma = null;
+    }
+    this.usuarioEditarCatPictograma = categoria;
+    this.imagenes.obtenerPictogramasUsuario(this.idEliminar).subscribe((pictograma) => {
+      /* this.listaPictograma = pictograma; */
+      this.listaPictogramaEditar = [];
+      for ( const item of pictograma ){
+        if (item.idCategoria === this.usuarioEditarCatPictograma.idCategoria){
+          this.listaPictogramaEditar.push(item);
+        }
+      }
+      console.log(this.listaPictogramaEditar);
+    });
+  }
+
+  // tslint:disable-next-line: typedef
+  seleccionarEditarPictograma(item){
+    console.log(item);
+    this.usuarioEditarPictograma = item;
+  }
+
+  // tslint:disable-next-line: typedef
+  async subirImagenEditarPictograma(){
+      console.log('datos imagen', this.archivo);
+      this.imagenUrlEditarPictograma = await this.storage.subirImagenStorage(this.archivo);
+      if (this.imagenUrlEditarPictograma !== null){
+        console.log(this.imagenUrlEditarPictograma);
+        this.editarPictograma();
+      }
+  }
+
+  editarPictograma(){
+    if (this.usuarioEditarCategoria !== null){
+      console.log(this.nuevoNombrePictograma);
+      console.log(this.imagenUrlEditarPictograma);
+      console.log(this.usuarioEditarPictograma.idPictograma);
+      console.log(this.idEliminar);
+      // tslint:disable-next-line: max-line-length
+      this.storage.editarPictograma(this.nuevoNombrePictograma, this.imagenUrlEditarPictograma, this.usuarioEditarPictograma.idPictograma, this.idEliminar);
+      alert('Pictograma creado');
+    }
+    else{
+      alert('debe seleccionar una categoria a la que agregar el pictograma');
+    }
+  }
+
 }
