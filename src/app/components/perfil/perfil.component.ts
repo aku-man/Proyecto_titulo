@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, SimpleChanges} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Usprin } from '../../models/usprin.model';
@@ -21,8 +21,6 @@ export class PerfilComponent implements OnInit {
   nuevoUsuario: Usprin = new Usprin();
   tutor: any ;
   usuarioTutor: any;
-  nuevaCategoria: CategoriaUsuario = new CategoriaUsuario();
-  nuevoPictograma: PictogramaUsuario = new PictogramaUsuario();
 
   // lista de usuarios por tutor
   usuarioList = [];
@@ -33,25 +31,26 @@ export class PerfilComponent implements OnInit {
   fecha: string = null;
   id: string = null;
   edad: string = null;
+  formularioUsuario: FormGroup;
 
   // datos para cambiar la contraseña
   pass: string = null;
   confirmPass: string = null;
   validar = false;
+  formulario: FormGroup;
 
   // datos para crear categoria
+  nuevaCategoria: CategoriaUsuario = new CategoriaUsuario();
   nombreCategoria: string = null;
+  formularioCategoria: FormGroup;
 
   // datos para crear pictograma
+  nuevoPictograma: PictogramaUsuario = new PictogramaUsuario();
   nombrePictograma: string = null;
   nombreCat: string = null;
-
-  // datos para el uso del formulario de registro de nuevo usuario
-  formulario: FormGroup;
-  formularioUsuario: FormGroup;
-  formularioCategoria: FormGroup;
   formularioPictograma: FormGroup;
 
+  // datos varios
   idEliminar: any;
   archivo: any;
   imagenUrl: any;
@@ -64,7 +63,11 @@ export class PerfilComponent implements OnInit {
   listaCategoria: any;
   listaPictograma: any = [];
 
+  // datos para cargar preferencias del usuario
+  idCargarPreferencias: any;
+  validarIdCargarPreferencias: string = null;
 
+  // Constructor
   constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router
             , private storage: PictogramasService
             , private imagenes: ImagenesService) { }
@@ -171,11 +174,9 @@ export class PerfilComponent implements OnInit {
   // tslint:disable-next-line: typedef
   async eliminarUsuario(){
     await this.usuario.borrar(this.idEliminar);
+    this.imagenes.cargarUsuario(null, this.id);
   }
 
-  cargarPreferencias(): void{
-    /* console.log('Preferencias cargadas'); */
-  }
 
   validarDatos(): void{
     this.comprobarPass(this.pass, this.confirmPass);
@@ -235,26 +236,29 @@ export class PerfilComponent implements OnInit {
   async subirImagen(){
     console.log('datos imagen', this.archivo);
     this.imagenUrl = await this.storage.subirImagenStorage(this.archivo);
-    if(this.imagenUrl !== null){
+    if (this.imagenUrl !== null){
       this.crearCategoria();
     }
   }
 
+  // tslint:disable-next-line: typedef
   crearCategoria(){
     this.nuevaCategoria.nombre = this.nombreCategoria;
     this.nuevaCategoria.url = this.imagenUrl;
     this.storage.registrarCategoria(this.nuevaCategoria, this.idEliminar);
   }
 
+  // tslint:disable-next-line: typedef
   async subirImagenPictograma(){
     console.log('datos imagen', this.archivo);
     this.imagenUrlPictograma = await this.storage.subirImagenStoragePictograma(this.archivo);
-    if(this.imagenUrlPictograma !== null){
+    if (this.imagenUrlPictograma !== null){
       console.log(this.imagenUrlPictograma);
       this.crearPictograma();
     }
   }
 
+  // tslint:disable-next-line: typedef
   crearPictograma(){
     if (this.usuarioAgregarPictograma !== null){
       this.nuevoPictograma.nombre = this.nombrePictograma;
@@ -268,6 +272,7 @@ export class PerfilComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line: typedef
   idUtilizar(item){
     this.idEliminar = item;
     this.imagenes.obtenerCategoriasUsuario(this.idEliminar).subscribe((categoria) => {
@@ -275,6 +280,7 @@ export class PerfilComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line: typedef
   seleccionarCategoria(user){
     console.log(user);
     this.usuarioAgregarPictograma = user;
@@ -285,11 +291,13 @@ export class PerfilComponent implements OnInit {
   // Funciones para eliminar categoria
   /* ----------------------------------- */
 
+  // tslint:disable-next-line: typedef
   seleccionarEliminarCategoria(user){
     this.usuarioEliminarCategoria = user;
     console.log(user);
   }
 
+  // tslint:disable-next-line: typedef
   async eliminarCategoria(){
     if (this.usuarioEliminarCategoria !== null){
       await this.storage.eliminarCategoria(this.usuarioEliminarCategoria.idCategoria, this.idEliminar);
@@ -306,6 +314,7 @@ export class PerfilComponent implements OnInit {
   // Funciones para eliminar pictograma
   /* ----------------------------------- */
 
+  // tslint:disable-next-line: typedef
   seleccionarEliminarCatPictograma(categoria){
     this.listaPictograma = [];
     if (categoria === null){
@@ -317,7 +326,7 @@ export class PerfilComponent implements OnInit {
     this.imagenes.obtenerPictogramasUsuario(this.idEliminar).subscribe((pictograma) => {
       /* this.listaPictograma = pictograma; */
       this.listaPictograma = [];
-      for ( let item of pictograma ){
+      for ( const item of pictograma ){
         if (item.idCategoria === this.usuarioEliminarCatPictograma.idCategoria){
           this.listaPictograma.push(item);
         }
@@ -326,18 +335,20 @@ export class PerfilComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line: typedef
   seleccionarEliminarPictograma(item){
     console.log(item);
     this.usuarioEliminarPictograma = item;
 
   }
 
+  // tslint:disable-next-line: typedef
   async eliminarPictogrma(){
     console.log('entro');
     console.log(this.usuarioEliminarCatPictograma, this.usuarioEliminarPictograma);
     if (this.usuarioEliminarCatPictograma === null && this.usuarioEliminarPictograma === null){
       console.log('entro1');
-      alert('No se elimino el pictograma ya que no se selecciono Categoria y Pictograma')
+      alert('No se elimino el pictograma ya que no se selecciono Categoria y Pictograma');
     }
     else if (this.usuarioEliminarPictograma === null){
       console.log('entro2');
@@ -348,5 +359,22 @@ export class PerfilComponent implements OnInit {
       await this.storage.eliminarPictograma(this.usuarioEliminarPictograma.idPictograma, this.idEliminar);
       alert('Se elimino el Pictograma con exito');
     }
+  }
+
+// tslint:disable-next-line: typedef
+obtenerIdUsuario(user){
+  this.idCargarPreferencias = user;
+}
+
+  cargarPreferencias(validar): void{
+    if (validar === true){
+      this.validarIdCargarPreferencias = this.idCargarPreferencias;
+      console.log(this.id);
+      this.imagenes.cargarUsuario(this.validarIdCargarPreferencias, this.id);
+    }
+    else {
+      this.validarIdCargarPreferencias = null;
+    }
+    console.log(this.validarIdCargarPreferencias);
   }
 }

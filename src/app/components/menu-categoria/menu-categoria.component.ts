@@ -9,9 +9,9 @@ import {ImagenesService} from './../../services/imagenes.service';
 export class MenuCategoriaComponent implements OnInit{
   categoria: any;
   constructor(private imagenes: ImagenesService) {
-    this.imagenes.retornaItems().subscribe(items => {
+    /* this.imagenes.retornaItems().subscribe(items => {
       this.categoria = items;
-    });
+    }); */
    }
 
   @Output() messageEvent = new EventEmitter<string>();

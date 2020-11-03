@@ -20,10 +20,17 @@
     </div>
     <div *ngIf="[arregloDireccion.length] == 1" class="selector" >
         <div *ngFor="let i of lista3"   (click)="escogerCategoria(i)" >
-            <div *ngIf="i.idGrupo ==[categoriaid]" class="example-box">
+            <div *ngIf="i.idGrupo ==[categoriaid]; else personalizada" class="example-box">
                 <img src={{i.url}} class="imagen">
                 <p style="font-size: 18px;">{{i.nombre}}</p>
             </div>
+            <ng-template #personalizada>
+                <div class="example-box">
+                    <img src={{i.url}} class="imagen">
+                    <p style="font-size: 18px;">{{i.nombreCategoria}}</p>
+                </div>
+            </ng-template>
+            
         </div>
     </div>
     <div *ngIf="[arregloDireccion.length] == 2" 
@@ -41,4 +48,7 @@
         </div>
     </div>
 </div>
+
+
+
 <!-- (click)="escogerPicto(item)"  -->

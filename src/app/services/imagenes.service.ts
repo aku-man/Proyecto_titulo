@@ -19,11 +19,26 @@ export class ImagenesService {
   private pictogramaUsuarioCollection: AngularFirestoreCollection<Item>;
   pictogramaUsuario: Observable<Item[]>;
 
+  idUsuario = 'usuario no cargado';
+
   constructor(private afs: AngularFirestore) {}
 
-  obtenerCategorias(): any{
-    this.itemsCollection = this.afs.collection<Item>('categorias');
-    this.items = this.itemsCollection.valueChanges();
+  obtenerCategorias(idGrupo, id): any{
+    if (idGrupo === 'sTMqvckVT2YutTDmoXzD'){
+      if (id !== null){
+        this.itemsCollection = this.afs.collection('Usuarios').doc(id).collection<Item>('Categoria');
+        this.items = this.itemsCollection.valueChanges();
+      }
+      else {
+        this.items = null;
+        console.log('no hay usuario cargado');
+      }
+    }
+    else {
+      this.itemsCollection = this.afs.collection<Item>('categorias');
+      this.items = this.itemsCollection.valueChanges();
+    }
+
   }
 
   obtenerCategoriaN(nombreCategoria: string): any{
@@ -33,8 +48,16 @@ export class ImagenesService {
     return this.pictogramas;
   }
 
-  retornaItems(): any{
-    this.obtenerCategorias();
+  obtenerPictogramas(id: string): any{
+    // console.log(nombreCategoria);
+    this.pictogramaCollection = this.afs.collection('Usuarios').doc(id).collection<Item>('Pictograma');
+    this.pictogramas = this.pictogramaCollection.valueChanges();
+    return this.pictogramas;
+  }
+
+  retornaItems(idGrupo, id): any{
+    console.log(id);
+    this.obtenerCategorias(idGrupo, id);
     return this.items;
   }
 
@@ -57,6 +80,13 @@ export class ImagenesService {
     this.pictogramaUsuarioCollection = this.afs.collection<Item>('Usuarios').doc(id).collection('Pictograma');
     this.pictogramaUsuario = this.pictogramaUsuarioCollection.valueChanges();
     return this.pictogramaUsuario;
+  }
+
+  async cargarUsuario(idUsuarioPerfil, idTutor){
+    this.idUsuario = idUsuarioPerfil;
+    await this.afs.collection('users').doc(idTutor).update({
+      usuarioCargado: idUsuarioPerfil
+    });
   }
 }
 
