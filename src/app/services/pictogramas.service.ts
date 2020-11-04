@@ -38,7 +38,7 @@ export class PictogramasService {
   async registrarCategoria(user: CategoriaUsuario, idCategoria: string ){
     let id: string = null;
     await this.afs.collection('Usuarios').doc(idCategoria).collection('Categoria').add({
-      nombreCategoria: user.nombre,
+      nombre: user.nombre,
       url: user.url,
       idCategoria: ''
     })
@@ -73,7 +73,7 @@ export class PictogramasService {
   async registrarPictogramaa(user: PictogramaUsuario, idPictograma: string ){
     let id: string = null;
     await this.afs.collection('Usuarios').doc(idPictograma).collection('Pictograma').add({
-      nombrePictograma: user.nombre,
+      nombre: user.nombre,
       url: user.url,
       idCategoria: user.idCategoria,
       idPictograma: ''
@@ -95,6 +95,21 @@ export class PictogramasService {
 
   async eliminarPictograma(idPictograma, idUsuario){
     await this.afs.collection('Usuarios').doc(idUsuario).collection('Pictograma').doc(idPictograma).delete();
+  }
+
+
+  async editarCategoria(nom, urlImagen, idCat, id){
+    await this.afs.collection('Usuarios').doc(id).collection('Categoria').doc(idCat).update({
+      nombre: nom,
+      url: urlImagen
+    });
+  }
+
+  async editarPictograma(nom, urlImagen, idPictograma, idUsuario){
+    await this.afs.collection('Usuarios').doc(idUsuario).collection('Pictograma').doc(idPictograma).update({
+      nombre: nom,
+      url: urlImagen
+    });
   }
 
 }

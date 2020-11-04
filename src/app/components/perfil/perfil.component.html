@@ -4,7 +4,7 @@
     padding-bottom: 20px;">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/Tablero">Pictogram Tab</a>
+        <a class="navbar-brand" routerLink="/Tablero">Pictogram Tab</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -81,21 +81,21 @@
                 <div class="card-header" id="headingOne" style="background-color: #242a30; color: white;">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" attr.data-target="#collapseOne{{indice}}" aria-expanded="true" attr.aria-controls="collapseOne{{indice}}">
-                    Usuario {{indice +1}}
-                </button>
+                            Usuario {{indice +1}}
+                        </button>
                     </h2>
                 </div>
 
                 <div id="collapseOne{{indice}}" class="collapse show" aria-labelledby="headingOne" attr.data-parent="#accordionExample{{indice}}">
                     <div class="card-body" style="background-color: #6c757d;">
                         <div class="row" style="align-items: center;
-                    display: flex;
-                    justify-content: center;">
+                            display: flex;
+                            justify-content: center;">
                             <div class="col" style="max-width: 150px;
-                        max-height: 150px;
-                        min-width: 50px;
-                        min-height: 50px;
-                        margin-bottom: 5px;">
+                                max-height: 150px;
+                                min-width: 50px;
+                                min-height: 50px;
+                                margin-bottom: 5px;">
                                 <img class="img-thumbnail" src="../../../assets/icons/estrella.jpg" alt="">
                             </div>
 
@@ -110,27 +110,28 @@
                                 <dd>{{item.edad}}</dd>
                             </div>
                             <div class="col" style="display: flex;
-                        flex-direction: column;
-                        align-items: center;">
+                                flex-direction: column;
+                                align-items: center;">
                                 <div class="row">
                                     <button type="button" class="btn btn-link" style="background-color: #242a30;
-                                width: 200px;
-                                margin-bottom: 5px;" data-toggle="modal" data-target="#modal4">
-                                    Cargar Preferencias
-                            </button>
+                                        width: 200px;
+                                        margin-bottom: 5px;" data-toggle="modal" data-target="#modal4"
+                                        (click)="obtenerIdUsuario(item.idUsuario)" >
+                                            Cargar Preferencias
+                                    </button>
                                 </div>
                                 <div class="row">
                                     <button (click)="idUtilizar(item.idUsuario)" type="button" class="btn btn-link" style="background-color: #242a30;
-                                width: 200px;
-                                margin-bottom: 5px;" data-toggle="modal" data-target="#modal1">
-                                    Gestionar Tablero
-                                </button>
+                                        width: 200px;
+                                        margin-bottom: 5px;" data-toggle="modal" data-target="#modal1">
+                                            Gestionar Tablero
+                                    </button>
                                 </div>
                                 <div class="row">
                                     <button (click)="eliminar(item.idUsuario)" type="button" class="btn btn-link" style="background-color: #242a30;
-                                width: 200px;" data-toggle="modal" data-target="#modal5">
-                                    Eliminar Usuario
-                                </button>
+                                        width: 200px;" data-toggle="modal" data-target="#modal5">
+                                            Eliminar Usuario
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -140,16 +141,7 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        $(function() {
-            $('#modal1').modal({
-                backdrop: 'static',
-                keyboard: false,
-                focus: false,
-                show: false
-            });
-        });
-    </script>
+
 
     <div class="modal fade" tabindex="-1" id="modal1">
         <div class="modal-dialog  modal-dialog-centered">
@@ -175,7 +167,8 @@
                     </button>
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
                         width: 200px;
-                        margin-bottom: 5px;">
+                        margin-bottom: 5px;"
+                        data-toggle="modal" data-target="#editarCategoria">
                             Editar Categoría
                     </button>
                         <button type="button" class="btn btn-link" style="background-color: #242a30;
@@ -190,9 +183,10 @@
                         data-toggle="modal" data-target="#eliminarPictograma">
                             Eliminar Pictograma
                     </button>
-                        <button type="button" class="btn btn-link" style="background-color: #242a30;
+                    <button type="button" class="btn btn-link" style="background-color: #242a30;
                         width: 200px;
-                        margin-bottom: 5px;">
+                        margin-bottom: 5px;"
+                        data-toggle="modal" data-target="#editarPictograma">
                             Editar Pictograma
                     </button>
                     </div>
@@ -283,8 +277,8 @@
                     ¿Desea cargar las preferencias de este usuario?
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal" (click)="cargarPreferencias()">Si</button>
-                    <button class="btn btn-danger" data-dismiss="modal">No</button>
+                    <button class="btn btn-primary" data-dismiss="modal" (click)="cargarPreferencias(true)">Si</button>
+                    <button class="btn btn-danger" data-dismiss="modal" (click)="cargarPreferencias(false)">No</button>
                 </div>
             </div>
         </div>
@@ -347,7 +341,7 @@
                             <label for="categoriaSeleccionada">Seleccionar Categoria</label>
                             <select class="form-control" id="categoriaSeleccionada" >
                                 <option value="" (click)="seleccionarCategoria(null)"></option>
-                                <option *ngFor="let categoria of listaCategoria" (click)="seleccionarCategoria(categoria)" >{{categoria.nombreCategoria}}</option>
+                                <option *ngFor="let categoria of listaCategoria" (click)="seleccionarCategoria(categoria)" >{{categoria.nombre}}</option>
                             </select>
                           </div>
                         <div class="form-group row">
@@ -382,7 +376,7 @@
                         <select class="form-control" id="categoriaSeleccionada">
                             <option value="" (click)="seleccionarEliminarCategoria(null)"></option>
                             <option *ngFor="let categoria of listaCategoria" (click)="seleccionarEliminarCategoria(categoria)">
-                                {{categoria.nombreCategoria}}
+                                {{categoria.nombre}}
                             </option>
                         </select>
                         <!-- <div style="max-width: 150px;
@@ -414,14 +408,14 @@
                         <select class="form-control" id="catSeleccionada">
                             <option value="" (click)="seleccionarEliminarCatPictograma(null)"></option>
                             <option *ngFor="let categoria of listaCategoria" (click)="seleccionarEliminarCatPictograma(categoria)">
-                                {{categoria.nombreCategoria}}
+                                {{categoria.nombre}}
                             </option>
                         </select>
                         <label for="pictSeleccionado">Seleccionar Pictograma</label>
                         <select class="form-control" id="pictSeleccionado">
                             <option value="" (click)="seleccionarEliminarPictograma(null)"></option>
                             <option *ngFor="let pictograma of listaPictograma" (click)="seleccionarEliminarPictograma(pictograma)">
-                                {{pictograma.nombrePictograma}}
+                                {{pictograma.nombre}}
                             </option>
                         </select>
                     </form>
@@ -433,3 +427,85 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" tabindex="-1" id="editarCategoria">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0 ;">
+                <div class="modal-header">
+                   <h2>Editar Categoria</h2>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="formularioEditarCategoria" class="margin-bottom-0">
+                        <div class="form-group">
+                            <label for="seleccionarCatEdit">Seleccionar Categoria</label>
+                            <select class="form-control" id="seleccionarCatEdit" >
+                                <option value="" (click)="seleccionarCategoriaEditar(null)"></option>
+                                <option *ngFor="let categoria of listaCategoria" (click)="seleccionarCategoriaEditar(categoria)" >{{categoria.nombre}}</option>
+                            </select>
+                          </div>
+                        <div class="form-group row">
+                          <label for="nuevoNombreCategoria" class="col-sm-2 col-form-label">Nuevo Nombre</label>
+                          <div class="col-sm-10">
+                            <input type="nuevoNombreCategoria" class="form-control" formControlName="nuevoNombreCategoria" [(ngModel)]="nuevoNombreCategoria" id="nuevoNombreCategoria" placeholder="Nombre Categoria" required>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <h3>Seleccionar nueva imagen</h3>
+                            <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)">
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" (click)="subirImagenEditarCategoria()" [disabled]="!formularioEditarCategoria.valid" data-dismiss="modal" >Si</button>
+                    <button class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div> 
+    </div> 
+
+        <div class="modal fade" tabindex="-1" id="editarPictograma">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content" style="background-color:#e0e0e0 ;">
+                    <div class="modal-header">
+                        <h2>Editar Pictograma</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="formularioEditarPictograma" class="margin-bottom-0">
+                            <div class="form-group">
+                                <label for="seleccionarCategoriaEdit">Seleccionar Categoria</label>
+                                <select class="form-control" id="seleccionarCategoriaEdit" >
+                                    <option value="" (click)="seleccionarEditarCatPictograma(null)"></option>
+                                    <option *ngFor="let categoria of listaCategoria" (click)="seleccionarEditarCatPictograma(categoria)" >{{categoria.nombre}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="seleccionarPictogramaEditar">Seleccionar Pictograma</label>
+                                <select class="form-control" id="seleccionarPictogramaEditar">
+                                <option value="" (click)="seleccionarEditarPictograma(null)"></option>
+                                <option *ngFor="let pictograma of listaPictogramaEditar" (click)="seleccionarEditarPictograma(pictograma)">
+                                    {{pictograma.nombre}}
+                                </option>
+                            </select>
+                            </div>
+                            <div class="form-group row">
+                              <label for="nuevoNombrePictograma" class="col-sm-4 col-form-label">Nuevo Nombre</label><br>
+                              <div class="col-sm-10">
+                                <input type="nuevoNombrePictograma" class="form-control" formControlName="nuevoNombrePictograma" [(ngModel)]="nuevoNombrePictograma" id="nuevoNombrePictograma" placeholder="Nombre Pictograma" required>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                <h3>Seleccionar nueva imagen</h3>
+                                <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)">
+                            </div>
+                          </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal" (click)="subirImagenEditarPictograma()" [disabled]="!formularioEditarPictograma.valid" data-dismiss="modal" >Si</button>
+                        <button class="btn btn-danger" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</div>

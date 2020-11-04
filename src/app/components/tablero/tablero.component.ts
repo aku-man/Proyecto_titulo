@@ -10,6 +10,9 @@ export class TableroComponent implements OnInit {
   catSelectedAux: string;
   pictSelected: number;
   listaSelected: Pictograma[];
+
+  idCargarPreferencias: string;
+
   constructor() {
   }
 

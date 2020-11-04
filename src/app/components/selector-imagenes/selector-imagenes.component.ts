@@ -5,6 +5,7 @@ import { ImagenesService } from 'src/app/services/imagenes.service';
 import { Grupo } from 'src/app/models/grupo.model';
 import { Categoria } from 'src/app/models/categoria.model';
 import { DropEvent } from 'angular-draggable-droppable';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 
 @Component({
@@ -21,7 +22,11 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
   lista3: any[] = [];
   categoriaid: string;
 
-  constructor(private route: ActivatedRoute, private imagenes: ImagenesService) {
+  id: any = null;
+  personalizada = null;
+  algo:any;
+
+  constructor(private route: ActivatedRoute, private imagenes: ImagenesService, private usuario: UsuariosService) {
   }
 
   @Input() catSelected: string;
@@ -38,30 +43,74 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     /* this.imagenes.obtenerCategoriaN(this.catSelected).subscribe((pictograma) => {
       this.listaPicto = pictograma;
     }); */
+    if(this.id === null){
+      this.conseguirId();
+    }
   }
-  ngOnInit(): void {
+  ngOnInit(){
     this.inicio();
   }
 
+  conseguirId(){
+    this.usuario.obtenerUser().then( async user => {
+      (await this.usuario.getInformationProfile(user.uid)).subscribe(usuariosCompletos => {
+        this.algo = usuariosCompletos;
+        this.id = this.algo.usuarioCargado;
+      });
+    });
+  }
 
-  escogerGrupo(grupo: Grupo): void{
+
+  async escogerGrupo(grupo: Grupo){
+    this.conseguirId();
+    if (grupo.idGrupo === 'sTMqvckVT2YutTDmoXzD') {
+      this.personalizada = 1;
+    }
+    this.lista2 = [];
+    console.log(this.personalizada);
     this.categoriaid = grupo.idGrupo;
     this.arregloDireccion.push(grupo);
-    this.imagenes.retornaItems().subscribe((item) => {
+    await this.imagenes.retornaItems(grupo.idGrupo, this.id).subscribe((item) => {
       this.lista2 = item;
-      for (const i of this.lista2){
-        if (this.categoriaid === i.idGrupo){
+      console.log(this.lista2);
+      if (grupo.idGrupo === 'sTMqvckVT2YutTDmoXzD'){
+        for (const i of this.lista2){
           this.lista3.push(i);
         }
+        this.personalizada = 1;
       }
+      else {
+        for (const i of this.lista2){
+          if (this.categoriaid === i.idGrupo){
+            this.lista3.push(i);
+          }
+        }
+        this.personalizada = null;
+      }
+      console.log(this.lista3, this.personalizada);
     });
   }
 
   escogerCategoria(categoria: Categoria): void {
+    this.listaPicto = [];
+    console.log(categoria);
     this.arregloDireccion.push(categoria);
-    this.imagenes.obtenerCategoriaN(categoria.nombre).subscribe((pictograma) => {
-      this.listaPicto = pictograma;
-    });
+    if (this.personalizada === 1 ){
+      this.imagenes.obtenerPictogramas(this.id).subscribe((pictograma) => {
+        console.log(pictograma);
+        for (const item of pictograma ){
+          if ( categoria.idCategoria === item.idCategoria){
+            this.listaPicto.push(item);
+          }
+        }
+      });
+    }
+    else {
+      this.imagenes.obtenerCategoriaN(categoria.nombre).subscribe((pictograma) => {
+        this.listaPicto = pictograma;
+      });
+    }
+    console.log(this.listaPicto);
   }
 
   inicio(): void{
