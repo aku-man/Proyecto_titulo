@@ -1,6 +1,6 @@
-import { Pictograma } from './pictograma.model';
+import { Frase } from './frase.model';
 
-export interface Frases {
-    listaFrases: Pictograma[];
-    frecuencia: number;
+export class Frases {
+    listaFrases: Frase[];
+    idFrase: string;
 }

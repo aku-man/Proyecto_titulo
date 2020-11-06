@@ -1,6 +1,7 @@
 import { Pictograma } from './pictograma.model';
 
-export interface Frase {
+export class Frase {
     listaPicto: Pictograma[];
     frecuencia: number;
+    idFrase: string;
 }

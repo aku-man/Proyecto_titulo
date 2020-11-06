@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class FrasesComponent implements OnInit {
   constructor(private usuario: UsuariosService, private router: Router) { }
   loggeado: any;
-  listaFrase: Frase[] = [{
+  /* listaFrase: Frase[] = [{
     frecuencia : 3,
     listaPicto : [{
       nombre: 'Cita previa',
@@ -28,7 +28,7 @@ export class FrasesComponent implements OnInit {
       nombre: 'Ambulancia',
       url: 'https://firebasestorage.googleapis.com/v0/b/tablero-de-comunicacion-2020.appspot.com/o/pictogramas%2Fcategoria3%2FAmbulancia.jpg?alt=media&token=214117db-f6ac-4702-bb5c-72326e1c15e2'
     }]
-  }];
+  }]; */
   ngOnInit(): void {
   }
 
