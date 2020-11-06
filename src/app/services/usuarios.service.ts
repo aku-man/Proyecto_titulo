@@ -108,7 +108,7 @@ async obtenerUser(){
 
 // tslint:disable-next-line: typedef
 async onOut() {
-
+  this.tutor = {};
  firebase.auth().signOut().then(() => {
 
    this.emitNavChangeEvent(0);

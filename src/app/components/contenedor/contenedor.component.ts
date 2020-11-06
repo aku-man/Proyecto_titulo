@@ -91,6 +91,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
   }
 
   reproducirFrase(): void{
+    console.log(this.usuario.tutor);
     let frecuencia = 0;
     let id;
     for (const pict of this.listaSelect){
