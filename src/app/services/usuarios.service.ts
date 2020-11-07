@@ -9,6 +9,9 @@ import { firestore } from 'firebase';
 
 import { map } from 'rxjs/operators';
 
+// tslint:disable-next-line: no-empty-interface
+export interface Item {}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +30,12 @@ export class UsuariosService {
   nuevoId: string = null;
   largo = new EventEmitter< number >();
   tutor: any;
+  usuarioFrase: any;
   borrado = false;
+
+  private frasesCollection: AngularFirestoreCollection<Item>;
+  frases: Observable<Item[]>;
+
   constructor(private afsauth: AngularFireAuth, private afs: AngularFirestore) { }
 
   emitNavChangeEvent(number): void{
@@ -63,9 +71,13 @@ export class UsuariosService {
 
  // tslint:disable-next-line: typedef
  async obtenerUsuario(){
-  firebase.auth().onAuthStateChanged((user) => {
+  firebase.auth().onAuthStateChanged(async (user) => {
     if (user != null) {
       const algo = 'asdasdasd';
+      this.tutor = user;
+      (await this.getInformationProfile(this.tutor.uid)).subscribe(async usuariosCompletos => {
+        this.usuarioFrase = await usuariosCompletos;
+      });
       this.emitNavChangeEvent(1);
 
     } else {
@@ -96,7 +108,7 @@ async obtenerUser(){
 
 // tslint:disable-next-line: typedef
 async onOut() {
-
+  this.tutor = {};
  firebase.auth().signOut().then(() => {
 
    this.emitNavChangeEvent(0);
@@ -188,5 +200,43 @@ async getInformationProfile(uid: string) {
   return  this.afs.collection('users').doc(uid).valueChanges();
 }
 
+async agregarFrase(frase, frec){
+  let id: string = null;
+  (await this.getInformationProfile(this.tutor.uid)).subscribe(async usuariosCompletos => {
+    this.usuarioFrase = await usuariosCompletos;
+    await this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection('Frases').add({
+      listaFrase: frase,
+      frecuencia: frec
+    })
+    .then((docRef) => {
+      id = docRef.id;
+      /* console.log("Document written with ID: ", docRef.id); */
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+    });
+    await this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection('Frases').doc(id).update({
+      idFrase: id
+    });
+  });
+}
+
+
+
+  obtenerFrases(){
+  this.frasesCollection =  this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection<Item>('Frases');
+  this.frases = this.frasesCollection.valueChanges();
+  return this.frases;
+}
+
+  async actualizarFrase(frec, id){
+    (await this.getInformationProfile(this.tutor.uid)).subscribe(async usuariosCompletos => {
+      this.usuarioFrase = await usuariosCompletos;
+      console.log('idUsuario', this.usuarioFrase.usuarioCargado);
+      await this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection('Frases').doc(id).update({
+        frecuencia: frec
+      });
+    });
+  }
 
 }
