@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular'; // useful for typechecking
+import { Pictograma } from '../../models/pictograma.model';
 @Component({
   selector: 'app-digital-clock',
   templateUrl: './digital-clock.component.html',
@@ -14,6 +16,8 @@ export class DigitalClockComponent implements OnInit {
   public ampm: string;
   public day: string;
   constructor() { }
+
+  currentEvents: EventApi[] = [];
 
   ngOnInit(): void {
     setInterval(() => {
@@ -31,6 +35,7 @@ export class DigitalClockComponent implements OnInit {
         intro = document.getElementById('lunes');
         intro.style.backgroundColor = '#7e57c2';
         intro.style.color = 'white';
+
         break;
       }
       case 'Martes' : {

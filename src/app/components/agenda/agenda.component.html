@@ -30,6 +30,55 @@
 
         </full-calendar>
     </div>
+    <div class="modal fade" tabindex="-1" id="modal">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Nombre Evento -->
+                    <form class="margin-bottom-0" [formGroup]="formulario" >
+                        <label class="control-label">Titulo de la Tarea </label>
+                        <div class="row m-b-15">
+                            <div class="col-md-12">
+                                <input type="text" 
+                                    formControlName="nombreEvento" 
+                                    class="form-control" 
+                                    placeholder="Titulo" 
+                                    [(ngModel)]="nombreEvento"
+                                    required 
+                                    class="form-control"/>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Pictograma -->
+                    
+                    <label for="Pictograma">Pictograma Seleccionado: </label>
+                    <input [value]="nombrePicto" id="Name" name="Name" [formGroup]="formulario" disabled/>
+                    <br>
+                    <div class="contenedor">
+                        <div *ngFor="let pict of listaPicto" >
+                            <div class="pictograma" 
+                            (click)="seleccionarPicto(pict)"
+                            >
+                                <img src={{pict.url}} alt="{{pict.nombre}}" class="example-box" style="height: 60px;width: 60px;">
+                                <p class="nombre_pictograma" style="font-size: small;">{{pict.nombre}}</p>    
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal"
+                        type="submit"
+                        [disabled]="!formulario.valid"
+                        (click)="setearDatos()">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <button (click)="exportarDia()">exportar</button>
 </div>
 

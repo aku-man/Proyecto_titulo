@@ -1,9 +1,134 @@
 <div class="contenedor">
-    <div id="lunes">L</div>
-    <div id="martes">M</div>
-    <div id="miercoles">X</div>
-    <div id="jueves">J</div>
-    <div id="viernes">V</div>
-    <div id="sabado">S</div>
-    <div id="domingo">D</div>
+    <div id="lunes" data-target="#modal1" data-toggle="modal" >L</div>
+    <div id="martes" data-target="#modal2" data-toggle="modal">M</div>
+    <div id="miercoles" data-target="#modal3" data-toggle="modal">X</div>
+    <div id="jueves" data-target="#modal4" data-toggle="modal">J</div>
+    <div id="viernes" data-target="#modal5" data-toggle="modal">V</div>
+    <div id="sabado" data-target="#modal6" data-toggle="modal">S</div>
+    <div id="domingo" data-target="#modal7" data-toggle="modal">D</div>
+
+    <!-- Lunes -->
+    <div class="modal fade" tabindex="-1" id="modal1" *ngIf="day == 'Lunes'">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Lunes
+                    <div *ngFor="let item of currentEvents">
+                        
+                        {{item.extendedProps}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Martes -->
+    <div class="modal fade" tabindex="-1" id="modal2" *ngIf="day == 'Martes'">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Martes
+                    <div *ngFor="let item of currentEvents">
+                        
+                        {{item.extendedProps}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Miercoles -->
+    <div class="modal fade" tabindex="-1" id="modal3" *ngIf="day == 'Miercoles'">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Miercoles
+                    <div *ngFor="let item of currentEvents">
+                        
+                        {{item.extendedProps}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jueves -->
+    <div class="modal fade" tabindex="-1" id="modal4" *ngIf="day == 'Jueves'">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Jueves
+                    <div *ngFor="let item of currentEvents">
+                        
+                        {{item.extendedProps}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Viernes -->
+    <div class="modal fade" tabindex="-1" id="modal5" *ngIf="day == 'Viernes'">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Viernes
+                    <div *ngFor="let item of currentEvents">
+                        
+                        {{item.extendedProps}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sabado -->
+    <div class="modal fade" tabindex="-1" id="modal6" *ngIf="day == 'Sabado'">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Sabado
+                    <div *ngFor="let item of currentEvents">
+                        
+                        {{item.extendedProps}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Domingo -->
+    <div class="modal fade" tabindex="-1" id="modal7" *ngIf="day == 'Domingo'">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:#e0e0e0;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    Domingo
+                    <div *ngFor="let item of currentEvents">
+                        
+                        {{item.extendedProps}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

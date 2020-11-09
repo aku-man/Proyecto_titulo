@@ -48,13 +48,19 @@ export class FrasesComponent implements OnInit {
         nuevaFrase.frecuencia = item.frecuencia;
         nuevaFrase.listaPicto = item.listaFrase;
         nuevaFrase.idFrase = item.idFrase;
-        console.log(nuevaFrase);
+        // console.log(nuevaFrase);
         this.listaFrase.push(nuevaFrase);
         /* this.listaFrase.push(this.frase);
         this.listaprueba.push(item); */
       }
       console.log(this.listaFrase);
+      this.listaFrase = this.listaFrase.sort((fraseA: Frase, fraseB: Frase) => {
+        console.log(fraseA.frecuencia - fraseB.frecuencia);
+        return fraseB.frecuencia - fraseA.frecuencia;
+      });
+      console.log(this.listaFrase);
     });
+
   }
 
   // tslint:disable-next-line: typedef
