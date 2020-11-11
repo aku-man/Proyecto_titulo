@@ -26,7 +26,8 @@
     <div class="calendar-container">
         <full-calendar 
         class="calendar" 
-        [options]="this.calendarOptions"> 
+        [options]="this.calendarOptions"
+        id="calendar"> 
 
         </full-calendar>
     </div>
@@ -38,7 +39,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Nombre Evento -->
-                    <form class="margin-bottom-0" [formGroup]="formulario" >
+                    <form class="margin-bottom-0" [formGroup]="formulario" *ngIf="formulario">
                         <label class="control-label">Titulo de la Tarea </label>
                         <div class="row m-b-15">
                             <div class="col-md-12">
@@ -48,14 +49,22 @@
                                     placeholder="Titulo" 
                                     [(ngModel)]="nombreEvento"
                                     required 
-                                    class="form-control"/>
+                                    />
                             </div>
                         </div>
-                    </form>
-                    <!-- Pictograma -->
                     
-                    <label for="Pictograma">Pictograma Seleccionado: </label>
-                    <input [value]="nombrePicto" id="Name" name="Name" [formGroup]="formulario" disabled/>
+                        <!-- Pictograma -->
+                    
+                        <label for="Pictograma">Pictograma Seleccionado: </label>
+                        <input [value]="nombrePicto" 
+                            id="Name" 
+                            name="Name" 
+                            formControlName="nombrePicto" 
+                            [(ngModel)]="nombrePicto"
+                            required 
+                            class="form-control"
+                            disabled/>
+                    </form>
                     <br>
                     <div class="contenedor">
                         <div *ngFor="let pict of listaPicto" >

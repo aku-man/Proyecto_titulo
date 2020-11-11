@@ -34,6 +34,7 @@ export class UsuariosService {
   borrado = false;
 
   private frasesCollection: AngularFirestoreCollection<Item>;
+  private eventosCollection: AngularFirestoreCollection<Item>;
   frases: Observable<Item[]>;
 
   constructor(private afsauth: AngularFireAuth, private afs: AngularFirestore) { }
@@ -109,12 +110,12 @@ async obtenerUser(){
 // tslint:disable-next-line: typedef
 async onOut() {
   this.tutor = {};
- firebase.auth().signOut().then(() => {
+  firebase.auth().signOut().then(() => {
 
-   this.emitNavChangeEvent(0);
-  }).catch(function(error) {
-    // An error happened.
-  });
+    this.emitNavChangeEvent(0);
+    }).catch(function(error) {
+      // An error happened.
+    });
 }
 
 
@@ -227,7 +228,7 @@ async agregarFrase(frase, frec){
   this.frasesCollection =  this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection<Item>('Frases');
   this.frases = this.frasesCollection.valueChanges();
   return this.frases;
-}
+  }
 
   async actualizarFrase(frec, id){
     (await this.getInformationProfile(this.tutor.uid)).subscribe(async usuariosCompletos => {
@@ -237,6 +238,44 @@ async agregarFrase(frase, frec){
         frecuencia: frec
       });
     });
+  }
+
+  // Agenda
+
+  async agregarEvento(newStart, newEnd, newDay, newTitle, newNP, newUrl){
+    let id: string = null;
+    (await this.getInformationProfile(this.tutor.uid)).subscribe(async usuariosCompletos => {
+      this.usuarioFrase = await usuariosCompletos;
+      await this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection('Agenda').add({
+        start: newStart,
+        end: newEnd,
+        day: newDay,
+        title: newTitle,
+        nombrePicto: newNP,
+        urlPicto: newUrl,
+        idEvento: ''
+      })
+      .then((docRef) => {
+        id = docRef.id;
+        /* console.log("Document written with ID: ", docRef.id); */
+      })
+      .catch((error) => {
+        console.error('Error adding document: ', error);
+      });
+      await this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection('Agenda').doc(id).update({
+        idEvento: id
+      });
+    });
+  }
+
+  obtenerEvento(){
+    this.eventosCollection =  this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection<Item>('Agenda');
+    this.frases = this.eventosCollection.valueChanges();
+    return this.frases;
+  }
+
+  async eliminarEvento(idEvento, idUsuario){
+    await this.afs.collection('Usuarios').doc(idUsuario).collection('Agenda').doc(idEvento).delete();
   }
 
 }
