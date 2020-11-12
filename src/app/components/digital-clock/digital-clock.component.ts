@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/angular'; // useful for typechecking
+import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Pictograma } from '../../models/pictograma.model';
 @Component({
   selector: 'app-digital-clock',
@@ -15,11 +16,12 @@ export class DigitalClockComponent implements OnInit {
   public second: string;
   public ampm: string;
   public day: string;
-  constructor() { }
-
+  constructor(private usuario: UsuariosService) { }
+  listaAgenda: any;
   currentEvents: EventApi[] = [];
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.obtenerFrases();
     setInterval(() => {
       const date = new Date();
     }, 1000);
@@ -75,6 +77,13 @@ export class DigitalClockComponent implements OnInit {
         break;
       }
     }
+  }
+
+  async obtenerFrases(){
+    await this.usuario.obtenerEvento().subscribe((evento) => {
+      console.log(evento);
+      this.listaAgenda = evento;
+    });
   }
 
 }

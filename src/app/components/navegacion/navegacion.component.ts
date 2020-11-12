@@ -49,7 +49,6 @@ export class NavegacionComponent implements OnInit, OnDestroy, DoCheck {
   async verificar(){
    await this.usuario.obtenerUsuario();
    console.log(this.usuario.tutor.uid);
-  
    /* console.log('verifica', this.item); */
   }
 

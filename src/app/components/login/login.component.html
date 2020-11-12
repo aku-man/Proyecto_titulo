@@ -3,7 +3,7 @@
      
     <!-- begin news-feed -->
     <div class="news-feed">
-        <div class="news-image" style="background-image: url(../../../assets/images/PICTOGRAMAS_AUTISMO-removebg-preview.png);
+        <div class="news-image" style="background-image: url(../../../assets/images/PICTOGRAMAS_AUTISMO-removebg-preview-removebg-preview.png);
         background-color: #4dd0e1;"></div>
         <div class="news-caption">
             <h4 class="caption-title"><b>Pictogram</b> Tab</h4>
@@ -18,6 +18,11 @@
         <!-- begin login-header -->
         <div class="login-header">
             <div class="brand">
+                <a routerLink="/Tablero" class="text-success">
+                    <img src="../../../assets/images/LOGO4-removebg-preview.png" alt="" class="img-fluid">
+                </a>
+                <br>
+                <br>
                 <!-- <span class="logo"></span> --> <b>Iniciar sesión</b><p></p>
                 <small>Completar correctamente los campos para entrar a la aplicación con su cuenta</small>
             </div>
@@ -30,10 +35,51 @@
         <div class="login-content">
             <form [formGroup]="formulario" class="margin-bottom-0">
                 <div class="form-group m-b-15">
-                    <input type="text" formControlName="email" [(ngModel)]="email" class="form-control form-control-lg" placeholder="Dirección Email" required />
+                    <input type="text" formControlName="email" 
+                    [(ngModel)]="email" 
+                    class="form-control form-control-lg" 
+                    placeholder="Dirección Email" required
+                    [ngClass]="(formulario.get('email').dirty) && 
+                                formulario.get('email').hasError('required') ? 'is-invalid':''  
+                                || formulario.get('email').hasError('pattern') ? 'is-invalid':''
+                                ||((formulario.get('email').touched || formulario.get('email').dirty)
+                                && !formulario.get('email').invalid) ? 'is-valid':''
+                                "/>
+                    <div class="invalid-feedback">
+                        {{
+                            formulario.get('email').hasError('required')
+                            ? 'Email es requerido'
+                            :'' 
+                        }}
+                        {{
+                            formulario.get('email').hasError('pattern')
+                            ? 'Email ingresado no es valido'
+                            :'' 
+                        }}
+                    </div>
                 </div>
                 <div class="form-group m-b-15">
-                    <input type="password" formControlName="password" [(ngModel)]="password" class="form-control form-control-lg" placeholder="Contraseña" required />
+                    <input type="password" formControlName="password" [(ngModel)]="password" 
+                    class="form-control form-control-lg" placeholder="Contraseña" required
+                    [ngClass]="(formulario.get('password').dirty ) && 
+                                formulario.get('password').hasError('required') ? 'is-invalid':'' 
+                                || formulario.get('password').hasError('minlength') ? 'is-invalid':''
+                                ||((formulario.get('password').touched || formulario.get('password').dirty)
+                                && !formulario.get('password').invalid) ? 'is-valid':''
+                                "/>
+                    <div class="invalid-feedback">
+                        {{
+                            formulario.get('password').hasError('minlength')
+                            ? "Largo de la contraseña debe tener minimo 6 caracteres"
+                            :'' 
+                        }}
+                        {{
+                            formulario.get('password').hasError('required')
+                            ? 'Contraseña es requerida'
+                            :'' 
+                        }}
+                        
+                    </div>
                 </div>
                 <!-- <div class="checkbox checkbox-css m-b-30">
                   <input type="checkbox" id="remember_me_checkbox" value="" />

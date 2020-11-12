@@ -16,9 +16,11 @@
                 </div>
                 <div class="modal-body">
                     Lunes
-                    <div *ngFor="let item of currentEvents">
-                        
-                        {{item.extendedProps}}
+                    <div *ngFor="let item of listaAgenda">
+                        <div *ngIf="item.day === 1">
+                            {{item.nombrePicto}}
+                            <img src={{item.urlPicto}} alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,9 +35,11 @@
                 </div>
                 <div class="modal-body">
                     Martes
-                    <div *ngFor="let item of currentEvents">
-                        
-                        {{item.extendedProps}}
+                    <div *ngFor="let item of listaAgenda">
+                        <div *ngIf="item.day === 2">
+                            {{item.nombrePicto}}
+                            <img src={{item.urlPicto}} alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,9 +55,11 @@
                 </div>
                 <div class="modal-body">
                     Miercoles
-                    <div *ngFor="let item of currentEvents">
-                        
-                        {{item.extendedProps}}
+                    <div *ngFor="let item of listaAgenda">
+                        <div *ngIf="item.day === 3">
+                            {{item.nombrePicto}}
+                            <img src={{item.urlPicto}} alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,9 +75,11 @@
                 </div>
                 <div class="modal-body">
                     Jueves
-                    <div *ngFor="let item of currentEvents">
-                        
-                        {{item.extendedProps}}
+                    <div *ngFor="let item of listaAgenda">
+                        <div *ngIf="item.day === 4">
+                            {{item.nombrePicto}}
+                            <img src={{item.urlPicto}} alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,9 +95,11 @@
                 </div>
                 <div class="modal-body">
                     Viernes
-                    <div *ngFor="let item of currentEvents">
-                        
-                        {{item.extendedProps}}
+                    <div *ngFor="let item of listaAgenda">
+                        <div *ngIf="item.day === 5">
+                            {{item.nombrePicto}}
+                            <img src={{item.urlPicto}} alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,9 +115,11 @@
                 </div>
                 <div class="modal-body">
                     Sabado
-                    <div *ngFor="let item of currentEvents">
-                        
-                        {{item.extendedProps}}
+                    <div *ngFor="let item of listaAgenda">
+                        <div *ngIf="item.day === 6">
+                            {{item.nombrePicto}}
+                            <img src={{item.urlPicto}} alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,9 +135,11 @@
                 </div>
                 <div class="modal-body">
                     Domingo
-                    <div *ngFor="let item of currentEvents">
-                        
-                        {{item.extendedProps}}
+                    <div *ngFor="let item of listaAgenda">
+                        <div *ngIf="item.day === 7">
+                            {{item.nombrePicto}}
+                            <img src={{item.urlPicto}} alt="">
+                        </div>
                     </div>
                 </div>
             </div>

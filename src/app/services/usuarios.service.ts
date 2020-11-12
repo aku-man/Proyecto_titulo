@@ -277,5 +277,4 @@ async agregarFrase(frase, frec){
   async eliminarEvento(idEvento, idUsuario){
     await this.afs.collection('Usuarios').doc(idUsuario).collection('Agenda').doc(idEvento).delete();
   }
-
 }

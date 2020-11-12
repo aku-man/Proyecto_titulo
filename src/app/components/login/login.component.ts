@@ -20,13 +20,15 @@ export class LoginComponent implements OnInit {
     email: new FormControl(
       '',
       Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])
     ),
     password: new FormControl(
       '',
       Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.minLength(6)
       ])
     )
     });
@@ -38,8 +40,9 @@ export class LoginComponent implements OnInit {
   // Funcion cuando se clickea "iniciar sesion" y que permite validar y obtener los datos de la base de datos
 
   loggearse(): void{
-    this.validarEmail(this.email);
-    this.largoContraseña(this.password);
+    /* this.validarEmail(this.email); */
+    this.validar = true;
+    /* this.largoContraseña(this.password); */
     const self = this;
     if (this.validar === true){
       this.usuario.login(this.email, this.password).then(
@@ -61,26 +64,24 @@ export class LoginComponent implements OnInit {
 
   // Funciones para verificar los datos de inicio de sesion
 
-  validarEmail(valor): void {
+  /* validarEmail(valor): void {
     if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor)){
-     /* console.log('aprobado'); */
      this.validar = true;
     } else {
      alert('La dirección de email es incorrecta.');
      this.validar = false;
     }
-  }
+  } */
 
-  largoContraseña(valor): void{
+  /* largoContraseña(valor): void{
     if (this.validar === true){
       if ( valor.length < 6){
         alert('La contraseña debe poseer mas de 6 caracteres');
         this.validar = false;
       }
       else {
-        /* console.log('contraseña ingresada posee el largo permitido'); */
         this.validar = true;
       }
     }
-  }
+  } */
 }
