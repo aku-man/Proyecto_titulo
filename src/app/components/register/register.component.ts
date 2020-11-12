@@ -29,21 +29,26 @@ export class RegisterComponent implements OnInit {
       nombre: new FormControl(
         '',
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.maxLength(30)
           // tslint:disable-next-line: max-line-length
-        /* Validators.pattern(/^([0-9]{1,2}[0-9]{6}[0-9kK]{1}\s{0,})$|^[0-9]{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}\s{0,}$|^([0-9]{1,2}[0-9]{6}-[0-9kK]{1}\s{0,})$/) */
+          /* Validators.pattern(/^([0-9]{1,2}[0-9]{6}[0-9kK]{1}\s{0,})$|^[0-9]{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}\s{0,}$|^([0-9]{1,2}[0-9]{6}-[0-9kK]{1}\s{0,})$/) */
         ])
       ),
       apellido: new FormControl(
         '',
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.maxLength(30)
         ])
       ),
       email: new FormControl(
         '',
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
         ])
       ),
       confirmEmail: new FormControl(
@@ -55,7 +60,8 @@ export class RegisterComponent implements OnInit {
       pass: new FormControl(
         '',
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validators.minLength(6)
         ])
       ),
       confirmPass: new FormControl(
@@ -71,10 +77,17 @@ export class RegisterComponent implements OnInit {
   // de forma correcta
 
   validarDatos(): void{
-    this.validarEmail(this.email);
-    this.comprobarEmail(this.email, this.confEmail);
-    this.comprobarPass(this.pass, this.confirmPass);
-    this.largoContraseña(this.pass);
+    /* this.validarEmail(this.email); */
+    this.validar = true;
+    if ((this.comprobarEmail(this.email, this.confEmail) === true) && (this.comprobarPass(this.pass, this.confirmPass) === true) ){
+      this.validar = true;
+    }
+    else{
+      this.validar = false;
+    }
+    /* this.comprobarEmail(this.email, this.confEmail);
+    this.comprobarPass(this.pass, this.confirmPass); */
+    /* this.largoContraseña(this.pass); */
     if (this.validar === true){
       this.user.nombre = this.nombre;
       this.user.apellido = this.apellido;
@@ -88,50 +101,53 @@ export class RegisterComponent implements OnInit {
 
   // funciones para validar los datos ingresadosal formulario
 
-  validarEmail(valor): void {
+  /* validarEmail(valor): void {
     if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor)){
-     /* console.log('aprobado'); */
      this.validar = true;
     } else {
      alert('La dirección de email es incorrecta.');
      this.validar = false;
     }
-  }
+  } */
 
-  comprobarEmail(valor1, valor2): void {
-    if (this.validar === true){
-      if (valor1 !== valor2){
-        alert('Confirmar dirección email no es igual a la dirección email ingresada');
-        this.validar = false;
-      }
-      else {
-        this.validar = true;
-      }
+  comprobarEmail(valor1, valor2){
+    if (valor1 !== valor2){
+      // tslint:disable-next-line: max-line-length
+      document.getElementById('alerta').innerHTML = '<div class= "alert alert-danger">Hay datos erroneos ingresados</div>';
+      /* alert('Confirmar dirección email no es igual a la dirección email ingresada'); */
+      /* this.validar = false; */
+      return false;
+    }
+    else {
+      /* this.validar = true; */
+      document.getElementById('alerta').innerHTML = '';
+      return true;
     }
   }
 
-  comprobarPass(valor1, valor2): void {
-    if (this.validar === true){
-      if (valor1 !== valor2){
-        alert('Confirmar contraseña  no es igual a la contraseña ingresada');
-        this.validar = false;
-      }
-      else {
-        this.validar = true;
-      }
+  comprobarPass(valor1, valor2){
+    if (valor1 !== valor2){
+      document.getElementById('alerta').innerHTML = '<div class= "alert alert-danger">Hay datos erroneos ingresados</div>';
+      /* alert('Confirmar contraseña  no es igual a la contraseña ingresada'); */
+      /* this.validar = false; */
+      return false;
+    }
+    else {
+      document.getElementById('alerta2').innerHTML = '';
+      /* this.validar = true; */
+      return true;
     }
   }
 
-  largoContraseña(valor): void{
+  /* largoContraseña(valor): void{
     if (this.validar === true){
       if ( valor.length < 6){
         alert('La contraseña debe poseer mas de 6 caracteres');
         this.validar = false;
       }
       else {
-        /* console.log('contraseña ingresada posee el largo permitido'); */
         this.validar = true;
       }
     }
-  }
+  } */
 }

@@ -53,10 +53,10 @@ export class LoginComponent implements OnInit {
       },
       async  (error) => {
         if (error.code === 'auth/wrong-password') {
-          alert('El email o contraseña ingresados son incorrectos');
+          document.getElementById('alerta').innerHTML = '<div class= "alert alert-danger">Hay datos erroneos ingresados</div>';
         }
         if (error.code === 'auth/user-not-found') {
-          alert('El email o contraseña ingresados son incorrectos');
+          document.getElementById('alerta').innerHTML = '<div class= "alert alert-danger">Hay datos erroneos ingresados</div>';
         }
       });
     }

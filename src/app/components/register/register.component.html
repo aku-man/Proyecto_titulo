@@ -16,46 +16,187 @@
     <div class="right-content">
         <!-- begin register-header -->
         <h1 class="register-header">
-            <img src="../../../assets/images/LOGO4-removebg-preview.png" alt="" class="img-fluid">
+            <a routerLink="/Tablero" class="text-success">
+                <img src="../../../assets/images/LOGO4-removebg-preview.png" alt="" class="img-fluid">
+            </a>
             <br>
-            Registrarse
+            <br>
+            <b>Registrarse</b>
             <small>Crea una cuenta en Pictogram Tab</small>
         </h1>
         <!-- end register-header -->
         <!-- begin register-content -->
+        <div id="alerta">
+        </div>
+        <div id="alerta2">
+        </div>
         <div class="register-content">
             <form [formGroup]="formulario" class="margin-bottom-0">
                 <label class="control-label">Nombre <span class="text-danger">*</span></label>
                 <div class="row row-space-10">
                     <div class="col-md-6 m-b-15">
-                        <input type="text" formControlName="nombre" [(ngModel)]="nombre" class="form-control" placeholder="Nombre" />
+                        <input type="text" formControlName="nombre" [(ngModel)]="nombre" class="form-control" 
+                        placeholder="Nombre" 
+                        required
+                        [ngClass]="(formulario.get('nombre').dirty) && 
+                                formulario.get('nombre').hasError('required') ? 'is-invalid':''  
+                                || formulario.get('nombre').hasError('pattern') ? 'is-invalid':''
+                                || formulario.get('nombre').hasError('maxlength') ? 'is-invalid':''
+                                ||((formulario.get('nombre').touched || formulario.get('nombre').dirty)
+                                && !formulario.get('nombre').invalid) ? 'is-valid':''
+                        "/>
+                        <div class="invalid-feedback">
+                            {{
+                                formulario.get('nombre').hasError('required')
+                                ? 'Nombre es requerido'
+                                :'' 
+                            }}
+                            {{
+                                formulario.get('nombre').hasError('pattern')
+                                ? 'Nombre ingresado no es valido'
+                                :'' 
+                            }}
+                            {{
+                                formulario.get('nombre').hasError('maxlength')
+                                ? 'Nombre ingresado debe tener menos de 30 letras'
+                                :'' 
+                            }}
+                        </div>
                     </div>
                     <div class="col-md-6 m-b-15">
-                        <input type="text" class="form-control" formControlName="apellido" [(ngModel)]="apellido" placeholder="Apellido" required />
+                        <input type="text" class="form-control" formControlName="apellido" 
+                        [(ngModel)]="apellido" placeholder="Apellido" 
+                        required 
+                        [ngClass]="(formulario.get('apellido').dirty) && 
+                                formulario.get('apellido').hasError('required') ? 'is-invalid':''  
+                                || formulario.get('apellido').hasError('pattern') ? 'is-invalid':''
+                                || formulario.get('apellido').hasError('maxlength') ? 'is-invalid':''
+                                ||((formulario.get('apellido').touched || formulario.get('apellido').dirty)
+                                && !formulario.get('apellido').invalid) ? 'is-valid':''
+                        "/>
+                        <div class="invalid-feedback">
+                            {{
+                                formulario.get('apellido').hasError('required')
+                                ? 'Apellido es requerido'
+                                :'' 
+                            }}
+                            {{
+                                formulario.get('apellido').hasError('pattern')
+                                ? 'Apellido ingresado no es valido'
+                                :'' 
+                            }}
+                            {{
+                                formulario.get('apellido').hasError('maxlength')
+                                ? 'Apellido ingresado debe tener menos de 30 letras'
+                                :'' 
+                            }}
+                        </div>
                     </div>
                 </div>
                 <label class="control-label">Email <span class="text-danger">*</span></label>
                 <div class="row m-b-15">
                     <div class="col-md-12">
-                        <input type="text" formControlName="email" [(ngModel)]="email" class="form-control" placeholder="Direccion Email" required />
+                        <input type="text" formControlName="email" [(ngModel)]="email" 
+                        class="form-control" placeholder="Direccion Email" 
+                        required
+                        [ngClass]="(formulario.get('email').dirty) && 
+                                formulario.get('email').hasError('required') ? 'is-invalid':''  
+                                || formulario.get('email').hasError('pattern') ? 'is-invalid':''
+                                ||((formulario.get('email').touched || formulario.get('email').dirty)
+                                && !formulario.get('email').invalid) ? 'is-valid':''
+                        "/>
+                        <div class="invalid-feedback">
+                            {{
+                                formulario.get('email').hasError('required')
+                                ? 'Email es requerido'
+                                :'' 
+                            }}
+                            {{
+                                formulario.get('email').hasError('pattern')
+                                ? 'Email ingresado no es valido'
+                                :'' 
+                            }}
+                        </div>
                     </div>
                 </div>
                 <label class="control-label">Confirmar Email <span class="text-danger">*</span></label>
                 <div class="row m-b-15">
                     <div class="col-md-12">
-                        <input type="text" formControlName="confirmEmail" [(ngModel)]="confEmail" class="form-control" placeholder="Confirmar direccion Email" required />
+                        <input type="text" formControlName="confirmEmail" [(ngModel)]="confEmail" 
+                        class="form-control" placeholder="Confirmar direccion Email" 
+                        required 
+                        [ngClass]="(formulario.get('confirmEmail').dirty) && 
+                                formulario.get('confirmEmail').hasError('required') ? 'is-invalid':''
+                                || (formulario.get('confirmEmail').value !== formulario.get('email').value) ? 'is-invalid':''
+                                ||((formulario.get('confirmEmail').touched || formulario.get('confirmEmail').dirty)
+                                && !formulario.get('confirmEmail').invalid) ? 'is-valid':''
+                        "/>
+                        <div class="invalid-feedback">
+                            {{
+                                formulario.get('confirmEmail').hasError('required')
+                                ? 'Confirmar Email es requerido\n'
+                                :'' 
+                            }}
+                            <br>
+                            {{
+                                (formulario.get('confirmEmail').value !== formulario.get('email').value)
+                                ? 'Confirmar Email es diferente al Email ingresado'
+                                :'' 
+                            }}
+                        </div>
                     </div>
                 </div>
                 <label class="control-label">Contraseña <span class="text-danger">*</span></label>
                 <div class="row m-b-15">
                     <div class="col-md-12">
-                        <input type="password" formControlName="pass" [(ngModel)]="pass" class="form-control" placeholder="Contraseña" required />
+                        <input type="password" formControlName="pass" [(ngModel)]="pass" 
+                        class="form-control" placeholder="Contraseña" 
+                        required 
+                        [ngClass]="(formulario.get('pass').dirty) && 
+                                formulario.get('pass').hasError('required') ? 'is-invalid':''  
+                                || formulario.get('pass').hasError('minlength') ? 'is-invalid':''
+                                ||((formulario.get('pass').touched || formulario.get('pass').dirty)
+                                && !formulario.get('pass').invalid) ? 'is-valid':''
+                        "/>
+                        <div class="invalid-feedback">
+                            {{
+                                formulario.get('pass').hasError('required')
+                                ? 'Contraseña es requerida'
+                                :'' 
+                            }}
+                            {{
+                                formulario.get('pass').hasError('minlength')
+                                ? 'Contraseña debe tener minimo 6 caracteres'
+                                :'' 
+                            }}
+                        </div>
                     </div>
                 </div>
                 <label class="control-label">Confirmar Contraseña <span class="text-danger">*</span></label>
                 <div class="row m-b-15">
                     <div class="col-md-12">
-                        <input type="password" formControlName="confirmPass" [(ngModel)]="confirmPass" class="form-control" placeholder="Confirmar Contraseña" required />
+                        <input type="password" formControlName="confirmPass" [(ngModel)]="confirmPass" 
+                        class="form-control" placeholder="Confirmar Contraseña" 
+                        required 
+                        [ngClass]="(formulario.get('confirmPass').dirty) && 
+                                formulario.get('confirmPass').hasError('required') ? 'is-invalid':''
+                                || (formulario.get('confirmPass').value !== formulario.get('pass').value) ? 'is-invalid':''
+                                ||((formulario.get('confirmPass').touched || formulario.get('confirmPass').dirty)
+                                && !formulario.get('confirmPass').invalid) ? 'is-valid':''
+                        "/>
+                        <div class="invalid-feedback">
+                            {{
+                                formulario.get('confirmPass').hasError('required')
+                                ? 'Confirmar contraseña es requerida\n'
+                                :'' 
+                            }}
+                            <br>
+                            {{
+                                (formulario.get('confirmPass').value !== formulario.get('pass').value)
+                                ? 'Confirmar contraseña es diferente a la contraseña ingresada'
+                                :'' 
+                            }}
+                        </div>
                     </div>
                 </div>
                <!--  <div class="checkbox checkbox-css m-b-30">
@@ -67,7 +208,7 @@
                     </div>
                 </div> -->
                 <div class="register-buttons">
-                    <button type="submit" [disabled]="!formulario.valid" (click)="validarDatos()" class="btn btn-primary btn-block btn-lg">Registrarse</button>
+                    <button type="submit" [disabled]="!formulario.valid" (click)="validarDatos()" class="btn btn-success btn-block btn-lg">Registrarse</button>
                 </div>
                 <div class="m-t-20 m-b-40 p-b-40 text-inverse">
                     Si ya posees una cuenta has click <a routerLink="/Login">aqui</a> para iniciar sesion.
