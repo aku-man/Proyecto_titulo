@@ -70,3 +70,82 @@
 .icono:active{
     transform: translateY(2px);
 }
+
+.nombre_pictograma{
+    font-size: 80%;
+}
+
+@media  (max-width:990px){
+    .contenedor{
+        display: flex;
+        height: 100px;
+        width: 80%;
+        margin: 2% 10% 0% 10%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: white;
+        border-radius: 10px;
+    }
+    
+    .pizarra{
+        background:white;
+        height: 100px;
+        width: 90%;
+        border-radius: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        overflow-x: auto;
+        overflow-y: hidden;
+        display: flex;
+        align-items: center;
+    }
+    
+    .pictograma{
+        height: 75px;
+        width: 75px;
+        border: 1px solid black;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 10px;
+        cursor: pointer;
+        text-align: center;
+        background:white;
+        border-radius: 10%;
+        margin-left: 5px;
+    }
+    
+    .example-box{
+        height: 50px;
+        width: 50px;
+    }
+    
+    .botones{
+        height: 100px;
+        width: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .icono{
+        width: 45px;
+        height: 45px;
+        margin-bottom: 5px;
+    }
+    .icono > .imagen_basurero{
+        border-radius: 100%;
+        width: 100%;
+        height: 100%;
+        background: #1b5e20;
+    }
+    
+    .icono:active{
+        transform: translateY(2px);
+    }
+}

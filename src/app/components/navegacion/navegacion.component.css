@@ -6,11 +6,40 @@
     height: 100px;
 }
 
-.boton-menu{
+#header{
+    display: flex;
+    justify-content: end;
+}
+
+/* .boton-menu{
     background: white;
     margin-right: 20px;
     width: 110px;
     height: 50px;
     text-align: center;
     font-size: 15px;
+} */
+
+@media  (max-width:990px){
+    .algo{
+        display: flex;
+        justify-content: flex-end;
+        background: #01579b;
+        align-items: center;
+        height: 50px;
+    }
+    
+    
+    #header{
+        display: flex;
+        justify-content: center;
+    }
+    /* .boton-menu{
+        background: white;
+        margin-right: 10px;
+        width: 80px;
+        height: 30px;
+        text-align: center;
+        font-size: 10px;
+    } */
 }

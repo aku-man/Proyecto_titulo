@@ -4,16 +4,15 @@
         <app-digital-clock></app-digital-clock>
     </div>
 
-    <div id="header" class="header navbar" style="display: flex; justify-content: flex-end;">
+    <div id="header" class="header navbar" >
         <ng-container *ngIf="item === 1 ; else elseTemplate">
             <div class="dropdown navbar-user" ngbDropdown>
                 <a href="javascript:;" class="dropdown-toggle" ngbDropdownToggle>
-                    <img src="../../../assets/images/552721.png" alt="" />
+                    <img  src="../../../assets/images/552721.png" alt="" />
                     <span class="d-none d-md-inline" style=" color:black; font-size: 25px;">Bienvenido</span>
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
-                    <a routerLink="/Tablero" class="dropdown-item">Mi Tablero</a>
+                <div class="dropdown-menu dropdown-menu-left" ngbDropdownMenu>
                     <a routerLink="/Perfil" class="dropdown-item">Mi Perfil</a>
                     <a routerLink="/Frases" class="dropdown-item">Mis Frases</a>
                     <a routerLink="/Agenda" class="dropdown-item">Mi Agenda</a>
@@ -30,8 +29,8 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
-                    <a routerLink="/Login" class="dropdown-item">Iniciar Sesion</a>
-                    <a routerLink="/Register" class="dropdown-item">Registro</a>
+                    <a routerLink="/Login" class="dropdown-item">Identifícate</a>
+                    <a routerLink="/Register" class="dropdown-item">Registrate</a>
                 </div>
             </div>
         </ng-template>

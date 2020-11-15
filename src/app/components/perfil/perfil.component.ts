@@ -77,6 +77,8 @@ export class PerfilComponent implements OnInit {
   listaCategoria: any;
   listaPictograma: any = [];
 
+  imagenCategoria: any;
+
   // datos para cargar preferencias del usuario
   idCargarPreferencias: any;
   validarIdCargarPreferencias: string = null;
@@ -93,7 +95,8 @@ export class PerfilComponent implements OnInit {
       pass: new FormControl(
         '',
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validators.minLength(6)
         ])
       ),
       confirmPass: new FormControl(
@@ -106,6 +109,13 @@ export class PerfilComponent implements OnInit {
 
     this.formularioCategoria = this.formBuilder.group({
       nombreCategoria: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(30)
+        ])
+      ),
+      imagenCategoria: new FormControl(
         '',
         Validators.compose([
           Validators.required
@@ -145,13 +155,17 @@ export class PerfilComponent implements OnInit {
       nombre: new FormControl(
         '',
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.maxLength(30)
         ])
       ),
       apellido: new FormControl(
         '',
         Validators.compose([
-          Validators.required
+          Validators.required,
+          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.maxLength(30)
         ])
       ),
       fecha: new FormControl(
@@ -222,14 +236,12 @@ export class PerfilComponent implements OnInit {
   /* ----------------------------------- */
 
   validarDatos(): void{
-    this.comprobarPass(this.pass, this.confirmPass);
-    this.largoContraseña(this.pass);
-    if (this.validar === true){
+    /* this.comprobarPass(this.pass, this.confirmPass); */
+    /* this.largoContraseña(this.pass); */
       this.usuario.cambiarPass(this.pass);
-    }
   }
 
-  comprobarPass(valor1, valor2): void {
+  /* comprobarPass(valor1, valor2): void {
       if (valor1 !== valor2){
         alert('Confirmar contraseña  no es igual a la contraseña ingresada');
         this.validar = false;
@@ -237,20 +249,19 @@ export class PerfilComponent implements OnInit {
       else {
         this.validar = true;
       }
-  }
+  } */
 
-  largoContraseña(valor): void{
+  /* largoContraseña(valor): void{
     if (this.validar === true){
       if ( valor.length < 6){
         alert('La contraseña debe poseer mas de 6 caracteres');
         this.validar = false;
       }
       else {
-        /* console.log('contraseña ingresada posee el largo permitido'); */
         this.validar = true;
       }
     }
-  }
+  } */
 
   eliminar(item): void{
     this.idEliminar = item;
@@ -286,10 +297,10 @@ export class PerfilComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   async subirImagen(){
-    console.log('datos imagen', this.archivo);
     this.imagenUrl = await this.storage.subirImagenStorage(this.archivo);
     if (this.imagenUrl !== null){
       this.crearCategoria();
+      document.getElementById('alerta').innerHTML = '<div class= "alert alert-success">Se creo categoria correctamente</div>'; 
     }
   }
 
@@ -334,6 +345,7 @@ export class PerfilComponent implements OnInit {
     this.imagenes.obtenerCategoriasUsuario(this.idEliminar).subscribe((categoria) => {
       this.listaCategoria = categoria;
     });
+    document.getElementById('alerta').innerHTML = '';
   }
 
   // tslint:disable-next-line: typedef
@@ -430,13 +442,13 @@ export class PerfilComponent implements OnInit {
   cargarPreferencias(validar): void{
     if (validar === true){
       this.validarIdCargarPreferencias = this.idCargarPreferencias;
-      console.log(this.id);
       this.imagenes.cargarUsuario(this.validarIdCargarPreferencias, this.id);
+      alert('Se cargó correctamente el usuario');
+      /* document.getElementById('alerta').innerHTML = '<div class= "alert alert-success">Se cargo usuario correctamente</div>'; */
     }
     else {
       this.validarIdCargarPreferencias = null;
     }
-    console.log(this.validarIdCargarPreferencias);
   }
 
 

@@ -89,3 +89,96 @@
   background-color: #00bcd4;
   height: 100vh;
 }
+
+.selector_ruta_nombre{
+  font-size: 18px;
+}
+
+
+@media  (max-width:990px){
+  .selector-ruta{
+    /* ruta */
+
+    border: 5px solid white;
+    border-radius: 10px;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0) 20px,
+        rgba(0, 0, 0, 0) 40px,
+        #80deea 40px,
+        #80deea 60px
+      );
+  }
+  
+  .caja-ruta{
+    margin-left: 30px;
+    margin-right: 10px;
+    width: 60px;
+    height: 60px;
+    font-size: 14px;
+    color: black;
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
+    background:white;
+    border-radius: 10%;
+    margin-bottom: 10px;
+  }
+  
+  .imagen-ruta{
+    width: 70%;
+    height: 70%;
+  }
+  
+  .caja-ruta:active{
+    transform: translateY(2px);
+  }
+  
+  .ruta{
+    display: flex;
+    justify-content: center;
+  }
+
+  .inicio{
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  
+  .inicio:active{
+    transform: translateY(2px);
+  }
+
+  .ruta_nombre{
+    font-size: 35%;
+  }
+
+  .selector{
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .example-box{
+    margin-right: 10px;
+    width: 75px;
+    height: 75px;
+    font-size: 10px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    background:white;
+    border-radius: 10%;
+    margin-bottom: 10px;
+  }
+
+  .selector_ruta_nombre{
+    font-size: 60%;
+  }
+}

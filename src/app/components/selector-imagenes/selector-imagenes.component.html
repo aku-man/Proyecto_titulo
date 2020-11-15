@@ -5,7 +5,7 @@
             (click)="inicio()">
         <div *ngFor="let ruta of arregloDireccion" (click)="volver(ruta)" class="caja-ruta">
             <img src={{ruta.url}} class="imagen-ruta">
-            <p>{{ruta.nombre}}</p>
+            <p class="ruta_nombre">{{ruta.nombre}}</p>
         </div> 
     </div>
 </div>
@@ -15,19 +15,19 @@
     <div *ngIf="[arregloDireccion.length] == 0" class="selector" >
         <div *ngFor="let i of lista"  class="example-box" (click)="escogerGrupo(i)">
             <img src={{i.url}} class="imagen">
-            <p style="font-size: 18px;">{{i.nombre}}</p>
+            <p class="selector_ruta_nombre" >{{i.nombre}}</p>
         </div>
     </div>
     <div *ngIf="[arregloDireccion.length] == 1" class="selector" >
         <div *ngFor="let i of lista3"   (click)="escogerCategoria(i)" >
             <div *ngIf="i.idGrupo ==[categoriaid]; else personalizada" class="example-box">
                 <img src={{i.url}} class="imagen">
-                <p style="font-size: 18px;">{{i.nombre}}</p>
+                <p class="selector_ruta_nombre" >{{i.nombre}}</p>
             </div>
             <ng-template #personalizada>
                 <div class="example-box">
                     <img src={{i.url}} class="imagen">
-                    <p style="font-size: 18px;">{{i.nombre}}</p>
+                    <p class="selector_ruta_nombre" >{{i.nombre}}</p>
                 </div>
             </ng-template>
             
@@ -43,7 +43,7 @@
         [dropData]=item>
             <img class="imagen" src={{item.url}} >
             <br>
-            <p style="font-size: 18px;">{{item.nombre}}</p>
+            <p class="selector_ruta_nombre" >{{item.nombre}}</p>
         </div>
     </div>
 </div>

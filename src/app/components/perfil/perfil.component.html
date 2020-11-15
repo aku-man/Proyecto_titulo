@@ -39,15 +39,15 @@
                 min-width: 100px;
                 min-height: 100px;
                 margin-bottom: 5px;">
-                <img class="img-thumbnail" src="../../../assets/images/552721.png" alt="">
+                <img class="img-fluid " src="../../../assets/images/552721.png" alt="">
             </div>
             <div class="row">
                 <dt class="text-inverse text-right col-4 text-truncate">Nombre</dt>
-                <dd class="col-8 text-truncate">nombre</dd>
+                <dd class="col-8 text-truncate">{{usuarioTutor.nombre}}</dd>
                 <dt class="text-inverse text-right col-4 text-truncate">Apellido</dt>
-                <dd class="col-8 text-truncate">apellido</dd>
+                <dd class="col-8 text-truncate">{{usuarioTutor.apellido}}</dd>
                 <dt class="text-inverse text-right col-4 text-truncate">Correo</dt>
-                <dd class="col-8 text-truncate">correo</dd>
+                <dd class="col-8 text-truncate">{{usuarioTutor.correo}}</dd>
             </div>
             <!-- <div class="col" style="display: flex;
             justify-content: center;
@@ -81,12 +81,12 @@
                 <div class="card-header" id="headingOne" style="background-color: #242a30; color: white;">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" attr.data-target="#collapseOne{{indice}}" aria-expanded="true" attr.aria-controls="collapseOne{{indice}}">
-                            Usuario {{indice +1}}
+                            <b>{{item.nombre}}<span></span> {{item.apellido}}</b>
                         </button>
                     </h2>
                 </div>
 
-                <div id="collapseOne{{indice}}" class="collapse show" aria-labelledby="headingOne" attr.data-parent="#accordionExample{{indice}}">
+                <div id="collapseOne{{indice}}" class="collapse" aria-labelledby="headingOne" attr.data-parent="#accordionExample{{indice}}">
                     <div class="card-body" style="background-color: #6c757d;">
                         <div class="row" style="align-items: center;
                             display: flex;
@@ -147,9 +147,13 @@
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content" style="background-color:#e0e0e0 ;">
                 <div class="modal-header">
+                    <h2>Gestionar tablero</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+                    <div id="alerta">
+
+                    </div>
                     <div class="col" style="display: flex;
                     flex-direction: column;
                     align-items: center;">
@@ -201,6 +205,7 @@
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content" style="background-color:#e0e0e0 ;">
                 <div class="modal-header">
+                    <h2>Cambiar contraseña</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -208,13 +213,54 @@
                         <label class="control-label">Contraseña <span class="text-danger">*</span></label>
                         <div class="row m-b-15">
                             <div class="col-md-12">
-                                <input type="password" formControlName="pass" [(ngModel)]="pass" class="form-control" placeholder="Contraseña" required />
+                                <input type="password" formControlName="pass" [(ngModel)]="pass" 
+                                class="form-control" placeholder="Contraseña" 
+                                required 
+                                [ngClass]="(formulario.get('pass').dirty) && 
+                                formulario.get('pass').hasError('required') ? 'is-invalid':''  
+                                || formulario.get('pass').hasError('minlength') ? 'is-invalid':''
+                                ||((formulario.get('pass').touched || formulario.get('pass').dirty)
+                                && !formulario.get('pass').invalid) ? 'is-valid':''"
+                                />
+                                <div class="invalid-feedback">
+                                    {{
+                                        formulario.get('pass').hasError('required')
+                                        ? 'Contraseña es requerida'
+                                        :'' 
+                                    }}
+                                    {{
+                                        formulario.get('pass').hasError('minlength')
+                                        ? 'La contraseña debe tener mínimo 6 caracteres'
+                                        :'' 
+                                    }}
+                                </div>
                             </div>
                         </div>
                         <label class="control-label">Confirmar Contraseña <span class="text-danger">*</span></label>
                         <div class="row m-b-15">
                             <div class="col-md-12">
-                                <input type="password" formControlName="confirmPass" [(ngModel)]="confirmPass" class="form-control" placeholder="Confirmar Contraseña" required />
+                                <input type="password" formControlName="confirmPass" 
+                                [(ngModel)]="confirmPass" class="form-control" 
+                                placeholder="Confirmar Contraseña" required 
+                                [ngClass]="(formulario.get('confirmPass').dirty) && 
+                                formulario.get('confirmPass').hasError('required') ? 'is-invalid':''
+                                || (formulario.get('confirmPass').value !== formulario.get('pass').value) ? 'is-invalid':''
+                                ||((formulario.get('confirmPass').touched || formulario.get('confirmPass').dirty)
+                                && !formulario.get('confirmPass').invalid) ? 'is-valid':''
+                                "/>
+                                <div class="invalid-feedback">
+                                    {{
+                                        formulario.get('confirmPass').hasError('required')
+                                        ? 'Confirmar contraseña es requerida\n'
+                                        :'' 
+                                    }}
+                                    <br>
+                                    {{
+                                        (formulario.get('confirmPass').value !== formulario.get('pass').value)
+                                        ? 'Confirmar contraseña es diferente a la contraseña ingresada'
+                                        :'' 
+                                    }}
+                                </div>
                             </div>
                         </div>
                         <div class="register-buttons">
@@ -231,6 +277,7 @@
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content" style="background-color:#e0e0e0 ;">
                 <div class="modal-header">
+                    <h2>Crear nuevo usuario</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -238,10 +285,63 @@
                         <label class="control-label">Nombre <span class="text-danger">*</span></label>
                         <div class="row row-space-10">
                             <div class="col-md-6 m-b-15">
-                                <input type="text" formControlName="nombre" [(ngModel)]="nombre" class="form-control" placeholder="Nombre" />
+                                <input type="text" formControlName="nombre" 
+                                [(ngModel)]="nombre" class="form-control" 
+                                placeholder="Nombre" 
+                                required
+                                [ngClass]="(formularioUsuario.get('nombre').dirty) && 
+                                formularioUsuario.get('nombre').hasError('required') ? 'is-invalid':''  
+                                || formularioUsuario.get('nombre').hasError('pattern') ? 'is-invalid':''
+                                || formularioUsuario.get('nombre').hasError('maxlength') ? 'is-invalid':''
+                                ||((formularioUsuario.get('nombre').touched || formularioUsuario.get('nombre').dirty)
+                                && !formularioUsuario.get('nombre').invalid) ? 'is-valid':''
+                                "/>
+                                <div class="invalid-feedback">
+                                    {{
+                                        formularioUsuario.get('nombre').hasError('required')
+                                        ? 'Nombre es requerido'
+                                        :'' 
+                                    }}
+                                    {{
+                                        formularioUsuario.get('nombre').hasError('pattern')
+                                        ? 'Nombre ingresado no es valido'
+                                        :'' 
+                                    }}
+                                    {{
+                                        formularioUsuario.get('nombre').hasError('maxlength')
+                                        ? 'Nombre ingresado debe tener menos de 30 letras'
+                                        :'' 
+                                    }}
+                                </div>
                             </div>
                             <div class="col-md-6 m-b-15">
-                                <input type="text" class="form-control" formControlName="apellido" [(ngModel)]="apellido" placeholder="Apellido" required />
+                                <input type="text" class="form-control" 
+                                formControlName="apellido" [(ngModel)]="apellido" 
+                                placeholder="Apellido" required 
+                                [ngClass]="(formularioUsuario.get('apellido').dirty) && 
+                                formularioUsuario.get('apellido').hasError('required') ? 'is-invalid':''  
+                                || formularioUsuario.get('apellido').hasError('pattern') ? 'is-invalid':''
+                                || formularioUsuario.get('apellido').hasError('maxlength') ? 'is-invalid':''
+                                ||((formularioUsuario.get('apellido').touched || formularioUsuario.get('apellido').dirty)
+                                && !formularioUsuario.get('apellido').invalid) ? 'is-valid':''
+                                "/>
+                                <div class="invalid-feedback">
+                                    {{
+                                        formularioUsuario.get('apellido').hasError('required')
+                                        ? 'Apellido es requerido'
+                                        :'' 
+                                    }}
+                                    {{
+                                        formularioUsuario.get('apellido').hasError('pattern')
+                                        ? 'Apellido ingresado no es valido'
+                                        :'' 
+                                    }}
+                                    {{
+                                        formularioUsuario.get('apellido').hasError('maxlength')
+                                        ? 'Apellido ingresado debe tener menos de 30 letras'
+                                        :'' 
+                                    }}
+                                </div>
                             </div>
                         </div>
                         <label class="control-label">Edad <span class="text-danger">*</span></label>
@@ -253,7 +353,21 @@
                         <div class="form-group row">
                             <label for="example-date-input" class="col-2 col-form-label">Fecha</label>
                             <div class="col-10">
-                              <input class="form-control" formControlName="fecha" [(ngModel)]="fecha" type="date" value="" id="example-date-input" required>
+                              <input class="form-control" formControlName="fecha" 
+                              [(ngModel)]="fecha" type="date" value="" id="example-date-input" 
+                              required
+                              [ngClass]="(formularioUsuario.get('fecha').dirty) && 
+                                formularioUsuario.get('fecha').hasError('required') ? 'is-invalid':''
+                                ||((formularioUsuario.get('fecha').touched || formularioUsuario.get('fecha').dirty)
+                                && !formularioUsuario.get('fecha').invalid) ? 'is-valid':''
+                                ">
+                                <div class="invalid-feedback">
+                                    {{
+                                        formularioUsuario.get('fecha').hasError('required')
+                                        ? 'Fecha de nacimiento es requerido'
+                                        :'' 
+                                    }}
+                                </div>
                             </div>
                         </div>
                         
@@ -272,6 +386,7 @@
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content" style="background-color:#e0e0e0 ;">
                 <div class="modal-header">
+                    <h2>Cargar preferencias</h2>
                 </div>
                 <div class="modal-body">
                     ¿Desea cargar las preferencias de este usuario?
@@ -289,6 +404,7 @@
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content" style="background-color:#e0e0e0 ;">
                 <div class="modal-header">
+                    <h2>Eliminar usuario</h2>
                 </div>
                 <div class="modal-body">
                     ¿Desea eliminar este Usuario?
@@ -312,12 +428,36 @@
                         <div class="form-group row">
                           <label for="nombreCategoria" class="col-sm-2 col-form-label">Nombre</label>
                           <div class="col-sm-10">
-                            <input type="nombreCategoria" class="form-control" formControlName="nombreCategoria" [(ngModel)]="nombreCategoria" id="nombreCategoria" placeholder="Nombre Categoria" required>
+                            <input type="nombreCategoria" class="form-control" 
+                            formControlName="nombreCategoria" [(ngModel)]="nombreCategoria" 
+                            id="nombreCategoria" placeholder="Nombre Categoria" 
+                            required
+                            
+                            [ngClass]="(formularioCategoria.get('nombreCategoria').dirty) && 
+                            formularioCategoria.get('nombreCategoria').hasError('required') ? 'is-invalid':''
+                                || formularioCategoria.get('nombreCategoria').hasError('maxlength') ? 'is-invalid':''
+                                ||((formularioCategoria.get('nombreCategoria').touched || formularioCategoria.get('nombreCategoria').dirty)
+                                && !formularioCategoria.get('nombreCategoria').invalid) ? 'is-valid':''
+                            "/>
+                            <div class="invalid-feedback">
+                                {{
+                                    formularioCategoria.get('nombreCategoria').hasError('required')
+                                    ? 'Nombre es requerido'
+                                    :'' 
+                                }}
+                                {{
+                                    formularioCategoria.get('nombreCategoria').hasError('maxlength')
+                                    ? 'Nombre ingresado debe tener menos de 30 caracteres'
+                                    :'' 
+                                }}
+                            </div>
                           </div>
                         </div>
                         <div class="form-group">
                             <h3>Seleccionar imagen</h3>
-                            <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)">
+                            <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)" 
+                            formControlName="imagenCategoria" [(ngModel)]="imagenCategoria" 
+                            required>
                         </div>
                       </form>
                 </div>
