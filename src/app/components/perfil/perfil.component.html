@@ -578,7 +578,9 @@
                     <form [formGroup]="formularioEditarCategoria" class="margin-bottom-0">
                         <div class="form-group">
                             <label for="seleccionarCatEdit">Seleccionar Categoria</label>
-                            <select class="form-control" id="seleccionarCatEdit" >
+                            <select class="form-control" id="seleccionarCatEdit" 
+                            formControlName="seleccionarEditarCategoria" [(ngModel)]="seleccionarEditarCategoria"
+                            required>
                                 <option value="" (click)="seleccionarCategoriaEditar(null)"></option>
                                 <option *ngFor="let categoria of listaCategoria" (click)="seleccionarCategoriaEditar(categoria)" >{{categoria.nombre}}</option>
                             </select>
@@ -586,12 +588,36 @@
                         <div class="form-group row">
                           <label for="nuevoNombreCategoria" class="col-sm-2 col-form-label">Nuevo Nombre</label>
                           <div class="col-sm-10">
-                            <input type="nuevoNombreCategoria" class="form-control" formControlName="nuevoNombreCategoria" [(ngModel)]="nuevoNombreCategoria" id="nuevoNombreCategoria" placeholder="Nombre Categoria" required>
+                            <input type="nuevoNombreCategoria" class="form-control" 
+                            formControlName="nuevoNombreCategoria" 
+                            [(ngModel)]="nuevoNombreCategoria" id="nuevoNombreCategoria" 
+                            placeholder="Nombre Categoria" 
+                            required
+                            [ngClass]="(formularioEditarCategoria.get('nuevoNombreCategoria').dirty) && 
+                            formularioEditarCategoria.get('nuevoNombreCategoria').hasError('required') ? 'is-invalid':''
+                                || formularioEditarCategoria.get('nuevoNombreCategoria').hasError('maxlength') ? 'is-invalid':''
+                                ||((formularioEditarCategoria.get('nuevoNombreCategoria').touched || formularioEditarCategoria.get('nuevoNombreCategoria').dirty)
+                                && !formularioEditarCategoria.get('nuevoNombreCategoria').invalid) ? 'is-valid':''
+                            "/>
+                            <div class="invalid-feedback">
+                                {{
+                                    formularioEditarCategoria.get('nuevoNombreCategoria').hasError('required')
+                                    ? 'Nombre es requerido'
+                                    :'' 
+                                }}
+                                {{
+                                    formularioEditarCategoria.get('nuevoNombreCategoria').hasError('maxlength')
+                                    ? 'Nombre ingresado debe tener menos de 30 letras'
+                                    :'' 
+                                }}
+                            </div>
                           </div>
                         </div>
                         <div class="form-group">
                             <h3>Seleccionar nueva imagen</h3>
-                            <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)">
+                            <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)"
+                            formControlName="imagenEditarCategoria" [(ngModel)]="imagenEditarCategoria"
+                            required/>
                         </div>
                       </form>
                 </div>

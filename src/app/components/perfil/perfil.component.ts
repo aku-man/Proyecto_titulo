@@ -78,6 +78,8 @@ export class PerfilComponent implements OnInit {
   listaPictograma: any = [];
 
   imagenCategoria: any;
+  imagenEditarCategoria: any;
+  seleccionarEditarCategoria: any;
 
   // datos para cargar preferencias del usuario
   idCargarPreferencias: any;
@@ -135,6 +137,19 @@ export class PerfilComponent implements OnInit {
 
     this.formularioEditarCategoria = this.formBuilder.group({
       nuevoNombreCategoria: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(30)
+        ])
+      ),
+      imagenEditarCategoria: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ),
+      seleccionarEditarCategoria: new FormControl(
         '',
         Validators.compose([
           Validators.required
@@ -300,7 +315,7 @@ export class PerfilComponent implements OnInit {
     this.imagenUrl = await this.storage.subirImagenStorage(this.archivo);
     if (this.imagenUrl !== null){
       this.crearCategoria();
-      document.getElementById('alerta').innerHTML = '<div class= "alert alert-success">Se creo categoria correctamente</div>'; 
+      document.getElementById('alerta').innerHTML = '<div class= "alert alert-success">Se creó categoria correctamente</div>';
     }
   }
 
@@ -369,7 +384,7 @@ export class PerfilComponent implements OnInit {
   async eliminarCategoria(){
     if (this.usuarioEliminarCategoria !== null){
       await this.storage.eliminarCategoria(this.usuarioEliminarCategoria.idCategoria, this.idEliminar);
-      alert('Se elimino la categoria con exito');
+      document.getElementById('alerta').innerHTML = '<div class= "alert alert-success">Se eliminó categoria correctamente</div>'; 
     }
     else{
       alert('no se selecciono categoria a eliminar');
@@ -465,7 +480,7 @@ export class PerfilComponent implements OnInit {
     console.log('datos imagen', this.archivo);
     this.imagenUrlEditarCategoria = await this.storage.subirImagenStorage(this.archivo);
     if (this.imagenUrlEditarCategoria !== null){
-      console.log(this.imagenUrlEditarCategoria);
+      document.getElementById('alerta').innerHTML = '<div class= "alert alert-success">Se editó categoria correctamente</div>'; 
       this.editarCategoria();
     }
   }
@@ -478,7 +493,6 @@ export class PerfilComponent implements OnInit {
       console.log(this.idEliminar);
       // tslint:disable-next-line: max-line-length
       this.storage.editarCategoria(this.nuevoNombreCategoria, this.imagenUrlEditarCategoria, this.usuarioEditarCategoria.idCategoria, this.idEliminar);
-      alert('Pictograma creado');
     }
     else{
       alert('debe seleccionar una categoria a la que agregar el pictograma');
