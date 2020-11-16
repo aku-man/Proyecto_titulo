@@ -479,7 +479,9 @@
                     <form [formGroup]="formularioPictograma" class="margin-bottom-0">
                         <div class="form-group">
                             <label for="categoriaSeleccionada">Seleccionar Categoria</label>
-                            <select class="form-control" id="categoriaSeleccionada" >
+                            <select class="form-control" id="categoriaSeleccionada" 
+                            formControlName="categoriaImagenPictograma" [(ngModel)]="categoriaImagenPictograma"
+                            required>
                                 <option value="" (click)="seleccionarCategoria(null)"></option>
                                 <option *ngFor="let categoria of listaCategoria" (click)="seleccionarCategoria(categoria)" >{{categoria.nombre}}</option>
                             </select>
@@ -487,12 +489,36 @@
                         <div class="form-group row">
                           <label for="nombrePictograma" class="col-sm-2 col-form-label">Nombre</label>
                           <div class="col-sm-10">
-                            <input type="nombrePictograma" class="form-control" formControlName="nombrePictograma" [(ngModel)]="nombrePictograma" id="nombrePictograma" placeholder="Nombre Pictograma" required>
+                            <input type="nombrePictograma" class="form-control" 
+                            formControlName="nombrePictograma" 
+                            [(ngModel)]="nombrePictograma" id="nombrePictograma" 
+                            placeholder="Nombre Pictograma" required
+                            [ngClass]="(formularioPictograma.get('nombrePictograma').dirty) && 
+                            formularioPictograma.get('nombrePictograma').hasError('required') ? 'is-invalid':''
+                                || formularioPictograma.get('nombrePictograma').hasError('maxlength') ? 'is-invalid':''
+                                ||((formularioPictograma.get('nombrePictograma').touched || formularioPictograma.get('nombrePictograma').dirty)
+                                && !formularioPictograma.get('nombrePictograma').invalid) ? 'is-valid':''
+                            "/>
+                            <div class="invalid-feedback">
+                                {{
+                                    formularioPictograma.get('nombrePictograma').hasError('required')
+                                    ? 'Nombre es requerido'
+                                    :'' 
+                                }}
+                                {{
+                                    formularioPictograma.get('nombrePictograma').hasError('maxlength')
+                                    ? 'Nombre ingresado debe tener menos de 30 caracteres'
+                                    :'' 
+                                }}
+                            </div>
+
                           </div>
                         </div>
                         <div class="form-group">
                             <h3>Seleccionar imagen</h3>
-                            <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)">
+                            <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)"
+                            formControlName="imagenPictograma" [(ngModel)]="imagenPictograma"
+                            required/>
                         </div>
                       </form>
                 </div>
@@ -639,14 +665,18 @@
                         <form [formGroup]="formularioEditarPictograma" class="margin-bottom-0">
                             <div class="form-group">
                                 <label for="seleccionarCategoriaEdit">Seleccionar Categoria</label>
-                                <select class="form-control" id="seleccionarCategoriaEdit" >
+                                <select class="form-control" id="seleccionarCategoriaEdit" 
+                                formControlName="editarCatPictograma" [(ngModel)]="editarCatPictograma"
+                                required>
                                     <option value="" (click)="seleccionarEditarCatPictograma(null)"></option>
                                     <option *ngFor="let categoria of listaCategoria" (click)="seleccionarEditarCatPictograma(categoria)" >{{categoria.nombre}}</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="seleccionarPictogramaEditar">Seleccionar Pictograma</label>
-                                <select class="form-control" id="seleccionarPictogramaEditar">
+                                <select class="form-control" id="seleccionarPictogramaEditar"
+                                formControlName="editarPicto" [(ngModel)]="editarPicto"
+                                required>
                                 <option value="" (click)="seleccionarEditarPictograma(null)"></option>
                                 <option *ngFor="let pictograma of listaPictogramaEditar" (click)="seleccionarEditarPictograma(pictograma)">
                                     {{pictograma.nombre}}
@@ -656,12 +686,35 @@
                             <div class="form-group row">
                               <label for="nuevoNombrePictograma" class="col-sm-4 col-form-label">Nuevo Nombre</label><br>
                               <div class="col-sm-10">
-                                <input type="nuevoNombrePictograma" class="form-control" formControlName="nuevoNombrePictograma" [(ngModel)]="nuevoNombrePictograma" id="nuevoNombrePictograma" placeholder="Nombre Pictograma" required>
+                                <input type="nuevoNombrePictograma" class="form-control" 
+                                formControlName="nuevoNombrePictograma" [(ngModel)]="nuevoNombrePictograma" 
+                                id="nuevoNombrePictograma" placeholder="Nombre Pictograma" 
+                                required
+                                [ngClass]="(formularioEditarPictograma.get('nuevoNombrePictograma').dirty) && 
+                                    formularioEditarPictograma.get('nuevoNombrePictograma').hasError('required') ? 'is-invalid':''
+                                    || formularioEditarPictograma.get('nuevoNombrePictograma').hasError('maxlength') ? 'is-invalid':''
+                                    ||((formularioEditarPictograma.get('nuevoNombrePictograma').touched || formularioEditarPictograma.get('nuevoNombrePictograma').dirty)
+                                    && !formularioEditarPictograma.get('nuevoNombrePictograma').invalid) ? 'is-valid':''
+                                "/>
+                                <div class="invalid-feedback">
+                                    {{
+                                        formularioEditarPictograma.get('nuevoNombrePictograma').hasError('required')
+                                        ? 'Nombre es requerido'
+                                        :'' 
+                                    }}
+                                    {{
+                                        formularioEditarPictograma.get('nuevoNombrePictograma').hasError('maxlength')
+                                        ? 'Nombre ingresado debe tener menos de 30 letras'
+                                        :'' 
+                                    }}
+                                </div>
                               </div>
                             </div>
                             <div class="form-group">
                                 <h3>Seleccionar nueva imagen</h3>
-                                <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)">
+                                <input type="file" accept=".jpg, .png" (change)= "seleccionarImagen($event)"
+                                formControlName="imagenEditarPictograma" [(ngModel)]="imagenEditarPictograma"
+                                required/>
                             </div>
                           </form>
                     </div>

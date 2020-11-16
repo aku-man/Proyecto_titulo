@@ -80,6 +80,11 @@ export class PerfilComponent implements OnInit {
   imagenCategoria: any;
   imagenEditarCategoria: any;
   seleccionarEditarCategoria: any;
+  categoriaImagenPictograma: any;
+  imagenPictograma: any;
+  editarCatPictograma: any;
+  editarPicto: any;
+  imagenEditarPictograma: any;
 
   // datos para cargar preferencias del usuario
   idCargarPreferencias: any;
@@ -130,6 +135,19 @@ export class PerfilComponent implements OnInit {
       nombrePictograma: new FormControl(
         '',
         Validators.compose([
+          Validators.required,
+          Validators.maxLength(30)
+        ])
+      ),
+      categoriaImagenPictograma: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ),
+      imagenPictograma: new FormControl(
+        '',
+        Validators.compose([
           Validators.required
         ])
       )
@@ -159,6 +177,25 @@ export class PerfilComponent implements OnInit {
 
     this.formularioEditarPictograma = this.formBuilder.group({
       nuevoNombrePictograma: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(30)
+        ])
+      ),
+      editarCatPictograma: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ),
+      editarPicto: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      ),
+      imagenEditarPictograma: new FormControl(
         '',
         Validators.compose([
           Validators.required
@@ -332,10 +369,8 @@ export class PerfilComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   async subirImagenPictograma(){
-    console.log('datos imagen', this.archivo);
     this.imagenUrlPictograma = await this.storage.subirImagenStoragePictograma(this.archivo);
     if (this.imagenUrlPictograma !== null){
-      console.log(this.imagenUrlPictograma);
       this.crearPictograma();
     }
   }
@@ -347,7 +382,7 @@ export class PerfilComponent implements OnInit {
       this.nuevoPictograma.url = this.imagenUrlPictograma;
       this.nuevoPictograma.idCategoria = this.usuarioAgregarPictograma.idCategoria;
       this.storage.registrarPictogramaa(this.nuevoPictograma, this.idEliminar);
-      alert('Pictograma creado');
+      document.getElementById('alerta').innerHTML = '<div class= "alert alert-success">Se creó pictograma correctamente</div>';
     }
     else{
       alert('debe seleccionar una categoria a la que agregar el pictograma');
@@ -547,7 +582,7 @@ export class PerfilComponent implements OnInit {
       console.log(this.idEliminar);
       // tslint:disable-next-line: max-line-length
       this.storage.editarPictograma(this.nuevoNombrePictograma, this.imagenUrlEditarPictograma, this.usuarioEditarPictograma.idPictograma, this.idEliminar);
-      alert('Pictograma creado');
+      document.getElementById('alerta').innerHTML = '<div class= "alert alert-success">Se editó categoria correctamente</div>';
     }
     else{
       alert('debe seleccionar una categoria a la que agregar el pictograma');
