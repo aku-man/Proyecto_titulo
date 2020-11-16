@@ -537,22 +537,19 @@
                     <h2>Eliminar Categoria</h2>
                 </div>
                 <div class="modal-body">
-                    <form action="">
-                    <label for="categoriaSeleccionada">Seleccionar Categoria</label>
-                        <select class="form-control" id="categoriaSeleccionada">
-                            <option value="" (click)="seleccionarEliminarCategoria(null)"></option>
-                            <option *ngFor="let categoria of listaCategoria" (click)="seleccionarEliminarCategoria(categoria)">
-                                {{categoria.nombre}}
-                            </option>
-                        </select>
-                        <!-- <div style="max-width: 150px;
-                                max-height: 150px;
-                                min-width: 50px;
-                                min-height: 50px;"
-                                *ngIf ="![usuarioEliminarCategoria.nombreCategoria]">
-                                <img  class="img-thumbnail" src={{usuarioEliminarCategoria.url}} alt="">
-                        </div> -->
-                        </form>
+                    <form [formGroup]="formularioEliminarCategoria" class="margin-bottom-0">
+                        <div class="form-group">
+                            <label for="nombreEliminarCategoria">Seleccionar Categoria</label>
+                                <select class="form-control" id="nombreEliminarCategoria"
+                                formControlName="nombreEliminarCategoria" [(ngModel)]="nombreEliminarCategoria"
+                                required>
+                                    <option value="" (click)="seleccionarEliminarCategoria(null)"></option>
+                                    <option *ngFor="let categoria of listaCategoria" (click)="seleccionarEliminarCategoria(categoria)">
+                                        {{categoria.nombre}}
+                                    </option>
+                            </select>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-dismiss="modal" (click)="eliminarCategoria()">Si</button>

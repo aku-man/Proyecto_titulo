@@ -64,6 +64,10 @@ export class PerfilComponent implements OnInit {
   usuarioEditarCatPictograma: any = null;
   imagenUrlEditarPictograma: any = null;
 
+
+  formularioEliminarCategoria: FormGroup;
+
+
   // datos varios
   idEliminar: any;
   archivo: any;
@@ -85,6 +89,7 @@ export class PerfilComponent implements OnInit {
   editarCatPictograma: any;
   editarPicto: any;
   imagenEditarPictograma: any;
+  nombreEliminarCategoria: any;
 
   // datos para cargar preferencias del usuario
   idCargarPreferencias: any;
@@ -227,6 +232,15 @@ export class PerfilComponent implements OnInit {
         ])
       ),
       edad: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required
+        ])
+      )
+    });
+
+    this.formularioEliminarCategoria = this.formBuilder.group({
+      nombreEliminarCategoria: new FormControl(
         '',
         Validators.compose([
           Validators.required
@@ -476,7 +490,7 @@ export class PerfilComponent implements OnInit {
     else if (this.usuarioEliminarCatPictograma !== null && this.usuarioEliminarPictograma !== null){
       console.log('entro3');
       await this.storage.eliminarPictograma(this.usuarioEliminarPictograma.idPictograma, this.idEliminar);
-      alert('Se elimino el Pictograma con exito');
+      document.getElementById('alerta').innerHTML = '<div class= "alert alert-success">Se eliminó pictograma correctamente</div>';
     }
   }
 
