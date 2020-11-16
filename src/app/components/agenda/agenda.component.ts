@@ -11,6 +11,7 @@ import { CalendarOptions, DateSelectArg, EventClickArg, EventApi, CalendarApi, f
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Pictograma } from 'src/app/models/pictograma.model';
+import { ImagenesService } from 'src/app/services/imagenes.service';
 
 @Component({
   selector: 'app-agenda',
@@ -19,7 +20,8 @@ import { Pictograma } from 'src/app/models/pictograma.model';
 })
 export class AgendaComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private usuario: UsuariosService, private router: Router,
+              private imagenes: ImagenesService) { }
   loggeado: any;
 
   userId: any = null;
@@ -61,7 +63,7 @@ export class AgendaComponent implements OnInit {
     this.userId = this.usuario.usuarioFrase.usuarioCargado;
     await this.usuario.obtenerEvento().subscribe((evento) => {
       this.flag = evento;
-      while(this.listaEventos.length > 0){
+      while (this.listaEventos.length > 0){
         this.listaEventos.pop();
       }
       for (const item of this.flag){
@@ -86,7 +88,12 @@ export class AgendaComponent implements OnInit {
       }
       this.calendarOptions.events = this.listaEventos;
     });
-
+    await this.imagenes.obtenerPictogramas(this.userId).subscribe((pictograma) => {
+      console.log(pictograma);
+      for (const item of pictograma ){
+        this.listaPicto.push(item);
+        }
+    });
     this.formulario = this.formBuilder.group({
       nombreEvento: new FormControl(
         '',

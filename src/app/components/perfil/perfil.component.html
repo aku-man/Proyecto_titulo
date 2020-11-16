@@ -1,4 +1,4 @@
-<div style="background-color: #e0e0e0;
+<div style="background-color: white;
     height: 100%;
     margin: 0;
     padding-bottom: 20px;">
@@ -80,7 +80,10 @@
             <div class="card">
                 <div class="card-header" id="headingOne" style="background-color: #242a30; color: white;">
                     <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" attr.data-target="#collapseOne{{indice}}" aria-expanded="true" attr.aria-controls="collapseOne{{indice}}">
+                        <button class="btn btn-link btn-block text-left" 
+                        type="button" data-toggle="collapse" attr.data-target="#collapseOne{{indice}}" 
+                        aria-expanded="true" attr.aria-controls="collapseOne{{indice}}"
+                        style="color: white;">
                             <b>{{item.nombre}}<span></span> {{item.apellido}}</b>
                         </button>
                     </h2>
@@ -96,10 +99,38 @@
                                 min-width: 50px;
                                 min-height: 50px;
                                 margin-bottom: 5px;">
-                                <img class="img-thumbnail" src="../../../assets/icons/estrella.jpg" alt="">
+                                <img class="img-thumbnail" src="../../../assets/images/hola.png" alt="">
                             </div>
 
-                            <div class="row">
+                            <div class="row" id="pc">
+                                <div>
+                                    <pre style="font-size: 15px;">
+                                        <b>Nombre:</b>              {{item.nombre}}
+                                        <b>Apellido:</b>            {{item.apellido}}
+                                        <b>Fecha de nacimiento:</b> {{item.fechaDeNacimiento}}
+                                        <b>Edad:</b>                {{item.edad}}
+                                    </pre>
+                                </div>
+                                
+                                <!-- <dt class="text-inverse text-right col-6 text-truncate">Nombre</dt>
+                                <dd>{{item.nombre}}</dd>
+                                <dt class="text-inverse text-right col-6 text-truncate">Apellido</dt>
+                                <dd>{{item.apellido}}</dd>
+                                <dt class="text-inverse text-right col-6 text-truncate">Fecha de nacimiento</dt>
+                                <dd>{{item.fechaDeNacimiento}}</dd>
+                                <dt class="text-inverse text-right col-6 text-truncate">Edad</dt>
+                                <dd>{{item.edad}}</dd> -->
+                                
+                            </div>
+                            <div class="row" id="celular">
+                                <!-- <div class="pc">
+                                    <pre>
+                                        Nombre:              {{item.nombre}}
+                                        Apellido:            {{item.apellido}}
+                                        Fecha de nacimiento: {{item.fechaDeNacimiento}}
+                                    </pre>
+                                </div> -->
+                                
                                 <dt class="text-inverse text-right col-6 text-truncate">Nombre</dt>
                                 <dd>{{item.nombre}}</dd>
                                 <dt class="text-inverse text-right col-6 text-truncate">Apellido</dt>
@@ -108,6 +139,7 @@
                                 <dd>{{item.fechaDeNacimiento}}</dd>
                                 <dt class="text-inverse text-right col-6 text-truncate">Edad</dt>
                                 <dd>{{item.edad}}</dd>
+                                
                             </div>
                             <div class="col" style="display: flex;
                                 flex-direction: column;

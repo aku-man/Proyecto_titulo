@@ -23,11 +23,13 @@
             </ul>
         </div>
     </nav>
+
     <div class="calendar-container">
         <full-calendar 
         class="calendar" 
         [options]="this.calendarOptions"
-        id="calendar"> 
+        id="calendar"
+        > 
 
         </full-calendar>
     </div>
@@ -40,7 +42,7 @@
                 <div class="modal-body">
                     <!-- Nombre Evento -->
                     <form class="margin-bottom-0" [formGroup]="formulario" *ngIf="formulario">
-                        <label class="control-label">Titulo de la Tarea </label>
+                        <label class="control-label">Título de la Tarea </label>
                         <div class="row m-b-15">
                             <div class="col-md-12">
                                 <input type="text" 
@@ -72,7 +74,7 @@
                             (click)="seleccionarPicto(pict)"
                             >
                                 <img src={{pict.url}} alt="" class="example-box" style="height: 60px;width: 60px;">
-                                <!-- <p class="nombre_pictograma" style="font-size: small;">{{pict.nombre}}</p>    --> 
+                                <p class="nombre_pictograma" style="font-size: 9px;">{{pict.nombre}}</p>
                             </div>  
                         </div>
                     </div>
@@ -88,6 +90,6 @@
             </div>
         </div>
     </div>
-    <button (click)="exportarDia()">exportar</button>
+    
 </div>
 

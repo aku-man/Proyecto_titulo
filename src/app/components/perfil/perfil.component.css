@@ -2,3 +2,25 @@
 p {
     font-family: Lato;
   }
+
+.datos_usuario{
+
+}
+
+#pc{
+  display: flex;
+}
+
+#celular{
+  display: none;
+}
+
+@media (max-width:990px){
+  #pc{
+    display: none;
+  }
+  
+  #celular{
+    display: flex;
+  }
+}
