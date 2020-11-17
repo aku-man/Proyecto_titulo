@@ -41,6 +41,7 @@ export class UsuariosService {
 
   emitNavChangeEvent(number): void{
     this.navchange.emit(number);
+    /* this.obtenerUsuario(); */
   }
   getNavChangeEmitter(): any{
     return this.navchange;
@@ -110,6 +111,7 @@ async obtenerUser(){
 // tslint:disable-next-line: typedef
 async onOut() {
   this.tutor = {};
+  this.usuarioFrase = null;
   firebase.auth().signOut().then(() => {
 
     this.emitNavChangeEvent(0);

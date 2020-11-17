@@ -19,6 +19,10 @@
         </div>
     </div>
     <div *ngIf="[arregloDireccion.length] == 1" class="selector"  style="background: #ffff00; margin-top: 10px;">
+        <div id="categoria">
+           
+        </div>
+        
         <div *ngFor="let i of lista3"   (click)="escogerCategoria(i)" >
             <div *ngIf="i.idGrupo ==[categoriaid]; else personalizada" class="example-box">
                 <img src={{i.url}} class="imagen">
@@ -36,6 +40,9 @@
     <div *ngIf="[arregloDireccion.length] == 2" 
     class="selector" 
     dragOverClass="drop-over-active" style="background: #e65100; margin-top: 10px;">
+        <div id="pictograma">
+            
+        </div>
         <div *ngFor="let item of listaPicto" 
         class="example-box"
         mwlDraggable

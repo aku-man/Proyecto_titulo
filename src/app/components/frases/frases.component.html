@@ -24,8 +24,12 @@
         </div>
     </nav>
 
+    <div id="alerta">
+
+    </div>
     <div class="container" style="margin-top: 5px;" *ngIf="datosCargados">
         <h1>Historial de Frases</h1>
+        
         <div class="accordion" id="accordionExample{{indice}}" *ngFor="let item of listaFrase;let indice=index" style="margin-bottom: 10px;">
             <div class="card">
                 <div class="card-header" id="headingOne" style="background-color: #90caf9; color: white;">

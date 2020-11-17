@@ -102,6 +102,7 @@ export class PerfilComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   async ngOnInit() {
+    this.usuario.obtenerUsuario();
     this.formulario = this.formBuilder.group({
       pass: new FormControl(
         '',

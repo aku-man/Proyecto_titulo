@@ -61,6 +61,15 @@ export class AgendaComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.usuario.obtenerUsuario();
     this.userId = this.usuario.usuarioFrase.usuarioCargado;
+    if (this.userId === null){
+      console.log('algo');
+      document.getElementById('alerta').innerHTML = '<div><h1>Debe cargar datos del usuario</h1></div>';
+    }
+    else{
+      console.log('nada');
+      document.getElementById('alerta').innerHTML = '';
+    }
+    /* this.userId = this.usuario.usuarioFrase.usuarioCargado; */
     await this.usuario.obtenerEvento().subscribe((evento) => {
       this.flag = evento;
       while (this.listaEventos.length > 0){
@@ -88,7 +97,7 @@ export class AgendaComponent implements OnInit {
       }
       this.calendarOptions.events = this.listaEventos;
     });
-    await this.imagenes.obtenerPictogramas(this.userId).subscribe((pictograma) => {
+    await this.imagenes.obtenerPictogramas(this.usuario.usuarioFrase.usuarioCargado).subscribe((pictograma) => {
       console.log(pictograma);
       for (const item of pictograma ){
         this.listaPicto.push(item);

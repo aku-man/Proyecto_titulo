@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/internal/observable';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CategoriaUsuario } from '../models/CategoriaUsuario.model';
 import { PictogramaUsuario } from '../models/pictogramaUsuario.model';
+import { ImagenesService } from './imagenes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class PictogramasService {
   uploadPercent: Observable<number>;
   urlImage: Observable<string>;
   url: any;
-  constructor(private storage: AngularFireStorageModule, private afs: AngularFirestore) { }
+  constructor(private storage: AngularFireStorageModule, private afs: AngularFirestore, private imagenes: ImagenesService) { }
 
   subirImagenStorage(datosArchivo): any{
     const id = Math.random().toString(36).substring(2);
@@ -91,6 +92,15 @@ export class PictogramasService {
 
   async eliminarCategoria(idCategoria, idUsuario){
     await this.afs.collection('Usuarios').doc(idUsuario).collection('Categoria').doc(idCategoria).delete();
+    /* this.imagenes.obtenerPictogramasUsuario(idUsuario).subscribe((pictograma) => {
+      console.log('entro');
+      for ( const item of pictograma ){
+        if (item.idCategoria === idUsuario){
+          console.log(item.idPictograma);
+          this.eliminarPictograma(item.idPictograma, idUsuario);
+        }
+      }
+    }); */
   }
 
   async eliminarPictograma(idPictograma, idUsuario){

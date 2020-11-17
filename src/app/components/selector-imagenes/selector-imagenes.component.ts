@@ -20,11 +20,12 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
   lista: any;
   lista2: any;
   lista3: any[] = [];
+  lista4: any[] = [];
   categoriaid: string;
 
   id: any = null;
   personalizada = null;
-  algo:any;
+  algo: any;
 
   constructor(private route: ActivatedRoute, private imagenes: ImagenesService, private usuario: UsuariosService) {
   }
@@ -43,12 +44,13 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     /* this.imagenes.obtenerCategoriaN(this.catSelected).subscribe((pictograma) => {
       this.listaPicto = pictograma;
     }); */
-    if(this.id === null){
+    if (this.id === null){
       this.conseguirId();
     }
+    this.inicio();
   }
   ngOnInit(){
-    this.inicio();
+    /* this.inicio(); */
   }
 
   conseguirId(){
@@ -67,7 +69,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
       this.personalizada = 1;
     }
     this.lista2 = [];
-    console.log(this.personalizada);
+    console.log(this.id);
     this.categoriaid = grupo.idGrupo;
     this.arregloDireccion.push(grupo);
     await this.imagenes.retornaItems(grupo.idGrupo, this.id).subscribe((item) => {
@@ -77,6 +79,17 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
         for (const i of this.lista2){
           this.lista3.push(i);
         }
+        if (this.lista3.length === 0){
+          document.getElementById('categoria').innerHTML = '<div><h1>Debe crear Categorias en la sección Perfil</h1></div>';
+        }
+        else if (this.lista3.length > 0){
+          document.getElementById('categoria').innerHTML = '';
+        }
+        else if ((this.id === null) || (this.id === undefined)){
+          console.log(this.id);
+          document.getElementById('categoria').innerHTML = '<div><h1>Para poder utilizar sus propias categorias y pictogramas, identifiquese</h1></div>';
+        }
+        console.log(this.id);
         this.personalizada = 1;
       }
       else {
@@ -103,6 +116,12 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
             this.listaPicto.push(item);
           }
         }
+        if (this.listaPicto.length === 0){
+          document.getElementById('pictograma').innerHTML = '<div><h1>Debe crear Pictogramas en la sección Perfil</h1></div>';
+        }
+        else {
+          document.getElementById('pictograma').innerHTML = '';
+        }
       });
     }
     else {
@@ -116,8 +135,19 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
   inicio(): void{
     this.arregloDireccion = [];
     this.lista3 = [];
+    this.lista4 = [];
     this.imagenes.obtenerGrupos().subscribe(items => {
       this.lista = items;
+      if (this.id === null){
+        this.lista4.push(this.lista[0]);
+        this.lista4.push(this.lista[1]);
+      }
+      else {
+        this.lista4.push(this.lista[0]);
+        this.lista4.push(this.lista[1]);
+        this.lista4.push(this.lista[2]);
+      }
+      this.lista = this.lista4;
     });
   }
 

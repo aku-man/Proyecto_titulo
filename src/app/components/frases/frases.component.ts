@@ -15,29 +15,19 @@ export class FrasesComponent implements OnInit {
   flag: any;
   datosCargados = false;
 
-  /* listaFrase: Frase[] = [{
-    frecuencia : 3,
-    listaPicto : [{
-      nombre: 'Cita previa',
-      url: 'https://firebasestorage.googleapis.com/v0/b/tablero-de-comunicacion-2020.appspot.com/o/pictogramas%2Fcategoria3%2FCita%20previa.jpg?alt=media&token=a90cf234-abc7-411a-ab63-9c81a6b1710f'
-    },
-    {
-      nombre: 'Medicación',
-      url: 'https://firebasestorage.googleapis.com/v0/b/tablero-de-comunicacion-2020.appspot.com/o/pictogramas%2Fcategoria3%2FMedicacion.jpg?alt=media&token=1ef4bf83-2d57-4b4d-8eba-294ee72d4bf3'
-    }]
-  },
-  {
-    frecuencia: 1,
-    listaPicto: [{
-      nombre: 'Ambulancia',
-      url: 'https://firebasestorage.googleapis.com/v0/b/tablero-de-comunicacion-2020.appspot.com/o/pictogramas%2Fcategoria3%2FAmbulancia.jpg?alt=media&token=214117db-f6ac-4702-bb5c-72326e1c15e2'
-    }]
-  }]; */
   async ngOnInit(): Promise<void> {
     this.usuario.obtenerUsuario();
+    if (this.datosCargados === false){
+      console.log('algo');
+      document.getElementById('alerta').innerHTML = '<div><h1>Debe cargar datos del usuario</h1></div>';
+    }
+    else{
+      console.log('nada');
+      document.getElementById('alerta').innerHTML = '';
+    }
     await this.usuario.obtenerFrases().subscribe((frases) => {
       this.flag = frases;
-      while(this.listaFrase.length > 0){
+      while (this.listaFrase.length > 0){
         this.listaFrase.pop();
       }
       for (const item of this.flag){
@@ -60,6 +50,7 @@ export class FrasesComponent implements OnInit {
       this.datosCargados = true;
     });
 
+    
 
   }
 

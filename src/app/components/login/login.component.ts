@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
     if (this.validar === true){
       this.usuario.login(this.email, this.password).then(
         async (value) => {
+          this.usuario.obtenerUsuario();
           console.log(value);
           self.router.navigate(['/Tablero']);
           this.usuario.emitNavChangeEvent(1);
