@@ -171,7 +171,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
         }
       }
 
-      if (!found){
+      if (!found && this.listaSelect.length < 6){
         this.listaSelect.push(dropData);
       }
       else{
