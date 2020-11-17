@@ -7,7 +7,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { ListaPictograma } from '../../listaPictograma';
 declare var $: any;
 
-import { CalendarOptions, DateSelectArg, EventClickArg, EventApi, CalendarApi, formatRange } from '@fullcalendar/angular'; // useful for typechecking
+import { CalendarOptions, DateSelectArg, EventClickArg, EventApi} from '@fullcalendar/angular'; // useful for typechecking
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Pictograma } from 'src/app/models/pictograma.model';
@@ -145,7 +145,7 @@ export class AgendaComponent implements OnInit {
       extendedProps: {url: Np, nombre: urlp},
       daysOfWeek: [day]
     })._def);
-    await this.usuario.agregarEvento(start, end, day, title, Np, urlp)
+    await this.usuario.agregarEvento(start, end, day, title, Np, urlp);
   }
 
   handleEventClick(clickInfo: EventClickArg): void {
@@ -155,6 +155,7 @@ export class AgendaComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line: typedef
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
   }
@@ -170,7 +171,7 @@ export class AgendaComponent implements OnInit {
   }
 
   cargarEventos(): void {
-    for(const evento of this.listaEventos){
+    for (const evento of this.listaEventos){
       $('#calendar').fullcalendar('addEvent', evento);
     }
   }

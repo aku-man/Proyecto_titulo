@@ -3,6 +3,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 90%;
+    margin: 0% 5%;
+    border-radius: 10px;
+    padding: 2% 2%;
 }
 
 .example-box{
@@ -18,10 +22,7 @@
   margin-bottom: 10px;
 }
 
-.example-box:hover{
-  background:linear-gradient(#26135a,#3a1e70,#6f4ac5);
-  color: white;
-}
+
 
 .imagen{
   width: 70%;
@@ -50,8 +51,8 @@
       45deg,
       rgba(0, 0, 0, 0) 20px,
       rgba(0, 0, 0, 0) 40px,
-      #80deea 40px,
-      #80deea 60px
+      #b39ddb 40px,
+      #b39ddb 60px
     );
 }
 
@@ -85,9 +86,8 @@
 }
 
 .display{
-  
-  background-color: #00bcd4;
-  height: 100vh;
+  background-color: #311b92;
+  height: auto;
 }
 
 .selector_ruta_nombre{
@@ -110,8 +110,8 @@
         45deg,
         rgba(0, 0, 0, 0) 20px,
         rgba(0, 0, 0, 0) 40px,
-        #80deea 40px,
-        #80deea 60px
+        #b39ddb 40px,
+        #b39ddb 60px
       );
   }
   

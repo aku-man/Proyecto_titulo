@@ -12,13 +12,13 @@
 
 
 <div class="display">
-    <div *ngIf="[arregloDireccion.length] == 0" class="selector" >
+    <div *ngIf="[arregloDireccion.length] == 0" class="selector" style="background: #d50000; margin-top: 10px;">
         <div *ngFor="let i of lista"  class="example-box" (click)="escogerGrupo(i)">
             <img src={{i.url}} class="imagen">
             <p class="selector_ruta_nombre" >{{i.nombre}}</p>
         </div>
     </div>
-    <div *ngIf="[arregloDireccion.length] == 1" class="selector" >
+    <div *ngIf="[arregloDireccion.length] == 1" class="selector"  style="background: #ffff00; margin-top: 10px;">
         <div *ngFor="let i of lista3"   (click)="escogerCategoria(i)" >
             <div *ngIf="i.idGrupo ==[categoriaid]; else personalizada" class="example-box">
                 <img src={{i.url}} class="imagen">
@@ -35,7 +35,7 @@
     </div>
     <div *ngIf="[arregloDireccion.length] == 2" 
     class="selector" 
-    dragOverClass="drop-over-active">
+    dragOverClass="drop-over-active" style="background: #e65100; margin-top: 10px;">
         <div *ngFor="let item of listaPicto" 
         class="example-box"
         mwlDraggable
