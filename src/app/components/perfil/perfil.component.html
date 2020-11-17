@@ -376,16 +376,10 @@
                                 </div>
                             </div>
                         </div>
-                        <label class="control-label">Edad <span class="text-danger">*</span></label>
-                        <div class="row m-b-15">
-                            <div class="col-2">
-                                <input type="text" formControlName="edad" [(ngModel)]="edad" class="form-control" placeholder="Edad" required />
-                            </div>
-                        </div>
                         <div class="form-group row">
-                            <label for="example-date-input" class="col-2 col-form-label">Fecha</label>
+                            <label for="example-date-input" class="col-2 col-form-label">Fecha de Nacimiento</label>
                             <div class="col-10">
-                              <input class="form-control" formControlName="fecha" 
+                              <input class="form-control" formControlName="fecha"
                               [(ngModel)]="fecha" type="date" value="" id="example-date-input" 
                               required
                               [ngClass]="(formularioUsuario.get('fecha').dirty) && 

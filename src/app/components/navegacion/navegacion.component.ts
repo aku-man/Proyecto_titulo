@@ -48,7 +48,7 @@ export class NavegacionComponent implements OnInit, OnDestroy, DoCheck {
   // tslint:disable-next-line: typedef
   async verificar(){
    await this.usuario.obtenerUsuario();
-   console.log(this.usuario.tutor.uid);
+  //  console.log(this.usuario.tutor.uid);
    /* console.log('verifica', this.item); */
   }
 

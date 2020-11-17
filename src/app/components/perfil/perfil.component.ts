@@ -30,7 +30,6 @@ export class PerfilComponent implements OnInit {
   apellido: string = null;
   fecha: string = null;
   id: string = null;
-  edad: string = null;
   formularioUsuario: FormGroup;
 
   // datos para cambiar la contraseña
@@ -230,12 +229,6 @@ export class PerfilComponent implements OnInit {
         Validators.compose([
           Validators.required
         ])
-      ),
-      edad: new FormControl(
-        '',
-        Validators.compose([
-          Validators.required
-        ])
       )
     });
 
@@ -277,13 +270,19 @@ export class PerfilComponent implements OnInit {
   /* ----------------------------------- */
 
   async crearUsuario(): Promise<void>{
-    console.log('usuario creado');
+    const fecha = new Date(this.fecha);
+    const hoy = new Date();
+
+      // Discard the time and time-zone information.
+    const utc1 = Date.UTC(fecha.getFullYear(), fecha.getMonth(), fecha.getDate());
+    const utc2 = Date.UTC(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+    const edad = Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24 * 365));
     this.usuarioList = [];
     this.nuevoUsuario.nombre = this.nombre;
     this.nuevoUsuario.apellido = this.apellido;
     this.nuevoUsuario.fechaDeNacimiento = this.fecha;
     this.nuevoUsuario.idTutor = this.id;
-    this.nuevoUsuario.edad = this.edad;
+    this.nuevoUsuario.edad = edad.toString();
     await this.usuario.registrarUsuario(this.nuevoUsuario);
   }
 

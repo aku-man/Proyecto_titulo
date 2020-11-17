@@ -17,11 +17,12 @@ export class DigitalClockComponent implements OnInit {
   public ampm: string;
   public day: string;
   constructor(private usuario: UsuariosService) { }
-  listaAgenda: any;
+  listaAgenda: any[];
   currentEvents: EventApi[] = [];
 
   ngOnInit(){
     this.obtenerFrases();
+
     setInterval(() => {
       const date = new Date();
     }, 1000);
@@ -81,8 +82,20 @@ export class DigitalClockComponent implements OnInit {
 
   async obtenerFrases(){
     await this.usuario.obtenerEvento().subscribe((evento) => {
-      console.log(evento);
+      // console.log(evento);
       this.listaAgenda = evento;
+      this.listaAgenda.sort((a,b)=>{
+        const fecha1 = a.start[0] + a.start[1] + a.start[3] + a.start[4];
+        const fecha2 = b.start[0] + b.start[1] + b.start[3] + b.start[4];
+
+        if (fecha1 > fecha2){
+          return 1;
+        }
+        else if (fecha1 < fecha2){
+          return -1;
+        }
+        return 0;
+      });
     });
   }
 

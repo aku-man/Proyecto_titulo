@@ -13,6 +13,7 @@ export class FrasesComponent implements OnInit {
   loggeado: any;
   listaFrase: Frase[] = [];
   flag: any;
+  datosCargados = false;
 
   /* listaFrase: Frase[] = [{
     frecuencia : 3,
@@ -33,7 +34,7 @@ export class FrasesComponent implements OnInit {
     }]
   }]; */
   async ngOnInit(): Promise<void> {
-    await this.usuario.obtenerUsuario();
+    this.usuario.obtenerUsuario();
     await this.usuario.obtenerFrases().subscribe((frases) => {
       this.flag = frases;
       while(this.listaFrase.length > 0){
@@ -53,13 +54,12 @@ export class FrasesComponent implements OnInit {
         /* this.listaFrase.push(this.frase);
         this.listaprueba.push(item); */
       }
-      console.log(this.listaFrase);
       this.listaFrase = this.listaFrase.sort((fraseA: Frase, fraseB: Frase) => {
-        console.log(fraseA.frecuencia - fraseB.frecuencia);
         return fraseB.frecuencia - fraseA.frecuencia;
       });
-      console.log(this.listaFrase);
+      this.datosCargados = true;
     });
+
 
   }
 

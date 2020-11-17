@@ -224,9 +224,9 @@ async agregarFrase(frase, frec){
 
 
 
-  obtenerFrases(){
+  obtenerFrases() {
   this.frasesCollection =  this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection<Item>('Frases');
-  this.frases = this.frasesCollection.valueChanges();
+  this.frases = this.frasesCollection.valueChanges();  
   return this.frases;
   }
 

@@ -48,11 +48,11 @@ export class ContenedorComponent implements OnInit, OnChanges {
   async ngOnInit(): Promise<void> {
     this.listaFrase = [];
     
-    console.log(this.usuario.tutor.uid);
+    // console.log(this.usuario.tutor.uid);
     (await this.usuario.getInformationProfile(this.usuario.tutor.uid)).subscribe(async usuariosCompletos => {
       this.tutor = await usuariosCompletos;
       });
-    console.log(this.listaFrase);
+    // console.log(this.listaFrase);
     await this.usuario.obtenerFrases().subscribe((frases) => {
       this.flag = frases;
       while(this.listaFrase.length > 0){
@@ -67,15 +67,15 @@ export class ContenedorComponent implements OnInit, OnChanges {
         nuevaFrase.frecuencia = item.frecuencia;
         nuevaFrase.listaPicto = item.listaFrase;
         nuevaFrase.idFrase = item.idFrase;
-        console.log(nuevaFrase);
+        // console.log(nuevaFrase);
         this.listaFrase.push(nuevaFrase);
         /* this.listaFrase.push(this.frase);
         this.listaprueba.push(item); */
       }
-      console.log(this.listaFrase);
-      for (let i of this.listaFrase){
-        console.log(i);
-      }
+      // console.log(this.listaFrase);
+      // for (let i of this.listaFrase){
+      //   console.log(i);
+      // }
     });
     
   }
@@ -91,7 +91,7 @@ export class ContenedorComponent implements OnInit, OnChanges {
   }
 
   reproducirFrase(): void{
-    console.log(this.usuario.tutor);
+    // console.log(this.usuario.tutor);
     let frecuencia = 0;
     let id;
     for (const pict of this.listaSelect){
