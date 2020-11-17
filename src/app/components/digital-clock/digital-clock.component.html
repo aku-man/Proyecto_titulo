@@ -10,16 +10,20 @@
     <!-- Lunes -->
     <div class="modal fade" tabindex="-1" id="modal1" *ngIf="day == 'Lunes'">
         <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content" style="background-color:#e0e0e0;">
+            <div class="modal-content" style="background-color:#90caf9;">
                 <div class="modal-header">
                     <h2>Lunes</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div *ngFor="let item of listaAgenda">
-                        <div *ngIf="item.day === 1">
-                            {{item.nombrePicto}}
-                            <img src={{item.urlPicto}} alt="">
+                        <div *ngIf="item.day === 1" style="display: flex; width: 80%; margin: 0 10%; height: auto;
+                            padding: 5px 10px; background: #2196f3;">
+                            <div style="width: 50%;">
+                                <b>{{item.nombrePicto}}</b>
+                                <p>{{item.start.substring(0,5)}}</p>
+                            </div>
+                            <img class="img-fluid" style="max-width: 100px; height: auto;" src={{item.urlPicto}} alt="">
                         </div>
                     </div>
                 </div>
@@ -29,16 +33,20 @@
     <!-- Martes -->
     <div class="modal fade" tabindex="-1" id="modal2" *ngIf="day == 'Martes'">
         <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content" style="background-color:#e0e0e0;">
+            <div class="modal-content" style="background-color:#90caf9;">
                 <div class="modal-header">
                     <h2>Martes</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div *ngFor="let item of listaAgenda">
-                        <div *ngIf="item.day === 2">
-                            {{item.nombrePicto}}
-                            <img src={{item.urlPicto}} alt="">
+                    <div *ngFor="let item of listaAgenda" >
+                        <div *ngIf="item.day === 2" style="display: flex; width: 80%; margin: 0 10%; height: auto;
+                            padding: 5px 10px; background: #2196f3;">
+                            <div style="width: 50%;">
+                                <b>{{item.nombrePicto}}</b>
+                                <p>{{item.start.substring(0,5)}}</p>
+                            </div>
+                            <img class="img-fluid" style="max-width: 100px; height: auto;" src={{item.urlPicto}} alt="">
                         </div>
                     </div>
                 </div>
@@ -49,16 +57,20 @@
     <!-- Miercoles -->
     <div class="modal fade" tabindex="-1" id="modal3" *ngIf="day == 'Miercoles'">
         <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content" style="background-color:#e0e0e0;">
+            <div class="modal-content" style="background-color:#90caf9;">
                 <div class="modal-header">
                     <h2>Miercoles</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div *ngFor="let item of listaAgenda">
-                        <div *ngIf="item.day === 3">
-                            {{item.nombrePicto}}
-                            <img src={{item.urlPicto}} alt="">
+                        <div *ngIf="item.day === 3" style="display: flex; width: 80%; margin: 0 10%; height: auto;
+                            padding: 5px 10px; background: #2196f3;">
+                            <div style="width: 50%;">
+                                <b>{{item.nombrePicto}}</b>
+                                <p>{{item.start.substring(0,5)}}</p>
+                            </div>
+                            <img class="img-fluid" style="max-width: 100px; height: auto;" src={{item.urlPicto}} alt="">
                         </div>
                     </div>
                 </div>
@@ -69,16 +81,20 @@
     <!-- Jueves -->
     <div class="modal fade" tabindex="-1" id="modal4" *ngIf="day == 'Jueves'">
         <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content" style="background-color:#e0e0e0;">
+            <div class="modal-content" style="background-color:#90caf9;">
                 <div class="modal-header">
                     <h2>Jueves</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div *ngFor="let item of listaAgenda">
-                        <div *ngIf="item.day === 4">
-                            {{item.nombrePicto}}
-                            <img src={{item.urlPicto}} alt="">
+                        <div *ngIf="item.day === 4" style="display: flex; width: 80%; margin: 0 10%; height: auto;
+                            padding: 5px 10px; background: #2196f3;">
+                            <div style="width: 50%;">
+                                <b>{{item.nombrePicto}}</b>
+                                <p>{{item.start.substring(0,5)}}</p>
+                            </div>
+                            <img class="img-fluid" style="max-width: 100px; height: auto;" src={{item.urlPicto}} alt="">
                         </div>
                     </div>
                 </div>
@@ -89,16 +105,20 @@
     <!-- Viernes -->
     <div class="modal fade" tabindex="-1" id="modal5" *ngIf="day == 'Viernes'">
         <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content" style="background-color:#e0e0e0;">
+            <div class="modal-content" style="background-color:#90caf9;">
                 <div class="modal-header">
                     <h2>Viernes</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div *ngFor="let item of listaAgenda">
-                        <div *ngIf="item.day === 5">
-                            {{item.nombrePicto}}
-                            <img src={{item.urlPicto}} alt="">
+                        <div *ngIf="item.day === 5" style="display: flex; width: 80%; margin: 0 10%; height: auto;
+                            padding: 5px 10px; background: #2196f3;">
+                            <div style="width: 50%;">
+                                <b>{{item.nombrePicto}}</b>
+                                <p>{{item.start.substring(0,5)}}</p>
+                            </div>
+                            <img class="img-fluid" style="max-width: 100px; height: auto;" src={{item.urlPicto}} alt="">
                         </div>
                     </div>
                 </div>
@@ -109,16 +129,20 @@
     <!-- Sabado -->
     <div class="modal fade" tabindex="-1" id="modal6" *ngIf="day == 'Sabado'">
         <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content" style="background-color:#e0e0e0;">
+            <div class="modal-content" style="background-color:#90caf9;">
                 <div class="modal-header">
                     <h2>Sábado</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div *ngFor="let item of listaAgenda">
-                        <div *ngIf="item.day === 6">
-                            {{item.nombrePicto}}
-                            <img src={{item.urlPicto}} alt="">
+                        <div *ngIf="item.day === 6" style="display: flex; width: 80%; margin: 0 10%; height: auto;
+                            padding: 5px 10px; background: #2196f3;">
+                            <div style="width: 50%;">
+                                <b>{{item.nombrePicto}}</b>
+                                <p>{{item.start.substring(0,5)}}</p>
+                            </div>
+                            <img class="img-fluid" style="max-width: 100px; height: auto;" src={{item.urlPicto}} alt="">
                         </div>
                     </div>
                 </div>
@@ -129,16 +153,20 @@
     <!-- Domingo -->
     <div class="modal fade" tabindex="-1" id="modal7" *ngIf="day == 'Domingo'">
         <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content" style="background-color:#e0e0e0;">
+            <div class="modal-content" style="background-color:#90caf9;">
                 <div class="modal-header">
                     <h2>Domingo</h2>
                     <button class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div *ngFor="let item of listaAgenda">
-                        <div *ngIf="item.day === 7">
-                            {{item.nombrePicto}}
-                            <img src={{item.urlPicto}} alt="">
+                        <div *ngIf="item.day === 7" style="display: flex; width: 80%; margin: 0 10%; height: auto;
+                            padding: 5px 10px; background: #2196f3;">
+                            <div style="width: 50%;">
+                                <b>{{item.nombrePicto}}</b>
+                                <p>{{item.start.substring(0,5)}}</p>
+                            </div>
+                            <img class="img-fluid" style="max-width: 100px; height: auto;" src={{item.urlPicto}} alt="">
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ p {
 
 #pc{
   display: flex;
+  width: 700px;
 }
 
 #celular{
