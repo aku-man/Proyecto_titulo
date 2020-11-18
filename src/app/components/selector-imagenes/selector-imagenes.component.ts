@@ -138,7 +138,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     this.lista4 = [];
     this.imagenes.obtenerGrupos().subscribe(items => {
       this.lista = items;
-      if (this.id === null){
+      if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
         this.lista4.push(this.lista[0]);
         this.lista4.push(this.lista[1]);
       }
