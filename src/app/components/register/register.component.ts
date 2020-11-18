@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.pattern('^[a-zA-Z ]+$'),
           Validators.maxLength(30)
           // tslint:disable-next-line: max-line-length
           /* Validators.pattern(/^([0-9]{1,2}[0-9]{6}[0-9kK]{1}\s{0,})$|^[0-9]{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}\s{0,}$|^([0-9]{1,2}[0-9]{6}-[0-9kK]{1}\s{0,})$/) */
@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.pattern('^[a-zA-Z ]+$'),
           Validators.maxLength(30)
         ])
       ),

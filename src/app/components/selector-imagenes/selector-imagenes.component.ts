@@ -23,6 +23,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
   lista4: any[] = [];
   categoriaid: string;
 
+  datosCargados = false;
   id: any = null;
   personalizada = null;
   algo: any;
@@ -58,6 +59,13 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
       (await this.usuario.getInformationProfile(user.uid)).subscribe(usuariosCompletos => {
         this.algo = usuariosCompletos;
         this.id = this.algo.usuarioCargado;
+        console.log(this.id);
+        if ((this.id === null) || (this.id === undefined)){
+        this.datosCargados = false;
+        }
+        else {
+        this.datosCargados = true;
+        }
       });
     });
   }
@@ -70,8 +78,15 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     }
     this.lista2 = [];
     console.log(this.id);
+    console.log(this.datosCargados);
     this.categoriaid = grupo.idGrupo;
     this.arregloDireccion.push(grupo);
+    /* if ((grupo.idGrupo === 'sTMqvckVT2YutTDmoXzD') && ((this.id === null) || (this.id === undefined))){
+      document.getElementById('categoria').innerHTML = '<div><h1>No hay usuario cargado</h1></div>';
+    }
+    else{
+      document.getElementById('categoria').innerHTML = '';
+    } */
     await this.imagenes.retornaItems(grupo.idGrupo, this.id).subscribe((item) => {
       this.lista2 = item;
       console.log(this.lista2);
@@ -80,7 +95,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
           this.lista3.push(i);
         }
         if (this.lista3.length === 0){
-          document.getElementById('categoria').innerHTML = '<div><h1>Debe crear Categorias en la sección Perfil</h1></div>';
+          document.getElementById('categoria').innerHTML = '<div><h1>Debe crear Categorias en la sección <a routerLink="/Perfil" class="text-success">Perfil</a>.</h1></div>';
         }
         else if (this.lista3.length > 0){
           document.getElementById('categoria').innerHTML = '';
@@ -117,7 +132,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
           }
         }
         if (this.listaPicto.length === 0){
-          document.getElementById('pictograma').innerHTML = '<div><h1>Debe crear Pictogramas en la sección Perfil</h1></div>';
+          document.getElementById('pictograma').innerHTML = '<div><h1>Debe crear Pictogramas en la sección <a routerLink="/Perfil" class="text-success">Perfil</a>.</h1></div>';
         }
         else {
           document.getElementById('pictograma').innerHTML = '';
