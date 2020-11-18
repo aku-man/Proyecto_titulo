@@ -37,6 +37,7 @@
     background:white;
     border-radius: 10%;
     margin-left: 10px;
+    box-shadow: 6px 5px 5px 0px #494649;
 }
 
 .example-box{
@@ -115,6 +116,7 @@
         background:white;
         border-radius: 10%;
         margin-left: 5px;
+        box-shadow: 6px 5px 5px 0px #494649;
     }
     
     .example-box{

@@ -18,7 +18,7 @@
             <p class="selector_ruta_nombre" >{{i.nombre}}</p>
         </div>
     </div>
-    <div *ngIf="[arregloDireccion.length] == 1" class="selector"  style="background: #ffea00; margin-top: 10px;">
+    <div *ngIf="[arregloDireccion.length] == 1" class="selector"  style="background: #272725; margin-top: 10px;">
         <div id="categoria">
            
         </div>
@@ -44,7 +44,7 @@
             
         </div>
         <div *ngFor="let item of listaPicto" 
-        class="example-box"
+        class="example-box-picto"
         mwlDraggable
         (dragEnd)="dragEnd($event, item)"
         [dropData]=item>

@@ -22,7 +22,19 @@
   margin-bottom: 10px;
 }
 
-
+.example-box-picto{
+  margin-right: 20px;
+  width: 150px;
+  height: 150px;
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  background:white;
+  border-radius: 10%;
+  margin-bottom: 10px;
+  box-shadow: 6px 5px 5px 0px #494649;
+}
 
 .imagen{
   width: 70%;
@@ -86,7 +98,7 @@
 }
 
 .display{
-  background-color: #4527a0 ;
+  background-color: #4527a0;
   height: auto;
 }
 
@@ -177,6 +189,21 @@
     border-radius: 10%;
     margin-bottom: 10px;
   }
+
+  .example-box-picto{
+    margin-right: 10px;
+    width: 75px;
+    height: 75px;
+    font-size: 10px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    background:white;
+    border-radius: 10%;
+    margin-bottom: 10px;
+    box-shadow: 6px 5px 5px 0px #494649;
+  }
+
 
   .selector_ruta_nombre{
     font-size: 60%;
