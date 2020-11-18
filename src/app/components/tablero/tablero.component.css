@@ -1,10 +1,11 @@
 .contenedor_selector{
     background-color: #4527a0 ;
+    padding-bottom: 30px;
 }
 .home{
     background-color: #4527a0 ;
-    height: auto;
-    padding-bottom: 10px;
+    height: 100vh;
+    padding-bottom: 30px;
 }
 
 
