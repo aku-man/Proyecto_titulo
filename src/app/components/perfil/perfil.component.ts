@@ -213,7 +213,7 @@ export class PerfilComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.pattern('^[a-zA-Z ]+$'),
           Validators.maxLength(30)
         ])
       ),
@@ -221,7 +221,7 @@ export class PerfilComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('^[a-zA-Z]+$'),
+          Validators.pattern('^[a-zA-Z ]+$'),
           Validators.maxLength(30)
         ])
       ),

@@ -50,8 +50,6 @@ export class FrasesComponent implements OnInit {
       this.datosCargados = true;
     });
 
-    
-
   }
 
   // tslint:disable-next-line: typedef
