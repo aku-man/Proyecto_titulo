@@ -38,43 +38,91 @@ export class DigitalClockComponent implements OnInit {
         intro = document.getElementById('lunes');
         intro.style.backgroundColor = '#7e57c2';
         intro.style.color = 'white';
-
+        if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
+          console.log('algo');
+          document.getElementById('lunes').innerHTML = '<div id="lunes" data-target="#nologeado" data-toggle="modal">X</div>';
+        }
+        else {
+          document.getElementById('lunes').innerHTML = '<div id="lunes" data-target="#modal1" data-toggle="modal">X</div>';
+        }
         break;
       }
       case 'Martes' : {
         intro = document.getElementById('martes');
         intro.style.backgroundColor = '#7e57c2';
         intro.style.color = 'white';
+        if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
+          console.log('algo');
+          document.getElementById('martes').innerHTML = '<div id="martes" data-target="#nologeado" data-toggle="modal">X</div>';
+        }
+        else {
+          document.getElementById('martes').innerHTML = '<div id="martes" data-target="#modal2" data-toggle="modal">X</div>';
+        }
         break;
       }
       case 'Miercoles' : {
         intro = document.getElementById('miercoles');
         intro.style.backgroundColor = '#7e57c2';
         intro.style.color = 'white';
+        if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
+          console.log('algo');
+          document.getElementById('miercoles').innerHTML = '<div id="miercoles" data-target="#nologeado" data-toggle="modal">X</div>';
+        }
+        else {
+          document.getElementById('miercoles').innerHTML = '<div id="miercoles" data-target="#modal3" data-toggle="modal">X</div>';
+        }
         break;
       }
       case 'Jueves' : {
         intro = document.getElementById('jueves');
         intro.style.backgroundColor = '#7e57c2';
         intro.style.color = 'white';
+        if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
+          console.log('algo');
+          document.getElementById('jueves').innerHTML = '<div id="jueves" data-target="#nologeado" data-toggle="modal">X</div>';
+        }
+        else {
+          document.getElementById('jueves').innerHTML = '<div id="jueves" data-target="#modal4" data-toggle="modal">X</div>';
+        }
         break;
       }
       case 'Viernes' : {
         intro = document.getElementById('viernes');
         intro.style.backgroundColor = '#7e57c2';
         intro.style.color = 'white';
+        if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
+          console.log('algo');
+          document.getElementById('viernes').innerHTML = '<div id="viernes" data-target="#nologeado" data-toggle="modal">X</div>';
+        }
+        else {
+          document.getElementById('viernes').innerHTML = '<div id="viernes" data-target="#modal5" data-toggle="modal">X</div>';
+        }
         break;
       }
       case 'Sabado' : {
         intro = document.getElementById('sabado');
         intro.style.backgroundColor = '#7e57c2';
         intro.style.color = 'white';
+        if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
+          console.log('algo');
+          document.getElementById('sabado').innerHTML = '<div id="sabado" data-target="#nologeado" data-toggle="modal">X</div>';
+        }
+        else {
+          document.getElementById('sabado').innerHTML = '<div id="sabado" data-target="#modal6" data-toggle="modal">X</div>';
+        }
         break;
       }
       case 'Domingo' : {
         intro = document.getElementById('domingo');
         intro.style.backgroundColor = '#7e57c2';
         intro.style.color = 'white';
+        if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
+          console.log('algo');
+          document.getElementById('domingo').innerHTML = '<div id="domingo" data-target="#nologeado" data-toggle="modal">X</div>';
+        }
+        else {
+          document.getElementById('domingo').innerHTML = '<div id="domingo" data-target="#modal7" data-toggle="modal">X</div>';
+        }
         break;
       }
     }
@@ -82,9 +130,9 @@ export class DigitalClockComponent implements OnInit {
 
   async obtenerFrases(){
     await this.usuario.obtenerEvento().subscribe((evento) => {
-      // console.log(evento);
       this.listaAgenda = evento;
-      this.listaAgenda.sort((a,b)=>{
+      console.log(this.listaAgenda);
+      this.listaAgenda.sort((a, b) => {
         const fecha1 = a.start[0] + a.start[1] + a.start[3] + a.start[4];
         const fecha2 = b.start[0] + b.start[1] + b.start[3] + b.start[4];
 

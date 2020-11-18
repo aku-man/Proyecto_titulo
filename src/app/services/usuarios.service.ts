@@ -271,6 +271,7 @@ async agregarFrase(frase, frec){
   }
 
   obtenerEvento(){
+    console.log(this.usuarioFrase.usuarioCargado);
     this.eventosCollection =  this.afs.collection('Usuarios').doc(this.usuarioFrase.usuarioCargado).collection<Item>('Agenda');
     this.frases = this.eventosCollection.valueChanges();
     return this.frases;

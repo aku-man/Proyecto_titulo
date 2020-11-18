@@ -1,11 +1,11 @@
 <div class="contenedor">
-    <div id="lunes" data-target="#modal1" data-toggle="modal" >L</div>
-    <div id="martes" data-target="#modal2" data-toggle="modal">M</div>
-    <div id="miercoles" data-target="#modal3" data-toggle="modal">X</div>
-    <div id="jueves" data-target="#modal4" data-toggle="modal">J</div>
-    <div id="viernes" data-target="#modal5" data-toggle="modal">V</div>
-    <div id="sabado" data-target="#modal6" data-toggle="modal">S</div>
-    <div id="domingo" data-target="#modal7" data-toggle="modal">D</div>
+    <div id="lunes">L</div>
+    <div id="martes">M</div>
+    <div id="miercoles">X</div>
+    <div id="jueves">J</div>
+    <div id="viernes">V</div>
+    <div id="sabado">S</div>
+    <div id="domingo">D</div>
 
     <!-- Lunes -->
     <div class="modal fade" tabindex="-1" id="modal1" *ngIf="day == 'Lunes'">
@@ -169,6 +169,24 @@
                             <img class="img-fluid" style="max-width: 100px; height: auto;" src={{item.urlPicto}} alt="">
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="nologeado" >
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content" style="background-color:white;">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h1>
+                        Para ocupar las funcionalidades de la agenda, inicie sesion <a routerLink="/Login" class="text-success">aquí</a>.
+                    </h1>
+                    <h1>
+                        Si no posee alguna cuenta, registrese <a routerLink="/Register" class="text-success">aquí</a>.
+                    </h1>
                 </div>
             </div>
         </div>
