@@ -14,10 +14,12 @@ export class FrasesComponent implements OnInit {
   listaFrase: Frase[] = [];
   flag: any;
   datosCargados = false;
+  userId: any = null;
 
   async ngOnInit(): Promise<void> {
-    this.usuario.obtenerUsuario();
-    if (this.datosCargados === false){
+    await this.usuario.obtenerUsuario();
+    this.userId = this.usuario.usuarioFrase.usuarioCargado;
+    if (this.userId === null){
       console.log('algo');
       document.getElementById('alerta').innerHTML = '<div><h1>Debe cargar datos del usuario</h1></div>';
     }
