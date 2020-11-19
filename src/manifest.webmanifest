@@ -3,8 +3,8 @@
   "short_name": "Proyecto",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
-  "display": "Fullscreen",
-  "orientation": "Landscape",
+  "display": "fullscreen",
+  "orientation": "landscape",
   "scope": "./",
   "start_url": "./",
   "icons": [

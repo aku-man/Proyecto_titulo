@@ -56,7 +56,19 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
 
   conseguirId(){
     this.usuario.obtenerUser().then( async user => {
-      if (user === undefined){
+      (await this.usuario.getInformationProfile(user.uid)).subscribe(usuariosCompletos => {
+        this.algo = usuariosCompletos;
+        this.id = this.algo.usuarioCargado;
+        console.log(this.id);
+        if ((this.id === null) || (this.id === undefined)){
+        this.datosCargados = false;
+        }
+        else {
+        this.datosCargados = true;
+        }
+      });
+    });
+      /* if (user === undefined){
         console.log("Aqui fallo papu");
         this.datosCargados = false;
         console.log(this.datosCargados);
@@ -74,7 +86,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
           }
         });
       }
-    });
+    }); */
   }
 
 
@@ -84,7 +96,6 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
       this.personalizada = 1;
     }
     this.lista2 = [];
-    console.log(this.id);
     console.log(this.datosCargados);
     this.categoriaid = grupo.idGrupo;
     this.arregloDireccion.push(grupo);
