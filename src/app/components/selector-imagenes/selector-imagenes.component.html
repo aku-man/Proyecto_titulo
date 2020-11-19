@@ -21,7 +21,6 @@
     <div *ngIf="([arregloDireccion.length] == 1)">
     <div *ngIf="(datosCargados); else elseBlock"  class="selector"  style="background: #ffeb3b; margin-top: 10px;">
         <div id="categoria">
-           
         </div>
         
         <div *ngFor="let i of lista3"   (click)="escogerCategoria(i)" >
@@ -39,10 +38,20 @@
         </div>
     </div>
     <ng-template #elseBlock>
-        <div class="selector"  style="background: #ffeb3b; margin-top: 10px;">
+        <div *ngIf="([personalizada] == 1); else else2"  class="selector"  style="background: #ffeb3b; margin-top: 10px;">
             <h1 class="mb-0">Aún no ha cargado usuario, para hacerlo acceder a <a routerLink="/Perfil" class="text-success">Perfil</a>.
             </h1>
         </div>
+        <ng-template #else2>
+            <div class="selector"  style="background: #ffeb3b; margin-top: 10px;">
+                <div *ngFor="let i of lista3"   (click)="escogerCategoria(i)" >
+                    <div *ngIf="i.idGrupo ==[categoriaid]; else personalizada" class="example-box">
+                        <img src={{i.url}} class="imagen">
+                        <p class="selector_ruta_nombre" >{{i.nombre}}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
     </ng-template>
     </div>
     <div *ngIf="[arregloDireccion.length] == 2" 
