@@ -95,7 +95,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
           this.lista3.push(i);
         }
         if (this.lista3.length === 0){
-          document.getElementById('categoria').innerHTML = '<div><h1>Debe crear Categorias en la sección <a routerLink="/Perfil" class="text-success">Perfil</a>.</h1></div>';
+          document.getElementById('categoria').innerHTML = '<div><h1>Debe crear Categorias en la sección <a routerLink="/Perfil">Perfil</a>.</h1></div>';
         }
         else if (this.lista3.length > 0){
           document.getElementById('categoria').innerHTML = '';
@@ -132,7 +132,7 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
           }
         }
         if (this.listaPicto.length === 0){
-          document.getElementById('pictograma').innerHTML = '<div><h1>Debe crear Pictogramas en la sección <a routerLink="/Perfil" class="text-success">Perfil</a>.</h1></div>';
+          document.getElementById('pictograma').innerHTML = '<div><h1>Debe crear Pictogramas en la sección <a routerLink="/Perfil">Perfil</a>.</h1></div>';
         }
         else {
           document.getElementById('pictograma').innerHTML = '';
