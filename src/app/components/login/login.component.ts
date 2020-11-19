@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder, private usuario: UsuariosService) { }
 
   ngOnInit(): void {
+    this.usuario.onOut();
     this.formulario = this.formBuilder.group({
     email: new FormControl(
       '',
