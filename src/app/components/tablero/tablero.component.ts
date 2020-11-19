@@ -18,10 +18,10 @@ export class TableroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.usuario.inicio === 0){
-      this.usuario.inicio = 1;
-      this.usuario.onOut();
-    }
+    // if (this.usuario.inicio === 0){
+    //   this.usuario.inicio = 1;
+    //   this.usuario.onOut();
+    // }
   }
 
   receiveMessage($event): void{

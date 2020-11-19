@@ -48,25 +48,32 @@ export class SelectorImagenesComponent implements OnInit, OnChanges {
     if (this.id === null){
       this.conseguirId();
     }
-    this.inicio();
+    // this.inicio();
   }
   ngOnInit(){
-    /* this.inicio(); */
+    this.inicio();
   }
 
   conseguirId(){
     this.usuario.obtenerUser().then( async user => {
-      (await this.usuario.getInformationProfile(user.uid)).subscribe(usuariosCompletos => {
-        this.algo = usuariosCompletos;
-        this.id = this.algo.usuarioCargado;
-        console.log(this.id);
-        if ((this.id === null) || (this.id === undefined)){
+      if (user === undefined){
+        console.log("Aqui fallo papu");
         this.datosCargados = false;
-        }
-        else {
+        console.log(this.datosCargados);
+      }else{
         this.datosCargados = true;
-        }
-      });
+        (await this.usuario.getInformationProfile(user.uid)).subscribe(usuariosCompletos => {
+          this.algo = usuariosCompletos;
+          this.id = this.algo.usu;
+          console.log(this.id);
+          if ((this.id === null) || (this.id === undefined)){
+            this.datosCargados = false;
+          }
+          else {
+            this.datosCargados = true;
+          }
+        });
+      }
     });
   }
 

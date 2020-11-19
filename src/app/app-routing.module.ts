@@ -13,7 +13,7 @@ import { AgendaComponent } from './components/agenda/agenda.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/Tablero',
+    redirectTo: '/Login',
     pathMatch: 'full'
   },
   {
