@@ -100,65 +100,33 @@ export class ContenedorComponent implements OnInit, OnChanges {
       utterance.voice = speechSynthesis.getVoices()[0];
       speechSynthesis.speak(utterance);
     }
-
-    let existe = false;
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0 ; i < this.listaFrase.length ; i++){
-      frecuencia = this.listaFrase[i].frecuencia;
-      if (this.equals(this.listaFrase[i].listaPicto , this.listaSelect)){
-        id = this.listaFrase[i].idFrase;
-        frecuencia = frecuencia + 1;
-        this.listaFrase[i].frecuencia ++;
-        existe = true;
-        break;
-      }
-    }
-    if (!existe){
-      id = 'noexiste';
-      frecuencia = 1;
-      /* const nuevaFrase: Frase = {
-        listaPicto : [],
-        frecuencia : 1,
-        idFrase : ''
-      }; */
-
-      // tslint:disable-next-line: prefer-for-of
-      /* for (let i = 0 ; i < this.listaSelect.length ; i++){
-        nuevaFrase.listaPicto.push(this.listaSelect[i]);
-      }
-      console.log('nuevafrase');
-      this.listaFrase.push(nuevaFrase); */
-      console.log(this.listaFrase);
-      const budgets = this.listaSelect.map((obj) => {return Object.assign({}, obj)});
-      this.usuario.agregarFrase(budgets, frecuencia);
-    }
-    else {
-      console.log(this.listaFrase);
-      console.log(id);
-      this.usuario.actualizarFrase(frecuencia, id);
-      
-      /* console.log('frecuencia', frecuencia);
-      console.log('listaselect', budgets);
-      console.log('idFrase', id); */
-
-    }
+    console.log(this.listaSelect.length);
     
-    /* this.usuario.agregarFrase(budgets, frecuencia); */
-    /* if (this.existeFrase === true){
-       console.log('frase ya existe, crear nnueva', this.listaFrase);
-      this.subirFrase.idFrase = this.idFrase;
+    if (this.listaSelect.length !== 0){
+      let existe = false;
+      // tslint:disable-next-line: prefer-for-of
+      for (let i = 0 ; i < this.listaFrase.length ; i++){
+        frecuencia = this.listaFrase[i].frecuencia;
+        if (this.equals(this.listaFrase[i].listaPicto , this.listaSelect)){
+          id = this.listaFrase[i].idFrase;
+          frecuencia = frecuencia + 1;
+          this.listaFrase[i].frecuencia ++;
+          existe = true;
+          break;
+        }
+      }
+      if (!existe){
+        id = 'noexiste';
+        frecuencia = 1;
 
-      const budgets = this.listaSelect.map((obj) => {return Object.assign({}, obj)});
-      
-      this.usuario.actualizarFrase(this.subirFrase);
-       console.log(budgets);
-      console.log(this.subirFrase);
-    } */
-    /* else {
-      this.usuario.agregarFrase(this.listaFrase);
-      console.log('nueva frase', this.listaFrase);
-    } */
-    /* this.usuario.agregarFrase(this.listaFrase); */
+        console.log(this.listaFrase);
+        const budgets = this.listaSelect.map((obj) => {return Object.assign({}, obj)});
+        this.usuario.agregarFrase(budgets, frecuencia);
+      }
+      else {
+        this.usuario.actualizarFrase(frecuencia, id);
+      }
+    }
   }
 
   onDrop({ dropData }: DropEvent<Pictograma>): void {
