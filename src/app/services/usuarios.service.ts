@@ -19,6 +19,8 @@ export class UsuariosService {
   navchange: EventEmitter<number> = new EventEmitter();
   user$: Observable<any>;
 
+  inicio = 0;
+
   nuevoUsuario = {
     id: '',
     nombre: '',

@@ -1,5 +1,6 @@
 import { Component, OnInit,  } from '@angular/core';
 import { Pictograma } from 'src/app/models/pictograma.model';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-tablero',
@@ -13,10 +14,14 @@ export class TableroComponent implements OnInit {
 
   idCargarPreferencias: string;
 
-  constructor() {
+  constructor(private usuario: UsuariosService) {
   }
 
   ngOnInit(): void {
+    if (this.usuario.inicio === 0){
+      this.usuario.inicio = 1;
+      this.usuario.onOut();
+    }
   }
 
   receiveMessage($event): void{
