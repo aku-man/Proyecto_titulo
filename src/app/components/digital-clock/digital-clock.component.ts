@@ -40,10 +40,10 @@ export class DigitalClockComponent implements OnInit {
         intro.style.color = 'white';
         if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
           console.log('algo');
-          document.getElementById('lunes').innerHTML = '<div id="lunes" data-target="#nologeado" data-toggle="modal">X</div>';
+          document.getElementById('lunes').innerHTML = '<div id="lunes" data-target="#nologeado" data-toggle="modal">L</div>';
         }
         else {
-          document.getElementById('lunes').innerHTML = '<div id="lunes" data-target="#modal1" data-toggle="modal">X</div>';
+          document.getElementById('lunes').innerHTML = '<div id="lunes" data-target="#modal1" data-toggle="modal">L</div>';
         }
         break;
       }
@@ -53,10 +53,10 @@ export class DigitalClockComponent implements OnInit {
         intro.style.color = 'white';
         if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
           console.log('algo');
-          document.getElementById('martes').innerHTML = '<div id="martes" data-target="#nologeado" data-toggle="modal">X</div>';
+          document.getElementById('martes').innerHTML = '<div id="martes" data-target="#nologeado" data-toggle="modal">M</div>';
         }
         else {
-          document.getElementById('martes').innerHTML = '<div id="martes" data-target="#modal2" data-toggle="modal">X</div>';
+          document.getElementById('martes').innerHTML = '<div id="martes" data-target="#modal2" data-toggle="modal">M</div>';
         }
         break;
       }
@@ -79,10 +79,10 @@ export class DigitalClockComponent implements OnInit {
         intro.style.color = 'white';
         if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
           console.log('algo');
-          document.getElementById('jueves').innerHTML = '<div id="jueves" data-target="#nologeado" data-toggle="modal">X</div>';
+          document.getElementById('jueves').innerHTML = '<div id="jueves" data-target="#nologeado" data-toggle="modal">J</div>';
         }
         else {
-          document.getElementById('jueves').innerHTML = '<div id="jueves" data-target="#modal4" data-toggle="modal">X</div>';
+          document.getElementById('jueves').innerHTML = '<div id="jueves" data-target="#modal4" data-toggle="modal">J</div>';
         }
         break;
       }
@@ -92,10 +92,10 @@ export class DigitalClockComponent implements OnInit {
         intro.style.color = 'white';
         if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
           console.log('algo');
-          document.getElementById('viernes').innerHTML = '<div id="viernes" data-target="#nologeado" data-toggle="modal">X</div>';
+          document.getElementById('viernes').innerHTML = '<div id="viernes" data-target="#nologeado" data-toggle="modal">V</div>';
         }
         else {
-          document.getElementById('viernes').innerHTML = '<div id="viernes" data-target="#modal5" data-toggle="modal">X</div>';
+          document.getElementById('viernes').innerHTML = '<div id="viernes" data-target="#modal5" data-toggle="modal">V</div>';
         }
         break;
       }
@@ -105,10 +105,10 @@ export class DigitalClockComponent implements OnInit {
         intro.style.color = 'white';
         if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
           console.log('algo');
-          document.getElementById('sabado').innerHTML = '<div id="sabado" data-target="#nologeado" data-toggle="modal">X</div>';
+          document.getElementById('sabado').innerHTML = '<div id="sabado" data-target="#nologeado" data-toggle="modal">S</div>';
         }
         else {
-          document.getElementById('sabado').innerHTML = '<div id="sabado" data-target="#modal6" data-toggle="modal">X</div>';
+          document.getElementById('sabado').innerHTML = '<div id="sabado" data-target="#modal6" data-toggle="modal">S</div>';
         }
         break;
       }
@@ -118,10 +118,10 @@ export class DigitalClockComponent implements OnInit {
         intro.style.color = 'white';
         if ((this.usuario.tutor.uid === null) || (this.usuario.tutor.uid === undefined)){
           console.log('algo');
-          document.getElementById('domingo').innerHTML = '<div id="domingo" data-target="#nologeado" data-toggle="modal">X</div>';
+          document.getElementById('domingo').innerHTML = '<div id="domingo" data-target="#nologeado" data-toggle="modal">D</div>';
         }
         else {
-          document.getElementById('domingo').innerHTML = '<div id="domingo" data-target="#modal7" data-toggle="modal">X</div>';
+          document.getElementById('domingo').innerHTML = '<div id="domingo" data-target="#modal7" data-toggle="modal">D</div>';
         }
         break;
       }
